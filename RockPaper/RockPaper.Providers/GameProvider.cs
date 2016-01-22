@@ -42,15 +42,31 @@ namespace RockPaper.Providers
             return game.Id;
         }
 
+
+
         /// <summary>
-        /// Gets the state of the game.
+        /// Determines whether [is it my turn] [the specified game identifier].
         /// </summary>
         /// <param name="GameId">The game identifier.</param>
-        /// <returns></returns>
-        public GameState GetGameState(Guid GameId)
+        /// <param name="TeamId">The team identifier.</param>
+        /// <returns>A bool indicating if its the teams turn.</returns>
+        public bool IsItMyTurn(Guid GameId, Guid TeamId)
         {
             var gameAdapter = new GameAdapter();
-            return gameAdapter.GetGameState(GameId);
+
+            var game = gameAdapter.GetGameById(GameId);
+            if (game.Team1.Id == TeamId && game.GameState == GameState.Player1Hand)
+            {
+                return true;
+            }
+
+            if (game.Team2.Id == TeamId && game.GameState == GameState.Player2Hand)
+            {
+                return true;
+            }
+
+            return false;
+
         }
 
         /// <summary>

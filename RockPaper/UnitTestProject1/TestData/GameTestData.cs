@@ -25,6 +25,20 @@ namespace TestProject.TestData
                 Game3 = adapter.RegisiterNewGame();
 
                 adapter.SaveChanges();
+
+                var teamAdapter = new TeamAdapter();
+                var team1 = teamAdapter.GetTeamById(ObjectMother.TeamTestData.Team1Id);
+                var team2 = teamAdapter.GetTeamById(ObjectMother.TeamTestData.Team2Id);
+                var team3 = teamAdapter.GetTeamById(ObjectMother.TeamTestData.Team3Id);
+
+                var gameAdapter = new GameAdapter();
+                gameAdapter.JoinExistingGame(team1, ObjectMother.GameTestData.Game1.Id);
+                gameAdapter.JoinExistingGame(team2, ObjectMother.GameTestData.Game1.Id);
+
+                gameAdapter.JoinExistingGame(team1, ObjectMother.GameTestData.Game2.Id);
+                gameAdapter.JoinExistingGame(team2, ObjectMother.GameTestData.Game2.Id);
+
+                gameAdapter.SaveChanges();
             }
 
         }

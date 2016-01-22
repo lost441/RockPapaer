@@ -26,6 +26,9 @@ namespace RockPaper.Providers
         /// <returns></returns>
         public OperationOutcome SumbitHand(Hand hand, Guid TeamId, Guid GameId)
         {
+            System.Threading.Thread.Sleep(Properties.Settings.Default.ThinkTimeInMiliSeconds);
+            
+            
             var outcome = new OperationOutcome { Result = false, Error = "" };
             var gameAdapter = new GameAdapter();
             var roundAdapter = new RoundAdapter();
@@ -77,6 +80,7 @@ namespace RockPaper.Providers
                     return outcome;
                 }
             }
+
 
             roundAdapter.SaveChanges();
             gameAdapter.SaveChanges();

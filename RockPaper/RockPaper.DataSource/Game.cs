@@ -51,6 +51,14 @@ namespace RockPaper.DataSource
         public string WinningTeam { get; set; }
 
         /// <summary>
+        /// Gets or sets the created date.
+        /// </summary>
+        /// <value>
+        /// The created date.
+        /// </value>
+        public DateTime CreatedDate { get; set; }
+
+        /// <summary>
         /// Gets or sets the team1 identifier.
         /// </summary>
         /// <value>

@@ -27,7 +27,7 @@ namespace TestProject.TestData
             {
                 var round = new Round
                 {
-                    GameId = ObjectMother.GameTestData.Game3.Id,
+                    GameId = ObjectMother.GameTestData.Game2.Id,
                     Result = RoundResult.Team1Won,
                     Team1Hand = Hand.Paper,
                     Team2Hand = Hand.None,
@@ -39,7 +39,7 @@ namespace TestProject.TestData
 
                 round = new Round
                 {
-                    GameId = ObjectMother.GameTestData.Game3.Id,
+                    GameId = ObjectMother.GameTestData.Game2.Id,
                     Result = RoundResult.Team1Won,
                     Team1Hand = Hand.Rock,
                     Team2Hand = Hand.None,
@@ -50,7 +50,7 @@ namespace TestProject.TestData
 
                 round = new Round
                 {
-                    GameId = ObjectMother.GameTestData.Game3.Id,
+                    GameId = ObjectMother.GameTestData.Game2.Id,
                     Result = RoundResult.Team1Won,
                     Team1Hand = Hand.Spock,
                     Team2Hand = Hand.None,
@@ -61,7 +61,7 @@ namespace TestProject.TestData
 
                 round = new Round
                 {
-                    GameId = ObjectMother.GameTestData.Game3.Id,
+                    GameId = ObjectMother.GameTestData.Game2.Id,
                     Result = RoundResult.Draw,
                     Team1Hand = Hand.Spock,
                     Team2Hand = Hand.Spock,
@@ -72,7 +72,7 @@ namespace TestProject.TestData
 
                 round = new Round
                 {
-                    GameId = ObjectMother.GameTestData.Game3.Id,
+                    GameId = ObjectMother.GameTestData.Game2.Id,
                     Result = RoundResult.Team1Won,
                     Team1Hand = Hand.Spock,
                     Team2Hand = Hand.Rock,
@@ -80,7 +80,6 @@ namespace TestProject.TestData
                 };
 
                 Round5 = adapter.CreateRound(round);
-
                 adapter.SaveChanges();
             }
         }

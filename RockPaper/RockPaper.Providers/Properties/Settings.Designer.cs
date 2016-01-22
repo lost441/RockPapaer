@@ -31,5 +31,17 @@ namespace RockPaper.Providers.Properties {
                 return ((int)(this["BestOutOf"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int ThinkTimeInMiliSeconds {
+            get {
+                return ((int)(this["ThinkTimeInMiliSeconds"]));
+            }
+            set {
+                this["ThinkTimeInMiliSeconds"] = value;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace TestProject.AdapterTests
         public void GetCompletedRoundByGameIdTests()
         {
             var roundAdapter = new RoundAdapter();
-            var roundsPlayed = roundAdapter.GetCompletedRoundByGameId(ObjectMother.GameTestData.Game3.Id);
+            var roundsPlayed = roundAdapter.GetCompletedRoundByGameId(ObjectMother.GameTestData.Game2.Id);
 
             Assert.AreEqual(4, roundsPlayed.Count());
         

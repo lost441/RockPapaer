@@ -74,7 +74,8 @@ namespace RockPaper.AdapterImplentations
             {
                 Id = Guid.NewGuid(),
                 IsComplete = false,
-                GameState = GameState.WaitingForPlayers.ToString()
+                GameState = GameState.WaitingForPlayers.ToString(),
+                CreatedDate = DateTime.Now
             };
 
             return context.Games.Add(game).Map();
@@ -112,14 +113,8 @@ namespace RockPaper.AdapterImplentations
         {
             var availbleGame = context.Games
                 .Where(x => x.Team1 != null || 
-                            x.Team2 == null);
-
-            if (availbleGame.Count() == 0)
-            {
-                availbleGame = context.Games
-                .Where(x => x.Team1 == null ||
-                            x.Team2 == null);
-            }
+                            x.Team2 == null)
+                 .OrderBy(x => x.CreatedDate);
 
             return availbleGame.FirstOrDefault().Map();
         }

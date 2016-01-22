@@ -19,11 +19,12 @@ namespace RockPaper.Contracts
         Guid FindAGame(Guid TeamId);
 
         /// <summary>
-        /// Gets the state of the game.
+        /// Determines whether [is it my turn] [the specified game identifier].
         /// </summary>
         /// <param name="GameId">The game identifier.</param>
-        /// <returns></returns>
-        GameState GetGameState(Guid GameId);
+        /// <param name="TeamId">The team identifier.</param>
+        /// <returns>A bool indicating if its the teams turn.</returns>
+        bool IsItMyTurn(Guid GameId, Guid TeamId);
 
         /// <summary>
         /// Determines the winner.
