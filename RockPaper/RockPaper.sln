@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{FE41F1CD-66F5-4BA1-9F2D-FA7C245EB11C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.DataSource", "RockPaper.DataSource\RockPaper.DataSource.csproj", "{23BCE258-8874-4B62-9F40-087386D12117}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Adapter", "RockPaper.Adapter\RockPaper.Adapter.csproj", "{C053B3CD-C3DF-476A-8F51-0203A64A72DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Contracts", "RockPaper.Contracts\RockPaper.Contracts.csproj", "{7C28B980-C276-4BB3-8E42-8FA7D84A828C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{6E633260-D9C9-4293-AF68-7E2E64DC2B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "UnitTestProject1\TestProject.csproj", "{E455B940-4F43-4CC7-968F-C5DE8B589F02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.AdapterImplentations", "RockPaper.AdapterImplentations\RockPaper.AdapterImplentations.csproj", "{909E69D3-A175-4C31-B990-AB5447AE4CEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mid-Tier", "Mid-Tier", "{FC903619-9942-48E6-B358-23125BC4E832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Providers", "RockPaper.Providers\RockPaper.Providers.csproj", "{FB29C784-E352-4BEE-98FD-368C3D102389}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23BCE258-8874-4B62-9F40-087386D12117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BCE258-8874-4B62-9F40-087386D12117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BCE258-8874-4B62-9F40-087386D12117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BCE258-8874-4B62-9F40-087386D12117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C053B3CD-C3DF-476A-8F51-0203A64A72DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C053B3CD-C3DF-476A-8F51-0203A64A72DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C053B3CD-C3DF-476A-8F51-0203A64A72DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C053B3CD-C3DF-476A-8F51-0203A64A72DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C28B980-C276-4BB3-8E42-8FA7D84A828C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C28B980-C276-4BB3-8E42-8FA7D84A828C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C28B980-C276-4BB3-8E42-8FA7D84A828C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C28B980-C276-4BB3-8E42-8FA7D84A828C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E455B940-4F43-4CC7-968F-C5DE8B589F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E455B940-4F43-4CC7-968F-C5DE8B589F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E455B940-4F43-4CC7-968F-C5DE8B589F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E455B940-4F43-4CC7-968F-C5DE8B589F02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909E69D3-A175-4C31-B990-AB5447AE4CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909E69D3-A175-4C31-B990-AB5447AE4CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909E69D3-A175-4C31-B990-AB5447AE4CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909E69D3-A175-4C31-B990-AB5447AE4CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB29C784-E352-4BEE-98FD-368C3D102389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB29C784-E352-4BEE-98FD-368C3D102389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB29C784-E352-4BEE-98FD-368C3D102389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB29C784-E352-4BEE-98FD-368C3D102389}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23BCE258-8874-4B62-9F40-087386D12117} = {FE41F1CD-66F5-4BA1-9F2D-FA7C245EB11C}
+		{C053B3CD-C3DF-476A-8F51-0203A64A72DA} = {FE41F1CD-66F5-4BA1-9F2D-FA7C245EB11C}
+		{7C28B980-C276-4BB3-8E42-8FA7D84A828C} = {FE41F1CD-66F5-4BA1-9F2D-FA7C245EB11C}
+		{E455B940-4F43-4CC7-968F-C5DE8B589F02} = {6E633260-D9C9-4293-AF68-7E2E64DC2B1B}
+		{909E69D3-A175-4C31-B990-AB5447AE4CEE} = {FE41F1CD-66F5-4BA1-9F2D-FA7C245EB11C}
+		{FB29C784-E352-4BEE-98FD-368C3D102389} = {FC903619-9942-48E6-B358-23125BC4E832}
+	EndGlobalSection
+EndGlobal
