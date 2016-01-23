@@ -14,8 +14,8 @@ namespace TestProject
         public void FindAGameTest()
         {
             var provider = new GameProvider();
-            provider.FindAGame(ObjectMother.TeamTestData.Team1Id);
-            var gameId = provider.FindAGame(ObjectMother.TeamTestData.Team2Id);
+            provider.GetNextAvailableGame(ObjectMother.TeamTestData.Team1Id);
+            var gameId = provider.GetNextAvailableGame(ObjectMother.TeamTestData.Team2Id);
 
             var gameAdapter = new GameAdapter();
             var game = gameAdapter.GetGameById(gameId);
@@ -32,8 +32,8 @@ namespace TestProject
             var gameProvider = new GameProvider();
             var roundProvider = new RoundProvider();
 
-            gameProvider.FindAGame(ObjectMother.TeamTestData.Team1Id);
-            var gameId = gameProvider.FindAGame(ObjectMother.TeamTestData.Team2Id);
+            gameProvider.GetNextAvailableGame(ObjectMother.TeamTestData.Team1Id);
+            var gameId = gameProvider.GetNextAvailableGame(ObjectMother.TeamTestData.Team2Id);
 
             // Round 1 - 0 1
             roundProvider.SumbitHand(Hand.Rock, ObjectMother.TeamTestData.Team1Id, gameId);

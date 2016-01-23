@@ -1,16 +1,13 @@
 ﻿// <copyright file="RoundProvider.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.Providers
 {
-    using RockPaper.AdapterImplentations;
-    using RockPaper.Contracts;
-    using RockPaper.Contracts.Common;
+    using AdapterImplentations;
+    using Contracts;
+    using Contracts.Common;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The round provider.
@@ -21,10 +18,10 @@ namespace RockPaper.Providers
         /// Submits the hand.
         /// </summary>
         /// <param name="hand">The hand.</param>
-        /// <param name="TeamId">The team identifier.</param>
-        /// <param name="GameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
-        public OperationOutcome SumbitHand(Hand hand, Guid TeamId, Guid GameId)
+        public OperationOutcome SumbitHand(Hand hand, Guid teamId, Guid gameId)
         {
             System.Threading.Thread.Sleep(Properties.Settings.Default.ThinkTimeInMiliSeconds);
             
@@ -32,7 +29,7 @@ namespace RockPaper.Providers
             var outcome = new OperationOutcome { Result = false, Error = "" };
             var gameAdapter = new GameAdapter();
             var roundAdapter = new RoundAdapter();
-            var game = gameAdapter.GetGameById(GameId);
+            var game = gameAdapter.GetGameById(gameId);
 
             var gameProvider = new GameProvider();
 
@@ -44,17 +41,17 @@ namespace RockPaper.Providers
 
             if (game.GameState == GameState.Player1Hand)
             {
-                if (game.Team1.Id == TeamId)
+                if (game.Team1.Id == teamId)
                 {
                     var round = new Round
                     {
-                        GameId = GameId,
+                        GameId = gameId,
                         Team1Hand = hand,
-                        SequenceNumber = roundAdapter.GetNextRoundNumber(GameId)
+                        SequenceNumber = roundAdapter.GetNextRoundNumber(gameId)
                     };
 
                     roundAdapter.CreateRound(round);
-                    gameAdapter.UpdateGameState(GameState.Player2Hand, GameId);
+                    gameAdapter.UpdateGameState(GameState.Player2Hand, gameId);
                     outcome.Result = true;
                 }
                 else
@@ -65,14 +62,14 @@ namespace RockPaper.Providers
             }
             else if(game.GameState == GameState.Player2Hand)
             {
-                if (game.Team2.Id == TeamId)
+                if (game.Team2.Id == teamId)
                 {
-                    var round = roundAdapter.GetRoundForPlayerTwo(GameId);
+                    var round = roundAdapter.GetRoundForPlayerTwo(gameId);
                     round.Team2Hand = hand;
                     round.Result = DetermineWinner(round.Team1Hand , round.Team2Hand);
                     roundAdapter.UpdateRound(round);
 
-                    gameAdapter.UpdateGameState(GameState.Player1Hand, GameId);
+                    gameAdapter.UpdateGameState(GameState.Player1Hand, gameId);
                 }
                 else
                 {
@@ -81,11 +78,10 @@ namespace RockPaper.Providers
                 }
             }
 
-
             roundAdapter.SaveChanges();
             gameAdapter.SaveChanges();
 
-            gameProvider.GameProcesssing(GameId);
+            gameProvider.CompleteRound(gameId);
 
             outcome.Result = true;
             return outcome;
@@ -94,18 +90,18 @@ namespace RockPaper.Providers
         /// <summary>
         /// Determines the winner.
         /// </summary>
-        /// <param name="round">The round.</param>
-        /// <returns></returns>
-        private RoundResult DetermineWinner(Hand? Hand1, Hand? Hand2)
+        /// <param name="teamOneHane">The team one hane.</param>
+        /// <param name="teamTwoHand">The team two hand.</param>
+        /// <returns>The winner</returns>
+        private RoundResult DetermineWinner(Hand? teamOneHane, Hand? teamTwoHand)
         {
-            var team2Hand = Hand2;
+            var team2Hand = teamTwoHand;
             if (team2Hand == Hand.None)
             {
                 return RoundResult.Team1Won;
             }
 
-
-            switch (Hand1)
+            switch (teamOneHane)
             {
                 case Hand.Rock:
                     if (team2Hand == Hand.Rock)

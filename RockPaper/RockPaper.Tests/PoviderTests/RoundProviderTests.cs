@@ -19,8 +19,8 @@ namespace TestProject.PoviderTests
         public void SumbitHandTest()
         {
             var gameProvider = new GameProvider();
-            gameProvider.FindAGame(ObjectMother.TeamTestData.Team1Id);
-            var gameId = gameProvider.FindAGame(ObjectMother.TeamTestData.Team2Id);
+            gameProvider.GetNextAvailableGame(ObjectMother.TeamTestData.Team1Id);
+            var gameId = gameProvider.GetNextAvailableGame(ObjectMother.TeamTestData.Team2Id);
 
             var roundProvider = new RoundProvider();
             roundProvider.SumbitHand(Hand.Rock, ObjectMother.TeamTestData.Team1Id, gameId);

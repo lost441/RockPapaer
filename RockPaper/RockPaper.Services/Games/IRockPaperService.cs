@@ -1,0 +1,28 @@
+﻿
+namespace RockPaper.Services.Games
+{
+    using System;
+    using System.ServiceModel;
+    using Contracts.Response;
+
+    [ServiceContract]
+    public interface IRockPaperService
+    {
+        /// <summary>
+        /// Finds a game.
+        /// </summary>
+        /// <param name="teamId">The team identifier.</param>
+        /// <returns></returns>
+        [OperationContract]
+        ResponseItem<Guid> GetNextAvailableGame(Guid teamId);
+
+        /// <summary>
+        /// Determines whether [is it my turn] [the specified game identifier].
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <returns>A bool indicating if its the teams turn.</returns>
+        [OperationContract]
+        ResponseItem<bool> IsItMyTurn(Guid gameId, Guid teamId);
+    }
+}
