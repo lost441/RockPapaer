@@ -1,0 +1,5 @@
+
+
+1. Combine Adapter and Adapter Implimnetation Layer
+2. Find correct location to find 'Is My Turn'
+3. Return Exception data as JSON not HTML

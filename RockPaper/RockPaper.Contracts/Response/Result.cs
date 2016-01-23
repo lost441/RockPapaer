@@ -2,6 +2,7 @@
 namespace RockPaper.Contracts.Response
 {
     using System.Collections.Generic;
+    using Common;
 
     public class Result
     {
@@ -14,7 +15,7 @@ namespace RockPaper.Contracts.Response
             : this()
         {
             this.IsSuccessfull = resultCode.GetSuccess();
-            this.ResultCode = resultCode.ToString();
+            this.ResultCode = resultCode.ToDescription();
             this.ResultDescription = description;
         }
 

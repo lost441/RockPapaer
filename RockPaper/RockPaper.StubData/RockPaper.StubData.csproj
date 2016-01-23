@@ -39,10 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\GameBuilder.cs" />
+    <Compile Include="Builders\TeamBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Builders\" />
+    <ProjectReference Include="..\RockPaper.Contracts\RockPaper.Contracts.csproj">
+      <Project>{7c28b980-c276-4bb3-8e42-8fa7d84a828c}</Project>
+      <Name>RockPaper.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

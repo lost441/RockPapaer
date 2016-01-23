@@ -17,6 +17,8 @@ namespace RockPaper.Web
             // Forces browser to return JSON
             formatters.Remove(formatters.XmlFormatter);
 
+            GlobalConfiguration.Configuration.Filters.Add(new WebApiExceptionFilter());
+
             var jsonFormatter = formatters.JsonFormatter;
 
             var settings = jsonFormatter.SerializerSettings;

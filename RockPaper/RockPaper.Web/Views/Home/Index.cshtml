@@ -15,9 +15,18 @@
 </p>
 
 <ul>
-    <li><a href="@(@Model.BaseUrl + @"api/sample/dogs?name=duke")">Dogs Web API Sample</a> (Post, Get, Put and Delete)</li>
-    <li><a href="@(@Model.BaseUrl + @"api/sample/dogs?name=exception,breed=401")">Dogs Web API Exceptions</a> (401-Auth 400-NotFound 500-Internal)</li>
-    <li><a href="@(@Model.BaseUrl + @"api/sample/dogs")">Dogs Web API V01</a> (Post, Get, Put and Delete)</li>
+    <li><a href="@(@Model.BaseUrl + @"api/sample/games")">Games Web API V01</a> (Post, Get, Put and Delete)</li>
     <li>@Html.ActionLink("API Documentation", "Index", "Help", new { area = "HelpPage" }, null) (Automated API Documentation)</li>
-    <li><a href="@(@Model.BaseUrl + @"services/dogservice.svc")">Dogs WCF Web Service</a> (Normal WCF Service)</li>
+    <li><a href="@(@Model.BaseUrl + @"services/RockPaperService.svc")">Rock Paper WCF Web Service</a> (Normal WCF Service)</li>
 </ul>
+
+
+@*
+    <ul>
+        <li><a href="@(@Model.BaseUrl + @"api/sample/dogs?name=duke")">Dogs Web API Sample</a> (Post, Get, Put and Delete)</li>
+        <li><a href="@(@Model.BaseUrl + @"api/sample/dogs?name=exception,breed=401")">Dogs Web API Exceptions</a> (401-Auth 400-NotFound 500-Internal)</li>
+        <li><a href="@(@Model.BaseUrl + @"api/sample/dogs")">Dogs Web API V01</a> (Post, Get, Put and Delete)</li>
+        <li>@Html.ActionLink("API Documentation", "Index", "Help", new { area = "HelpPage" }, null) (Automated API Documentation)</li>
+        <li><a href="@(@Model.BaseUrl + @"services/dogservice.svc")">Dogs WCF Web Service</a> (Normal WCF Service)</li>
+    </ul>
+*@
