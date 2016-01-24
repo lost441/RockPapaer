@@ -1,9 +1,12 @@
-﻿
+﻿// <copyright file="IRockPaperService.cs" company="PayM8">
+//     Copyright ©  2016
+// </copyright>
 namespace RockPaper.Services.Games
 {
     using System;
     using System.ServiceModel;
     using Contracts.Response;
+    using RockPaper.Contracts;
 
     [ServiceContract]
     public interface IRockPaperService
@@ -24,5 +27,16 @@ namespace RockPaper.Services.Games
         /// <returns>A bool indicating if its the teams turn.</returns>
         [OperationContract]
         ResponseItem<bool> IsItMyTurn(Guid gameId, Guid teamId);
+
+
+        /// <summary>
+        /// Plays the hand.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="hand">The hand.</param>
+        /// <returns></returns>
+        [OperationContract]
+        ResponseItem<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand);
     }
 }

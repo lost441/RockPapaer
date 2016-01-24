@@ -1,9 +1,13 @@
-﻿
+﻿// <copyright file="RockPaperService.cs" company="PayM8">
+//     Copyright ©  2016
+// </copyright>
 namespace RockPaper.Services.Games
 {
     using System;
     using Contracts.Response;
     using Providers;
+    using RockPaper.Contracts;
+    using RockPaper.Contracts.Common;
     
     /// <summary>
     /// Dog Service
@@ -40,6 +44,24 @@ namespace RockPaper.Services.Games
             return new ResponseItem<bool>(ResultCodeEnum.Success)
             {
                 Data = isMyTurn
+            };
+        }
+
+        /// <summary>
+        /// Plays the hand.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="hand">The hand.</param>
+        /// <returns></returns>
+        public ResponseItem<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand)
+        {
+            var roundProvider = new RoundProvider();
+            var outcome = roundProvider.SumbitHand(hand, teamId, gameId);
+
+            return new ResponseItem<OperationOutcome>(ResultCodeEnum.Success)
+            {
+                Data = outcome
             };
         }
     }
