@@ -7,6 +7,7 @@ namespace RockPaper.Services.Games
     using System.ServiceModel;
     using Contracts.Response;
     using RockPaper.Contracts;
+    using RockPaper.Contracts.Common;
 
     [ServiceContract]
     public interface IRockPaperService
