@@ -70,6 +70,7 @@ namespace RockPaper.Providers
             {
                 gameAdapter.UpdateGameState(GameState.Complete, gameId);
             }
+
             gameAdapter.SaveChanges();
         }
     }

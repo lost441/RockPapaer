@@ -32,6 +32,7 @@ namespace RockPaper.Web
         /// </summary>
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
+        
         [HttpPut]
         ResponseList<T> Put(IEnumerable<T> items);
 
@@ -53,10 +54,13 @@ namespace RockPaper.Web
         /// <summary>
         /// Puts the specified item.
         /// </summary>
+        /// <param name="id">The identifier.</param>
         /// <param name="item">The item.</param>
-        /// <returns>The updated item</returns>
+        /// <returns>
+        /// The updated item
+        /// </returns>
         [HttpPut]
-        ResponseItem<T> Put(T item);
+        ResponseItem<T> Put(string id, T item);
 
         /// <summary>
         /// Deletes the specified identifier.

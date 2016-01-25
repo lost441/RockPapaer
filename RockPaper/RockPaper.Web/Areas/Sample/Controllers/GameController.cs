@@ -7,6 +7,7 @@ namespace RockPaper.Web.Areas.Sample.Controllers
     using Contracts.Response;
     using StubData.Builders;
     using Contracts.Exceptions;
+    using System.Linq;
 
     /// <summary>
     /// The Game API
@@ -107,8 +108,8 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// </summary>
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
-        [Route("")]
-        public ResponseItem<Game> Put(Game item)
+        [Route("{id}")]
+        public ResponseItem<Game> Put(string id, Game item)
         {
             return new ResponseItem<Game>(ResultCodeEnum.Success)
             {
@@ -127,6 +128,33 @@ namespace RockPaper.Web.Areas.Sample.Controllers
             return new ResponseItem<bool>(ResultCodeEnum.Success)
             {
                 Data = true
+            };
+        }
+
+        [HttpGet]
+        [Route("")]
+        public ResponseItem<bool> IsItMyTurn(string gameId, string teamId)
+        {
+            return new ResponseItem<bool>(ResultCodeEnum.Success)
+            {
+                Data = true
+            };
+        }
+
+        [HttpGet]
+        [Route("")]
+        public ResponseList<Game> Get(int? numberOfGames = null)
+        {
+            var games = new List<Game>
+            {
+                new GameBuilder().New().Build(),
+                new GameBuilder().InProgress().Build(),
+                new GameBuilder().Complete().Build()
+            };
+
+            return new ResponseList<Game>(ResultCodeEnum.Success)
+            {
+                Data = numberOfGames == null ? games.Take(numberOfGames.Value) : games
             };
         }
     }

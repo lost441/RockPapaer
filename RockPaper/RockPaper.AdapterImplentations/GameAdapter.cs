@@ -148,9 +148,9 @@ namespace RockPaper.AdapterImplentations
         /// <param name="winningTeam">The winning team.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void UpdateWinningTeam(string winningTeam, Guid GameId)
+        public void UpdateWinningTeam(string winningTeam, Guid gameId)
         {
-            var game = context.Games.Single(x => x.Id == GameId);
+            var game = context.Games.Single(x => x.Id == gameId);
             game.WinningTeam = winningTeam;
         }
 
@@ -170,21 +170,25 @@ namespace RockPaper.AdapterImplentations
             }
         }
 
-        private void DetermineWinner(Guid GameId)
+        /// <summary>
+        /// Determines the winner.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        private void DetermineWinner(Guid gameId)
         {
             var roundAdapter = new RoundAdapter();
-            var roundsForGame = roundAdapter.GetCompletedRoundByGameId(GameId);
+            var roundsForGame = roundAdapter.GetCompletedRoundByGameId(gameId);
 
             var Team1Wins = roundsForGame.Count(x => x.Result == RoundResult.Team1Won);
             var Team2Wins = roundsForGame.Count(x => x.Result == RoundResult.Team2Won);
 
             if (Team1Wins > Team2Wins)
             {
-                UpdateWinningTeam("Team1", GameId);
+                UpdateWinningTeam("Team1", gameId);
             }
             else
             {
-                UpdateWinningTeam("Team2", GameId);
+                UpdateWinningTeam("Team2", gameId);
             }
 
         }
