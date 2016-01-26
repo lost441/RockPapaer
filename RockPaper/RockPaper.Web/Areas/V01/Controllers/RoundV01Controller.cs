@@ -6,6 +6,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
     using Contracts.Exceptions;
     using Contracts.Response;
     using RockPaper.Contracts.Providers;
+    using RockPaper.Providers;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -42,9 +43,20 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Round> Get(Guid gameId)
+        public ResponseList<Round> Get([FromBody]RockPaper.Contracts.Api.Game game)
         {
-            throw new UnAuthorizedException();
+            if (game == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+
+            var provider = new RoundProvider();
+            var rounds = provider.GetCompletedRoundByGameId(game.Id);
+
+            return new ResponseList<Round>()
+            {
+                Data = rounds
+            };
         }
 
 
