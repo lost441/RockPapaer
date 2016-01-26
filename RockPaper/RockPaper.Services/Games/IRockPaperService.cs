@@ -8,6 +8,7 @@ namespace RockPaper.Services.Games
     using Contracts.Response;
     using RockPaper.Contracts;
     using RockPaper.Contracts.Common;
+    using RockPaper.Contracts.Providers;
 
     [ServiceContract]
     public interface IRockPaperService
@@ -47,5 +48,23 @@ namespace RockPaper.Services.Games
         /// <returns></returns>
         [OperationContract]
         ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(Guid gameId);
+
+        /// <summary>
+        /// Registers the team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        [OperationContract]
+        ResponseItem<Team> RegisterTeam(string teamName);
+
+        /// <summary>
+        /// Gets the name of the team by team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        [OperationContract]
+        ResponseItem<Team> GetTeamByTeamName(string teamName);
+
+
     }
 }
