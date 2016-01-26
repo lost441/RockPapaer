@@ -1,6 +1,9 @@
 ﻿// <copyright file="IRoundAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.Adapter
 {
     using RockPaper.Contracts;
@@ -35,21 +38,21 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
-        IEnumerable<RockPaper.Contracts.Round> GetCompletedRoundByGameId(Guid Id);
+        IEnumerable<Round> GetCompletedRoundByGameId(Guid Id);
 
         /// <summary>
         /// Updates the team1 hand.
         /// </summary>
         /// <param name="hand">The hand.</param>
         /// <returns></returns>
-        RockPaper.Contracts.Round UpdateTeam1Hand(Guid RoundId, Hand hand);
+        Round UpdateTeam1Hand(Guid RoundId, Hand hand);
 
         /// <summary>
         /// Updates the team2 hand.
         /// </summary>
         /// <param name="hand">The hand.</param>
         /// <returns></returns>
-       RockPaper.Contracts.Round UpdateTeam2Hand(Guid RoundId, Hand hand);
+       Round UpdateTeam2Hand(Guid RoundId, Hand hand);
 
        /// <summary>
        /// Gets the new round number.
@@ -63,7 +66,7 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="GameId">The game identifier.</param>
         /// <returns></returns>
-       RockPaper.Contracts.Round GetRoundForPlayerTwo(Guid GameId);
+       Round GetRoundForPlayerTwo(Guid GameId);
 
       
     

@@ -1,4 +1,6 @@
 ﻿
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.StubData.Builders
 {
     using System;

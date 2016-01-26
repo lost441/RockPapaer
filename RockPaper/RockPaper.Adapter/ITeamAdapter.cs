@@ -1,14 +1,11 @@
 ﻿// <copyright file="ITeamAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.Adapter
 {
-    using RockPaper.Contracts;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Contracts.Providers;
 
     /// <summary>
     /// The Team Interface.
@@ -20,14 +17,14 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="teamName">Name of the team.</param>
         /// <returns></returns>
-        RockPaper.Contracts.Team RegisterNewTeam(string teamName);
+        Team RegisterNewTeam(string teamName);
 
         /// <summary>
         /// Gets the team by identifier.
         /// </summary>
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
-        RockPaper.Contracts.Team GetTeamById(Guid Id);
+        Team GetTeamById(Guid Id);
 
         /// <summary>
         /// Saves the changes.

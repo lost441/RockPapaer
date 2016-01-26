@@ -2,6 +2,8 @@
 //     Copyright ©  2016
 // </copyright>
 
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.Providers
 {
     using AdapterImplentations;

@@ -1,17 +1,14 @@
 ﻿// <copyright file="TeamAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.AdapterImplentations
 {
-    using RockPaper.Adapter;
-    using RockPaper.Contracts;
-    using RockPaper.DataSource;
+    using Adapter;
+    using DataSource;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
+  
     /// <summary>
     /// The Team Adapter.
     /// </summary>
@@ -50,9 +47,9 @@ namespace RockPaper.AdapterImplentations
         /// </summary>
         /// <param name="teamName">Name of the team.</param>
         /// <returns></returns>
-        public RockPaper.Contracts.Team RegisterNewTeam(string teamName)
+        public Contracts.Providers.Team RegisterNewTeam(string teamName)
         {
-            var dataItemTeam = new RockPaper.DataSource.Team
+            var dataItemTeam = new DataSource.Team
             {
                 Id = Guid.NewGuid(),
                 TeamName = teamName
@@ -66,7 +63,7 @@ namespace RockPaper.AdapterImplentations
         /// </summary>
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
-        public RockPaper.Contracts.Team GetTeamById(Guid Id)
+        public Contracts.Providers.Team GetTeamById(Guid Id)
         {
             return context.Team.Single(x => x.Id == Id).Map();
         }

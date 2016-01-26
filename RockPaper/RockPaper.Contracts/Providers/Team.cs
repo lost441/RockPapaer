@@ -2,13 +2,9 @@
 //     Copyright ©  2016
 // </copyright>
 
-namespace RockPaper.Contracts
+namespace RockPaper.Contracts.Providers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The Team.

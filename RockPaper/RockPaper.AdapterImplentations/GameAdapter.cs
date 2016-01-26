@@ -49,7 +49,7 @@ namespace RockPaper.AdapterImplentations
         /// Gets all games.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<RockPaper.Contracts.Game> GetAllGames()
+        public IEnumerable<Contracts.Providers.Game> GetAllGames()
         {
             return context.Games.Map();
         }
@@ -59,7 +59,7 @@ namespace RockPaper.AdapterImplentations
         /// </summary>
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
-        public RockPaper.Contracts.Game GetGameById(Guid Id)
+        public Contracts.Providers.Game GetGameById(Guid Id)
         {
             return context.Games.Single(x => x.Id == Id).Map();
         }
@@ -68,7 +68,7 @@ namespace RockPaper.AdapterImplentations
         /// Regisiters the new game.
         /// </summary>
         /// <returns></returns>
-        public RockPaper.Contracts.Game RegisiterNewGame()
+        public Contracts.Providers.Game RegisiterNewGame()
         {
             var game = new RockPaper.DataSource.Game
             {
@@ -87,7 +87,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="Team">The team.</param>
         /// <param name="GameId">The game identifier.</param>
         /// <returns></returns>
-        public RockPaper.Contracts.Game JoinExistingGame(RockPaper.Contracts.Team Team, Guid GameId)
+        public Contracts.Providers.Game JoinExistingGame(Contracts.Providers.Team Team, Guid GameId)
         {
             var gameToJoin = context.Games.Single(x => x.Id == GameId);
             var teamToBeJoining = context.Team.Single(x => x.Id == Team.Id);
@@ -109,7 +109,7 @@ namespace RockPaper.AdapterImplentations
         /// Finds the available game.
         /// </summary>
         /// <returns></returns>
-        public RockPaper.Contracts.Game FindAvailableGame()
+        public Contracts.Providers.Game FindAvailableGame()
         {
             var availbleGame = context.Games
                 .Where(x => x.Team1 != null || 
@@ -137,7 +137,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="game">The game.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public RockPaper.Contracts.Game UpdateGame(RockPaper.Contracts.Game game)
+        public Contracts.Providers.Game UpdateGame(Contracts.Providers.Game game)
         {
             throw new NotImplementedException();
         }

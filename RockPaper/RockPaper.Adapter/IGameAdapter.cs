@@ -1,6 +1,9 @@
 ﻿// <copyright file="IGameAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.Adapter
 {
     using RockPaper.Contracts;
@@ -27,7 +30,7 @@ namespace RockPaper.Adapter
         /// Gets all games.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<RockPaper.Contracts.Game> GetAllGames();
+        IEnumerable<Game> GetAllGames();
 
         /// <summary>
         /// Joins the existing game.
@@ -35,7 +38,7 @@ namespace RockPaper.Adapter
         /// <param name="Team">The team.</param>
         /// <param name="GameId">The game identifier.</param>
         /// <returns></returns>
-        RockPaper.Contracts.Game JoinExistingGame(RockPaper.Contracts.Team Team, Guid GameId);
+        Game JoinExistingGame(Team Team, Guid GameId);
 
         /// <summary>
         /// Regsiters the new game.

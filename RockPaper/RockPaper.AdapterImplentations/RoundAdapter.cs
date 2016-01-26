@@ -1,6 +1,9 @@
 ﻿// <copyright file="RoundAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.AdapterImplentations
 {
     using RockPaper.Adapter;
@@ -51,7 +54,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="round">The round.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public RockPaper.Contracts.Round CreateRound(RockPaper.Contracts.Round round)
+        public Round CreateRound(Round round)
         {
             var game = context.Games.Single(x => x.Id == round.GameId);
 
@@ -74,7 +77,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="round">The round.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public RockPaper.Contracts.Round UpdateRound(RockPaper.Contracts.Round round)
+        public Round UpdateRound(Round round)
         {
             var roundItem = context.Round.Single(x => x.Id == round.Id);
             roundItem.Result = round.Result.ToString();
@@ -92,7 +95,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IEnumerable<RockPaper.Contracts.Round> GetCompletedRoundByGameId(Guid Id)
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid Id)
         {
             var result = context.Round
                             .Where(x => x.Game.Id == Id && (x.Result == "Team1Won" || x.Result == "Team2Won"));                
@@ -107,7 +110,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="hand">The hand.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public RockPaper.Contracts.Round UpdateTeam1Hand(Guid RoundId, Hand hand)
+        public Round UpdateTeam1Hand(Guid RoundId, Hand hand)
         {
             var round = context.Round.Single(x => x.Id == RoundId);
             round.Team1Hand = hand.ToString();
@@ -122,7 +125,7 @@ namespace RockPaper.AdapterImplentations
         /// <param name="hand">The hand.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public RockPaper.Contracts.Round UpdateTeam2Hand(Guid RoundId, Hand hand)
+        public Round UpdateTeam2Hand(Guid RoundId, Hand hand)
         {
             var round = context.Round.Single(x => x.Id == RoundId);
             round.Team2Hand = hand.ToString();
@@ -146,7 +149,7 @@ namespace RockPaper.AdapterImplentations
         /// </summary>
         /// <param name="GameId">The game identifier.</param>
         /// <returns></returns>
-        public RockPaper.Contracts.Round GetRoundForPlayerTwo(Guid GameId)
+        public Round GetRoundForPlayerTwo(Guid GameId)
         {
             return context.Round.Single(x => x.Team2Hand == string.Empty && x.Game.Id == GameId).Map();
         }

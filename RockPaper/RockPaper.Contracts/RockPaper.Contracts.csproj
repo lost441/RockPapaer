@@ -44,7 +44,7 @@
     <Compile Include="Exceptions\BadRequestException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\UnAuthorizedException.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Providers\Game.cs" />
     <Compile Include="Common\GameState.cs" />
     <Compile Include="Common\Hand.cs" />
     <Compile Include="OperationOutcome.cs" />
@@ -57,8 +57,8 @@
     <Compile Include="Response\Result.cs" />
     <Compile Include="Response\ResultCodeEnum.cs" />
     <Compile Include="Response\SuccessMapper.cs" />
-    <Compile Include="Round.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="Providers\Round.cs" />
+    <Compile Include="Providers\Team.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

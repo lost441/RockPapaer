@@ -1,6 +1,7 @@
 ﻿// <copyright file="IGameAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.Contracts.Response
 {
     /// <summary>

@@ -1,14 +1,11 @@
 ﻿// <copyright file="Round.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
-namespace RockPaper.Contracts
+
+namespace RockPaper.Contracts.Providers
 {
-    using RockPaper.Contracts.Common;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Common;
 
     /// <summary>
     /// The round class.

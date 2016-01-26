@@ -2,6 +2,8 @@
 //     Copyright ©  2016
 // </copyright>
 
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.Adapter
 {
     using RockPaper.Contracts.Common;
@@ -19,9 +21,9 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="game">The game.</param>
         /// <returns></returns>
-        public static RockPaper.Contracts.Game Map(this RockPaper.DataSource.Game game)
+        public static Game Map(this RockPaper.DataSource.Game game)
         {
-            return new RockPaper.Contracts.Game
+            return new Game
             {
                 GameState = (GameState)Enum.Parse(typeof(GameState), game.GameState, true),
                 Id = game.Id,
@@ -37,7 +39,7 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="game">The game.</param>
         /// <returns></returns>
-        public static IEnumerable<RockPaper.Contracts.Game> Map(this IEnumerable<RockPaper.DataSource.Game> game)
+        public static IEnumerable<Game> Map(this IEnumerable<RockPaper.DataSource.Game> game)
         {
             return game.Select(Map);
         }
@@ -47,11 +49,11 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="round">The round.</param>
         /// <returns></returns>
-        public static RockPaper.Contracts.Round Map(this RockPaper.DataSource.Round round)
+        public static Round Map(this RockPaper.DataSource.Round round)
         {
             Hand? nullableHand = null;
 
-            return new RockPaper.Contracts.Round
+            return new Round
             {
                 Id = round.Id,
                 Result = !string.IsNullOrEmpty(round.Result) ? (RoundResult)Enum.Parse(typeof(RoundResult), round.Result, true) : RoundResult.NotComplete,
@@ -67,7 +69,7 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="round">The round.</param>
         /// <returns></returns>
-        public static IEnumerable<RockPaper.Contracts.Round> Map(this IEnumerable<RockPaper.DataSource.Round> round)
+        public static IEnumerable<Round> Map(this IEnumerable<RockPaper.DataSource.Round> round)
         {
             return round.Select(Map);
         }
@@ -77,9 +79,9 @@ namespace RockPaper.Adapter
         /// </summary>
         /// <param name="team">The team.</param>
         /// <returns></returns>
-        public static RockPaper.Contracts.Team Map(this RockPaper.DataSource.Team team)
+        public static Team Map(this RockPaper.DataSource.Team team)
         {
-            return new RockPaper.Contracts.Team
+            return new Team
             {
                 Id = team.Id,
                 TeamName = team.TeamName

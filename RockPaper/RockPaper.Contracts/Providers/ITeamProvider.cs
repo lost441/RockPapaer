@@ -1,13 +1,11 @@
 ﻿// <copyright file="ITeamProvider.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
-namespace RockPaper.Contracts.ProviderInterfaces
+
+namespace RockPaper.Contracts.Providers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
     /// <summary>
     /// Interface for Team Provider.
     /// </summary>
@@ -16,15 +14,15 @@ namespace RockPaper.Contracts.ProviderInterfaces
         /// <summary>
         /// Gets the team by identifier.
         /// </summary>
-        /// <param name="TeamId">The team identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
         /// <returns></returns>
-        Team GetTeamById(Guid TeamId);
+        Team GetTeamById(Guid teamId);
 
          /// <summary>
          /// Registers the team.
          /// </summary>
-         /// <param name="TeamName">Name of the team.</param>
+         /// <param name="teamName">Name of the team.</param>
          /// <returns></returns>
-        Team RegisterTeam(string TeamName);
+        Team RegisterTeam(string teamName);
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using RockPaper.Contracts.Providers;
+
 namespace RockPaper.Web.Areas.Sample.Controllers
 {
     using System.Collections.Generic;
