@@ -9,6 +9,8 @@ namespace RockPaper.Services.Games
     using RockPaper.Contracts;
     using RockPaper.Contracts.Common;
     using RockPaper.Contracts.Providers;
+    using RockPaper.Contracts.Extentions;
+
     
     /// <summary>
     /// Dog Service
@@ -106,6 +108,17 @@ namespace RockPaper.Services.Games
             return new ResponseItem<Team>(ResultCodeEnum.Success)
             {
                 Data = team
+            };
+        }
+
+        public ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(Guid gameId)
+        {
+            var provider = new GameProvider();
+            var game = provider.GetGameById(gameId).Map();
+
+            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
+            {
+                Data = game
             };
         }
     }

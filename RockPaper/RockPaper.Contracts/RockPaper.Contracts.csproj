@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\BadRequestException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\UnAuthorizedException.cs" />
+    <Compile Include="Extentions\MappingExtentions.cs" />
     <Compile Include="Providers\Game.cs" />
     <Compile Include="Common\GameState.cs" />
     <Compile Include="Common\Hand.cs" />

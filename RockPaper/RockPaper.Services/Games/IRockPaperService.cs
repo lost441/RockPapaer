@@ -39,5 +39,13 @@ namespace RockPaper.Services.Games
         /// <returns></returns>
         [OperationContract]
         ResponseItem<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand);
+
+        /// <summary>
+        /// Gets the gameby game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns></returns>
+        [OperationContract]
+        ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(Guid gameId);
     }
 }
