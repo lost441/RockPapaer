@@ -5,19 +5,19 @@
 
     <Grid>
         <Canvas>
-            <CheckBox Content="Registered" Name="IsRegisteredCb" Canvas.Left="413" Canvas.Top="18"/>
+            <CheckBox  DataContext="{Binding IsRegistered, Mode=TwoWay}" Content="Registered" Name="IsRegisteredCb" Canvas.Left="413" Canvas.Top="18"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="78" Canvas.Left="32" Canvas.Top="39" Width="459"></Border>
             <Label Content="Team Name" Canvas.Left="97" Canvas.Top="49" />
             <TextBox Name="TeamNameTxt" Height="23" Canvas.Left="183" TextWrapping="Wrap" Canvas.Top="51" Width="243"/>
             <Button Command="{Binding RegisterTeamCommand}" Name="RegisterTeamBtn" Content="Register Team" Canvas.Left="97" Canvas.Top="86" Width="105"/>
-            <CheckBox Content="Active Game" Name="IsActiveGameCb" Canvas.Left="413" Canvas.Top="121"/>
+            <CheckBox DataContext="{Binding IsActive, Mode=TwoWay}" Content="Active Game" Name="IsActiveGameCb" Canvas.Left="413" Canvas.Top="121"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="78" Canvas.Left="32" Canvas.Top="142" Width="459"></Border>
             <Button Command="{Binding JoinTeamCommand}" Name="JoinGameBtn" Width="238" Content="Join Game" Canvas.Left="142" Canvas.Top="153"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="310" Canvas.Left="32" Canvas.Top="225" Width="459"></Border>
             <Label Content="Competing Team" Canvas.Left="63" Canvas.Top="184"/>
             <TextBox Name="CompetingTeamTxt" Height="23" Canvas.Left="200" TextWrapping="Wrap" IsEnabled="False" Canvas.Top="187" Width="226"/>
             <Button Command="{Binding CheckTurnCommand}" Name="CheckTurnBtn" Content="Check If My Turn" Canvas.Left="79" Canvas.Top="237" Width="166"/>
-            <CheckBox Name="IsAutoRefreshCb" Content="Auto Refresh" Canvas.Left="279" Canvas.Top="240"/>
+            <CheckBox DataContext="{Binding IsAutoRefresh, Mode=TwoWay}" Name="IsAutoRefreshCb" Content="Auto Refresh" Canvas.Left="279" Canvas.Top="240"/>
             <Button Command="{Binding PlayHandCommand}" Name="PlayHandBtn" Content="Play Hand" Canvas.Left="169" Canvas.Top="271" Width="184" Height="46"/>
             <Separator Canvas.Left="63" Canvas.Top="331" Width="388" Margin="0"/>
             <ListView ItemsSource="{Binding GameResults}" Name="ResultsLv"  Height="170" Canvas.Left="49" Canvas.Top="351" Width="426">
