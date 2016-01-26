@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Api" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Api" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Game">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common" minOccurs="0" name="GameState" type="q1:GameState" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TeamName1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TeamName2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WinningTeam" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Game" nillable="true" type="tns:Game" />
+</xs:schema>

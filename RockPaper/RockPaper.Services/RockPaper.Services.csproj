@@ -50,7 +50,9 @@
     <Compile Include="Games\RockPaperService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RockPaper.Contracts\RockPaper.Contracts.csproj">

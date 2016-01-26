@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Services", "RockPaper.Services\RockPaper.Services.csproj", "{04D6F6A2-7B51-4180-910A-D40522F31EDD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.TestProject", "RockPaper.Tests\RockPaper.TestProject.csproj", "{E455B940-4F43-4CC7-968F-C5DE8B589F02}"
+	ProjectSection(ProjectDependencies) = postProject
+		{87790498-0022-449F-99E1-CFB3B9D7EF2E} = {87790498-0022-449F-99E1-CFB3B9D7EF2E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Web", "RockPaper.Web\RockPaper.Web.csproj", "{87790498-0022-449F-99E1-CFB3B9D7EF2E}"
 EndProject
