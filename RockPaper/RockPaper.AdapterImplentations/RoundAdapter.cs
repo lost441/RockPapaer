@@ -2,17 +2,15 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.AdapterImplentations
 {
-    using RockPaper.Adapter;
-    using RockPaper.Contracts.Common;
+    using Adapter;
+    using Contracts.Common;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Contracts.Providers;
+    using Instrumentation.Logging;
 
     /// <summary>
     /// The Round Interface.
@@ -22,7 +20,12 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// The context
         /// </summary>
-        private RockPaper.DataSource.RockPapercContext context;
+        private DataSource.RockPapercContext context;
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private Logging logger = LogFactory.Create();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundAdapter"/> class.
@@ -31,8 +34,7 @@ namespace RockPaper.AdapterImplentations
         {
             context = new DataSource.RockPapercContext();
         }
-
-
+        
         /// <summary>
         /// Saves the changes.
         /// </summary>
@@ -44,7 +46,7 @@ namespace RockPaper.AdapterImplentations
             }
             catch (Exception ex)
             {
-                //TODO: Logging
+                logger.Error(ex.Message);
             }
         }
 
@@ -52,13 +54,12 @@ namespace RockPaper.AdapterImplentations
         /// Creates the round.
         /// </summary>
         /// <param name="round">The round.</param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <returns>Created round</returns>
         public Round CreateRound(Round round)
         {
             var game = context.Games.Single(x => x.Id == round.GameId);
 
-            var roundItem = new RockPaper.DataSource.Round
+            var roundItem = new DataSource.Round
             {
                 Id = Guid.NewGuid(),
                 Result = round.Result.ToString(),
@@ -86,19 +87,15 @@ namespace RockPaper.AdapterImplentations
             return roundItem.Map();
         }
 
-
-
-
         /// <summary>
         /// Gets the round by identifier.
         /// </summary>
-        /// <param name="Id">The identifier.</param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IEnumerable<Round> GetCompletedRoundByGameId(Guid Id)
+        /// <param name="id">The identifier.</param>
+        /// <returns>The completed round</returns>
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid id)
         {
             var result = context.Round
-                            .Where(x => x.Game.Id == Id && (x.Result == "Team1Won" || x.Result == "Team2Won"));                
+                            .Where(x => x.Game.Id == id && (x.Result == "Team1Won" || x.Result == "Team2Won"));                
 
             return result.Map();
         }
@@ -106,13 +103,13 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// Updates the team1 hand.
         /// </summary>
-        /// <param name="RoundId"></param>
+        /// <param name="roundId"></param>
         /// <param name="hand">The hand.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public Round UpdateTeam1Hand(Guid RoundId, Hand hand)
+        public Round UpdateTeam1Hand(Guid roundId, Hand hand)
         {
-            var round = context.Round.Single(x => x.Id == RoundId);
+            var round = context.Round.Single(x => x.Id == roundId);
             round.Team1Hand = hand.ToString();
 
             return round.Map();
@@ -121,13 +118,12 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// Updates the team2 hand.
         /// </summary>
-        /// <param name="RoundId"></param>
+        /// <param name="roundId"></param>
         /// <param name="hand">The hand.</param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public Round UpdateTeam2Hand(Guid RoundId, Hand hand)
+        /// <returns>The updated round</returns>
+        public Round UpdateTeam2Hand(Guid roundId, Hand hand)
         {
-            var round = context.Round.Single(x => x.Id == RoundId);
+            var round = context.Round.Single(x => x.Id == roundId);
             round.Team2Hand = hand.ToString();
 
             return round.Map();
@@ -136,22 +132,22 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// Gets the new round number.
         /// </summary>
-        /// <param name="GameId">The game identifier.</param>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns>The next sequence number in the round.</returns>
-        public int GetNextRoundNumber(Guid GameId)
+        public int GetNextRoundNumber(Guid gameId)
         {
-            var count = context.Round.Count(x => x.Game.Id == GameId) + 1;
+            var count = context.Round.Count(x => x.Game.Id == gameId) + 1;
             return count;
         }
 
         /// <summary>
         /// Gets the round for player two.
         /// </summary>
-        /// <param name="GameId">The game identifier.</param>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
-        public Round GetRoundForPlayerTwo(Guid GameId)
+        public Round GetRoundForPlayerTwo(Guid gameId)
         {
-            return context.Round.Single(x => x.Team2Hand == string.Empty && x.Game.Id == GameId).Map();
+            return context.Round.Single(x => x.Team2Hand == string.Empty && x.Game.Id == gameId).Map();
         }
 
     }

@@ -2,18 +2,11 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.Providers
 {
-    using RockPaper.AdapterImplentations;
-    using RockPaper.Contracts;
-    using RockPaper.Contracts.ProviderInterfaces;
+    using AdapterImplentations;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Contracts.Providers;
 
     /// <summary>
     /// The Team Provider.
@@ -23,7 +16,7 @@ namespace RockPaper.Providers
         /// <summary>
         /// Registers the team.
         /// </summary>
-        /// <param name="TeamName">Name of the team.</param>
+        /// <param name="teamName">Name of the team.</param>
         /// <returns></returns>
         public Team RegisterTeam(string teamName)
         {
@@ -36,12 +29,12 @@ namespace RockPaper.Providers
         /// <summary>
         /// Gets the team by identifier.
         /// </summary>
-        /// <param name="TeamId">The team identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
         /// <returns></returns>
-        public Team GetTeamById(Guid TeamId)
+        public Team GetTeamById(Guid teamId)
         {
             var adapter = new TeamAdapter();
-            return adapter.GetTeamById(TeamId);
+            return adapter.GetTeamById(teamId);
         }
 
         /// <summary>

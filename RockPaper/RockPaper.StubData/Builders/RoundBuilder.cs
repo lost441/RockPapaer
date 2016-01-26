@@ -97,7 +97,6 @@ namespace RockPaper.StubData.Builders
             };
         }
 
-
         /// <summary>
         /// Gets the random result.
         /// </summary>

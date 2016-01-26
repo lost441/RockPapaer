@@ -1,21 +1,22 @@
 ﻿// <copyright file="GameV01Controller.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.Web.Areas.V01.Controllers
 {
     using Contracts.Exceptions;
     using Contracts.Response;
-    using RockPaper.Contracts.Providers;
-    using RockPaper.Providers;
+    using Providers;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
+    using Contracts.Extentions;
 
     /// <summary>
     /// The Game API
     /// </summary>
     [RoutePrefix("api/V01/rounds")]
-    public class RoundV01Controller : ApiController, IApiController<Round>
+    public class RoundV01Controller : ApiController, IApiController<Contracts.Api.Round>
     {
         /// <summary>
         /// Posts the specified resource.
@@ -23,7 +24,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<Round> Post(Round resource)
+        public ResponseItem<Contracts.Api.Round> Post(Contracts.Api.Round resource)
         {
             throw new UnAuthorizedException();
         }
@@ -33,7 +34,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Round> Get()
+        public ResponseList<Contracts.Api.Round> Get()
         {
             throw new UnAuthorizedException();
         }
@@ -41,36 +42,36 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <summary>
         /// Gets this instance.
         /// </summary>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Round> Get([FromBody]RockPaper.Contracts.Api.Game game)
+        public ResponseList<Contracts.Api.Round> Get(Guid? gameId = null)
         {
-            if (game == null)
+            if (gameId == null)
             {
-                throw new UnauthorizedAccessException();
+                throw new BadRequestException();
             }
 
             var provider = new RoundProvider();
-            var rounds = provider.GetCompletedRoundByGameId(game.Id);
+            var rounds = provider.GetCompletedRoundByGameId(gameId.Value);
 
-            return new ResponseList<Round>()
+            return new ResponseList<Contracts.Api.Round>()
             {
-                Data = rounds
+                Data = rounds.Map()
             };
         }
-
-
+        
         /// <summary>
         /// Puts the specified items.
         /// </summary>
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<Round> Put(IEnumerable<Round> items)
+        public ResponseList<Contracts.Api.Round> Put(IEnumerable<Contracts.Api.Round> items)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
-
+        
         /// <summary>
         /// Deletes this instance.
         /// </summary>
@@ -78,7 +79,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseItem<bool> Delete()
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -89,15 +90,15 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// All items
         /// </returns>
         [Route("{id}")]
-        public ResponseItem<Round> Get(Guid id)
+        public ResponseItem<Contracts.Api.Round> Get(Guid id)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         [Route("{id}")]
-        public ResponseItem<Round> Put(Guid id, Round item)
+        public ResponseItem<Contracts.Api.Round> Put(Guid id, Contracts.Api.Round item)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -106,9 +107,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseItem<Round> Put(Round item)
+        public ResponseItem<Contracts.Api.Round> Put(Contracts.Api.Round item)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("{id}")]
         public ResponseItem<bool> Delete(Guid id)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
     }
 }

@@ -22,9 +22,9 @@ namespace RockPaper.Adapter
         /// <summary>
         /// Gets the team by identifier.
         /// </summary>
-        /// <param name="Id">The identifier.</param>
+        /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        Team GetTeamById(Guid Id);
+        Team GetTeamById(Guid id);
 
         /// <summary>
         /// Saves the changes.
@@ -35,7 +35,7 @@ namespace RockPaper.Adapter
         /// Gets the name of the team by.
         /// </summary>
         /// <param name="teamName">Name of the team.</param>
-        /// <returns></returns>
-        Contracts.Providers.Team GetTeamByName(string teamName);
+        /// <returns>The team</returns>
+        Team GetTeamByName(string teamName);
     }
 }   

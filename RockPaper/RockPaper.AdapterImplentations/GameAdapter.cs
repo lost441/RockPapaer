@@ -1,21 +1,27 @@
 ﻿// <copyright file="GameAdapter.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.AdapterImplentations
 {
-    using RockPaper.Adapter;
-    using RockPaper.Contracts;
-    using RockPaper.Contracts.Common;
-    using RockPaper.DataSource;
+    using Adapter;
+    using Contracts.Common;
+    using DataSource;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Instrumentation.Logging;
 
     /// <summary>
     /// The Game Adapter.
     /// </summary>
     public class GameAdapter : IGameAdapter
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private Logging logger = LogFactory.Create();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameAdapter"/> class.
         /// </summary>
@@ -41,14 +47,14 @@ namespace RockPaper.AdapterImplentations
             }
             catch (Exception ex)
             {
-                //TODO: Add logging.
+                logger.Error(ex.Message);
             }
         }
 
         /// <summary>
         /// Gets all games.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>All the games</returns>
         public IEnumerable<Contracts.Providers.Game> GetAllGames()
         {
             return context.Games.Map();
@@ -57,11 +63,11 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// Gets the game by identifier.
         /// </summary>
-        /// <param name="Id">The identifier.</param>
-        /// <returns></returns>
-        public Contracts.Providers.Game GetGameById(Guid Id)
+        /// <param name="id">The identifier.</param>
+        /// <returns>The game</returns>
+        public Contracts.Providers.Game GetGameById(Guid id)
         {
-            return context.Games.Single(x => x.Id == Id).Map();
+            return context.Games.Single(x => x.Id == id).Map();
         }
 
         /// <summary>
@@ -70,12 +76,45 @@ namespace RockPaper.AdapterImplentations
         /// <returns></returns>
         public Contracts.Providers.Game RegisiterNewGame()
         {
-            var game = new RockPaper.DataSource.Game
+            var game = new Game
             {
                 Id = Guid.NewGuid(),
                 IsComplete = false,
                 GameState = GameState.WaitingForPlayers.ToString(),
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                IsSimulatedGame = false
+            };
+
+            return context.Games.Add(game).Map();
+        }
+
+        /// <summary>
+        /// Regsiters the new game.
+        /// </summary>
+        /// <param name="simulatedTeamName">Name of the simulated team.</param>
+        /// <returns>The registered game</returns>
+        public Contracts.Providers.Game RegisiterSimulatorGame(string simulatedTeamName)
+        {
+            var simulatorTeam = context.Team.FirstOrDefault(t => t.TeamName == simulatedTeamName);
+            if (simulatorTeam == null)
+            {
+                var newTeam = new Team
+                {
+                    Id = Guid.NewGuid(),
+                    TeamName = simulatedTeamName
+                };
+
+                simulatorTeam = context.Team.Add(newTeam);
+            }
+
+            var game = new Game
+            {
+                Id = Guid.NewGuid(),
+                IsComplete = false,
+                Team1 = simulatorTeam,
+                GameState = GameState.WaitingForPlayers.ToString(),
+                CreatedDate = DateTime.Now,
+                IsSimulatedGame = true
             };
 
             return context.Games.Add(game).Map();
@@ -84,13 +123,13 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// Joins the existing game.
         /// </summary>
-        /// <param name="Team">The team.</param>
-        /// <param name="GameId">The game identifier.</param>
+        /// <param name="team">The team.</param>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
-        public Contracts.Providers.Game JoinExistingGame(Contracts.Providers.Team Team, Guid GameId)
+        public Contracts.Providers.Game JoinExistingGame(Contracts.Providers.Team team, Guid gameId)
         {
-            var gameToJoin = context.Games.Single(x => x.Id == GameId);
-            var teamToBeJoining = context.Team.Single(x => x.Id == Team.Id);
+            var gameToJoin = context.Games.Single(x => x.Id == gameId);
+            var teamToBeJoining = context.Team.Single(x => x.Id == team.Id);
 
             if (gameToJoin.Team1 == null)
             {
@@ -103,7 +142,6 @@ namespace RockPaper.AdapterImplentations
             gameToJoin.GameState = GameState.Player1Hand.ToString();
             return gameToJoin.Map();
         }
-
 
         /// <summary>
         /// Finds the available game.
@@ -122,14 +160,13 @@ namespace RockPaper.AdapterImplentations
         /// <summary>
         /// Gets the state of the game.
         /// </summary>
-        /// <param name="GameId">The game identifier.</param>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
-        public GameState GetGameState(Guid GameId)
+        public GameState GetGameState(Guid gameId)
         {
-            var state = context.Games.Single(x => x.Id == GameId).GameState;
+            var state = context.Games.Single(x => x.Id == gameId).GameState;
             return (GameState)Enum.Parse(typeof(GameState), state, true);
         }
-
 
         /// <summary>
         /// Updates the game.
@@ -146,8 +183,7 @@ namespace RockPaper.AdapterImplentations
         /// Updates the winning team.
         /// </summary>
         /// <param name="winningTeam">The winning team.</param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <param name="gameId">The game identifier.</param>
         public void UpdateWinningTeam(string winningTeam, Guid gameId)
         {
             var game = context.Games.Single(x => x.Id == gameId);
@@ -158,16 +194,17 @@ namespace RockPaper.AdapterImplentations
         /// Updates the state of the game.
         /// </summary>
         /// <param name="gameState">State of the game.</param>
-        /// <param name="GameId">The game identifier.</param>
-        public void UpdateGameState(GameState gameState, Guid GameId)
+        /// <param name="gameId">The game identifier.</param>
+        public void UpdateGameState(GameState gameState, Guid gameId)
         {
-            var game = context.Games.Single(x => x.Id == GameId);
+            var game = context.Games.Single(x => x.Id == gameId);
             game.GameState = gameState.ToString();
+
             if (gameState == GameState.Complete)
             {
                 game.IsComplete = true;
-                DetermineWinner(GameId);
-            }
+                DetermineWinner(gameId);
+            };
         }
 
         /// <summary>
@@ -179,31 +216,25 @@ namespace RockPaper.AdapterImplentations
             var roundAdapter = new RoundAdapter();
             var roundsForGame = roundAdapter.GetCompletedRoundByGameId(gameId);
 
-            var Team1Wins = roundsForGame.Count(x => x.Result == RoundResult.Team1Won);
-            var Team2Wins = roundsForGame.Count(x => x.Result == RoundResult.Team2Won);
+            var team1Wins = roundsForGame.Count(x => x.Result == RoundResult.Team1Won);
+            var team2Wins = roundsForGame.Count(x => x.Result == RoundResult.Team2Won);
 
-            if (Team1Wins > Team2Wins)
-            {
-                UpdateWinningTeam("Team1", gameId);
-            }
-            else
-            {
-                UpdateWinningTeam("Team2", gameId);
-            }
+            UpdateWinningTeam(team1Wins > team2Wins ? "Team1" : "Team2", gameId);
         }
-
 
         /// <summary>
         /// Gets the games for dashbaord.
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Contracts.Providers.Game> GetGamesForDashbaord()
+        /// <param name="numberOfGames">The number of games.</param>
+        /// <returns>Dashboard games</returns>
+        public IEnumerable<Contracts.Providers.Game> GetGamesForDashbaord(int numberOfGames)
         {
-            var set1 = context.Games.Where(x => x.IsComplete == false);
-            var set2 = context.Games.Where(x => x.IsComplete == true).Take(3).OrderByDescending(x => x.CreatedDate);
-            var fullSet = set1.Concat(set2);
+            var games = context.Games
+                .OrderBy(g => !g.IsComplete)
+                .ThenByDescending(g => g.CreatedDate)
+                .Take(numberOfGames);
 
-            return fullSet.Map();
+            return games.Map();
         }
     }
 }

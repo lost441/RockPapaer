@@ -73,6 +73,10 @@
       <Project>{7c28b980-c276-4bb3-8e42-8fa7d84a828c}</Project>
       <Name>RockPaper.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RockPaper.Instrumentation\RockPaper.Instrumentation.csproj">
+      <Project>{c1d8ee16-f198-4b63-84d7-c3e504158eb4}</Project>
+      <Name>RockPaper.Instrumentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

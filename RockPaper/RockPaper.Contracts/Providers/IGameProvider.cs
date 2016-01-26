@@ -12,8 +12,9 @@ namespace RockPaper.Contracts.Providers
         /// Finds a game.
         /// </summary>
         /// <param name="teamId">The team identifier.</param>
-        /// <returns></returns>
-        Guid GetNextAvailableGame(Guid teamId);
+        /// <param name="playAgainstSimulator">if set to <c>true</c> [play against simulator].</param>
+        /// <returns>Available game</returns>
+        Guid GetNextAvailableGame(Guid teamId, bool playAgainstSimulator = false);
 
         /// <summary>
         /// Determines whether [is it my turn] [the specified game identifier].

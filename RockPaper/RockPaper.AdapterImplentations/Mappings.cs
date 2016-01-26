@@ -30,7 +30,8 @@ namespace RockPaper.Adapter
                 IsComplete = game.IsComplete,
                 Team1 = game.Team1 != null ? game.Team1.Map() : null,
                 Team2 = game.Team2 != null ? game.Team2.Map() : null,
-                WinningTeam = game.WinningTeam
+                WinningTeam = game.WinningTeam,
+                IsSimulatedGame = game.IsSimulatedGame
             };
         }
 

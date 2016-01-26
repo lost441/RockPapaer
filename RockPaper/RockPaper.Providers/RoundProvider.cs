@@ -2,6 +2,8 @@
 //     Copyright ©  2016
 // </copyright>
 
+using RockPaper.Contracts.Exceptions;
+
 namespace RockPaper.Providers
 {
     using AdapterImplentations;
@@ -14,7 +16,7 @@ namespace RockPaper.Providers
     /// <summary>
     /// The round provider.
     /// </summary>
-    public class RoundProvider
+    public class RoundProvider : IRoundProvider
     {
         /// <summary>
         /// Submits the hand.
@@ -25,68 +27,45 @@ namespace RockPaper.Providers
         /// <returns></returns>
         public OperationOutcome SumbitHand(Hand hand, Guid teamId, Guid gameId)
         {
-            System.Threading.Thread.Sleep(Properties.Settings.Default.ThinkTimeInMiliSeconds);
-            
-            
-            var outcome = new OperationOutcome { Result = false, Error = "" };
-            var gameAdapter = new GameAdapter();
-            var roundAdapter = new RoundAdapter();
+            var gameAdapter = AdapterFactory.GetGameAdapter();
             var game = gameAdapter.GetGameById(gameId);
 
-            var gameProvider = new GameProvider();
-
-            if (game.GameState == GameState.Complete || game.GameState == GameState.WaitingForPlayers)
+            if (game == null)
             {
-                outcome.Error = "Game not in playable state.";
-                return outcome;
+                throw new BadRequestException();
             }
 
-            if (game.GameState == GameState.Player1Hand)
-            {
-                if (game.Team1.Id == teamId)
-                {
-                    var round = new Round
-                    {
-                        GameId = gameId,
-                        Team1Hand = hand,
-                        SequenceNumber = roundAdapter.GetNextRoundNumber(gameId)
-                    };
+            var response = this.SubmitHandGeneric(hand, teamId, game);
 
-                    roundAdapter.CreateRound(round);
-                    gameAdapter.UpdateGameState(GameState.Player2Hand, gameId);
-                    outcome.Result = true;
-                }
-                else
-                {
-                    outcome.Error = "Not team 1's turn.";
-                    return outcome;
-                }
-            }
-            else if(game.GameState == GameState.Player2Hand)
+            if (!game.IsSimulatedGame)
             {
-                if (game.Team2.Id == teamId)
-                {
-                    var round = roundAdapter.GetRoundForPlayerTwo(gameId);
-                    round.Team2Hand = hand;
-                    round.Result = DetermineWinner(round.Team1Hand , round.Team2Hand);
-                    roundAdapter.UpdateRound(round);
-
-                    gameAdapter.UpdateGameState(GameState.Player1Hand, gameId);
-                }
-                else
-                {
-                    outcome.Error = "Not team 2's turn.";
-                    return outcome;
-                }
+                return response;
             }
 
-            roundAdapter.SaveChanges();
-            gameAdapter.SaveChanges();
+            gameAdapter = AdapterFactory.GetGameAdapter();
+            game = gameAdapter.GetGameById(gameId);
 
-            gameProvider.CompleteRound(gameId);
+            if (!game.IsComplete)
+            {
+                this.SumbitSimulatedHand(game);
+            }
 
-            outcome.Result = true;
-            return outcome;
+            return response;
+        }
+
+        /// <summary>
+        /// Sumbits the simulated hand.
+        /// </summary>
+        /// <param name="game">The game.</param>
+        /// <returns>The opperation outcome</returns>
+        public OperationOutcome SumbitSimulatedHand(Game game)
+        {
+            var teamAdapter = AdapterFactory.GetTeamAdapter();
+
+            var randomHand = this.GetRandomHand();
+            var team = teamAdapter.GetTeamByName(Properties.Settings.Default.SimulatorTeamName);
+
+            return this.SubmitHandGeneric(randomHand, team.Id, game);
         }
 
         /// <summary>
@@ -249,8 +228,7 @@ namespace RockPaper.Providers
 
             return RoundResult.Draw;
         }
-
-
+        
         /// <summary>
         /// Gets the completed round by game identifier.
         /// </summary>
@@ -260,6 +238,89 @@ namespace RockPaper.Providers
         {
             var adapter = new RoundAdapter();
             return adapter.GetCompletedRoundByGameId(gameId);
+        }
+
+        /// <summary>
+        /// Submits the hand generic.
+        /// </summary>
+        /// <param name="hand">The hand.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="game">The game.</param>
+        /// <returns></returns>
+        private OperationOutcome SubmitHandGeneric(Hand hand, Guid teamId, Game game)
+        {
+            System.Threading.Thread.Sleep(Properties.Settings.Default.ThinkTimeInMiliSeconds);
+            
+            var outcome = new OperationOutcome { Result = false, Error = "" };
+            var gameAdapter = new GameAdapter();
+            var roundAdapter = new RoundAdapter();
+
+            var gameProvider = new GameProvider();
+
+            if (game.GameState == GameState.Complete || game.GameState == GameState.WaitingForPlayers)
+            {
+                outcome.Error = "Game not in playable state.";
+                return outcome;
+            }
+
+            if (game.GameState == GameState.Player1Hand)
+            {
+                if (game.Team1.Id == teamId)
+                {
+                    var round = new Round
+                    {
+                        GameId = game.Id,
+                        Team1Hand = hand,
+                        SequenceNumber = roundAdapter.GetNextRoundNumber(game.Id)
+                    };
+
+                    roundAdapter.CreateRound(round);
+                    gameAdapter.UpdateGameState(GameState.Player2Hand, game.Id);
+                    outcome.Result = true;
+                }
+                else
+                {
+                    outcome.Error = "Not team 1's turn.";
+                    return outcome;
+                }
+            }
+            else if(game.GameState == GameState.Player2Hand)
+            {
+                if (game.Team2.Id == teamId)
+                {
+                    var round = roundAdapter.GetRoundForPlayerTwo(game.Id);
+                    round.Team2Hand = hand;
+                    round.Result = DetermineWinner(round.Team1Hand , round.Team2Hand);
+                    roundAdapter.UpdateRound(round);
+
+                    gameAdapter.UpdateGameState(GameState.Player1Hand, game.Id);
+                }
+                else
+                {
+                    outcome.Error = "Not team 2's turn.";
+                    return outcome;
+                }
+            }
+
+            roundAdapter.SaveChanges();
+            gameAdapter.SaveChanges();
+
+            gameProvider.CompleteRound(game.Id);
+
+            outcome.Result = true;
+            return outcome;
+        }
+
+        /// <summary>
+        /// Gets the random hand.
+        /// </summary>
+        /// <returns></returns>
+        private Hand GetRandomHand()
+        {
+            var rnd = new Random();
+            var handNumber = rnd.Next(1, 5);
+
+            return (Hand)handNumber;
         }
     }
 }

@@ -56,6 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AdapterFactory.cs" />
     <Compile Include="GameAdapter.cs" />
     <Compile Include="Mappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\RockPaper.DataSource\RockPaper.DataSource.csproj">
       <Project>{23bce258-8874-4b62-9f40-087386d12117}</Project>
       <Name>RockPaper.DataSource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RockPaper.Instrumentation\RockPaper.Instrumentation.csproj">
+      <Project>{c1d8ee16-f198-4b63-84d7-c3e504158eb4}</Project>
+      <Name>RockPaper.Instrumentation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

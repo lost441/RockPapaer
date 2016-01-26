@@ -14,5 +14,11 @@
     <Setting Name="Password" Type="System.String" Scope="Application">
       <Value Profile="(Default)">password</Value>
     </Setting>
+    <Setting Name="DefaultMaxDashboardGames" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="SimulatorTeamName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Practice Team</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

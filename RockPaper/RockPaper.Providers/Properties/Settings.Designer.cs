@@ -58,5 +58,23 @@ namespace RockPaper.Providers.Properties {
                 return ((string)(this["Password"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int DefaultMaxDashboardGames {
+            get {
+                return ((int)(this["DefaultMaxDashboardGames"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Practice Team")]
+        public string SimulatorTeamName {
+            get {
+                return ((string)(this["SimulatorTeamName"]));
+            }
+        }
     }
 }

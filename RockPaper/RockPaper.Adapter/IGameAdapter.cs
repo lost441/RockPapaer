@@ -2,17 +2,12 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.Adapter
 {
-    using RockPaper.Contracts;
-    using RockPaper.Contracts.Common;
+    using Contracts.Common;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Contracts.Providers;
 
     /// <summary>
     /// The Game Interface.
@@ -22,9 +17,9 @@ namespace RockPaper.Adapter
         /// <summary>
         /// Gets the game by identifier.
         /// </summary>
-        /// <param name="Id">The identifier.</param>
+        /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        Game GetGameById(Guid Id);
+        Game GetGameById(Guid id);
 
         /// <summary>
         /// Gets all games.
@@ -35,16 +30,23 @@ namespace RockPaper.Adapter
         /// <summary>
         /// Joins the existing game.
         /// </summary>
-        /// <param name="Team">The team.</param>
-        /// <param name="GameId">The game identifier.</param>
+        /// <param name="team">The team.</param>
+        /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
-        Game JoinExistingGame(Team Team, Guid GameId);
+        Game JoinExistingGame(Team team, Guid gameId);
 
         /// <summary>
         /// Regsiters the new game.
         /// </summary>
         /// <returns></returns>
         Game RegisiterNewGame();
+
+        /// <summary>
+        /// Regsiters the new game.
+        /// </summary>
+        /// <param name="simulatedTeamName">Name of the simulated team.</param>
+        /// <returns>Simulated Game</returns>
+        Game RegisiterSimulatorGame(string simulatedTeamName);
 
         /// <summary>
         /// Updates the game.
@@ -56,28 +58,40 @@ namespace RockPaper.Adapter
         /// <summary>
         /// Updates the state of the game.
         /// </summary>
-        /// <param name="state">The state.</param>
-        /// <returns></returns>
-        void UpdateGameState(GameState gameState, Guid GameId);
+        /// <param name="gameState">State of the game.</param>
+        /// <param name="gameId">The game identifier.</param>
+        void UpdateGameState(GameState gameState, Guid gameId);
 
         /// <summary>
         /// Updates the winning team.
         /// </summary>
         /// <param name="winningTeam">The winning team.</param>
-        /// <param name="GameId">The game identifier.</param>
-        void UpdateWinningTeam(string winningTeam, Guid GameId);
+        /// <param name="gameId">The game identifier.</param>
+        void UpdateWinningTeam(string winningTeam, Guid gameId);
 
         /// <summary>
         /// Gets the state of the game.
         /// </summary>
-        /// <param name="GameId">The game identifier.</param>
-        /// <returns></returns>
-        GameState GetGameState(Guid GameId);
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>The game state</returns>
+        GameState GetGameState(Guid gameId);
 
         /// <summary>
         /// Gets the games for dashbaord.
         /// </summary>
+        /// <param name="numberOfGames">The number of games.</param>
+        /// <returns>Dashboard games</returns>
+        IEnumerable<Game> GetGamesForDashbaord(int numberOfGames);
+
+        /// <summary>
+        /// Finds the available game.
+        /// </summary>
         /// <returns></returns>
-        IEnumerable<Contracts.Providers.Game> GetGamesForDashbaord();
+        Game FindAvailableGame();
+
+        /// <summary>
+        /// Saves the changes.
+        /// </summary>
+        void SaveChanges();
     }
 }

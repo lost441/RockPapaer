@@ -1,16 +1,19 @@
 ﻿
 namespace RockPaper.Web.Areas.V01.Controllers
 {
-    using RockPaper.Contracts.Exceptions;
-    using RockPaper.Contracts.Providers;
-    using RockPaper.Contracts.Response;
-    using RockPaper.Providers;
+    using Contracts.Exceptions;
+    using Contracts.Response;
+    using Providers;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
+    using Contracts.Extentions;
 
+    /// <summary>
+    /// Team V01 Controller
+    /// </summary>
     [RoutePrefix("api/V01/teams")]
-    public class TeamV01Controller : ApiController, IApiController<Team>
+    public class TeamV01Controller : ApiController, IApiController<Contracts.Api.Team>
     {
         /// <summary>
         /// Posts the specified resource.
@@ -18,9 +21,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<Team> Post(Team resource)
+        public ResponseItem<Contracts.Api.Team> Post(Contracts.Api.Team resource)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -28,24 +31,25 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Team> Get()
+        public ResponseList<Contracts.Api.Team> Get()
         {
-            throw new UnauthorizedAccessException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
         /// Gets this instance.
         /// </summary>
+        /// <param name="teamName">Name of the team.</param>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Team> Get(string teamName = null)
+        public ResponseList<Contracts.Api.Team> Get(string teamName = null)
         {
             var teamProvider = new TeamProvider();
             var team = teamProvider.GetTeamByTeamName(teamName);
 
-            return new ResponseList<Team>(ResultCodeEnum.Success)
+            return new ResponseList<Contracts.Api.Team>(ResultCodeEnum.Success)
             {
-                Data = new List<Team>() { team }
+                Data = new List<Contracts.Api.Team> { team.Map() }
             };
 
         }
@@ -56,9 +60,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<Team> Put(IEnumerable<Team> items)
+        public ResponseList<Contracts.Api.Team> Put(IEnumerable<Contracts.Api.Team> items)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseItem<bool> Delete()
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// All items
         /// </returns>
         [Route("{id}")]
-        public ResponseItem<Team> Get(Guid id)
+        public ResponseItem<Contracts.Api.Team> Get(Guid id)
         {
             if (id == null)
             {
@@ -89,9 +93,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
             var provider = new TeamProvider();
             var team = provider.GetTeamById(id);
 
-            return new ResponseItem<Team>(ResultCodeEnum.Success)
+            return new ResponseItem<Contracts.Api.Team>(ResultCodeEnum.Success)
             {
-                Data = team
+                Data = team.Map()
             };
         }
 
@@ -105,9 +109,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </returns>
         /// <exception cref="UnAuthorizedException"></exception>
         [Route("{id}")]
-        public ResponseItem<Team> Put(Guid id, Team item)
+        public ResponseItem<Contracts.Api.Team> Put(Guid id, Contracts.Api.Team item)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -116,17 +120,16 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseItem<Team> Put(Team item)
+        public ResponseItem<Contracts.Api.Team> Put(Contracts.Api.Team item)
         {
             var provider = new TeamProvider();
 
            var team = provider.RegisterTeam(item.TeamName);
 
-           return new ResponseItem<Team>(ResultCodeEnum.Success)
+           return new ResponseItem<Contracts.Api.Team>(ResultCodeEnum.Success)
            {
-               Data = team
+               Data = team.Map()
            };
-
         }
 
         /// <summary>
@@ -137,7 +140,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("{id}")]
         public ResponseItem<bool> Delete(Guid id)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
     }
 }

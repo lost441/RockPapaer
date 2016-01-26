@@ -68,6 +68,7 @@
     <Compile Include="AbstractTests.cs" />
     <Compile Include="AdapterTests\GameAdapterTest.cs" />
     <Compile Include="AdapterTests\RoundAdapterTests.cs" />
+    <Compile Include="PoviderTests\SimulatorProviderTests.cs" />
     <Compile Include="PoviderTests\TeamProviderTests.cs" />
     <Compile Include="PoviderTests\RoundProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

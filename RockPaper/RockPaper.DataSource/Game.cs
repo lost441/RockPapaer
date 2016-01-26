@@ -7,10 +7,6 @@ namespace RockPaper.DataSource
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The Game class. 
@@ -57,6 +53,14 @@ namespace RockPaper.DataSource
         /// The created date.
         /// </value>
         public DateTime CreatedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is simulated game.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is simulated game; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsSimulatedGame { get; set; }
 
         /// <summary>
         /// Gets or sets the team1 identifier.

@@ -59,5 +59,13 @@ namespace RockPaper.Contracts.Providers
         /// The winning team.
         /// </value>
         public string WinningTeam { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is simulated game.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is simulated game; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsSimulatedGame { get; set; }
     }
 }

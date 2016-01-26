@@ -45,15 +45,22 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Contracts.Api.Game> Get(bool? isActive = false, Guid? teamId = null)
+        public ResponseList<Contracts.Api.Game> Get(bool? isActive = false, Guid? teamId = null, bool playAgainstSimulator = false)
         {
-            if (isActive == null || teamId == null)
+            var isActiveJoinedWithTeamId = ((isActive.HasValue && isActive.Value) || teamId.HasValue);
+
+            if (isActiveJoinedWithTeamId && (!isActive.HasValue || !teamId.HasValue))
             {
-                throw new UnauthorizedAccessException();
+                throw new BadRequestException();
+            }
+
+            if (isActive.HasValue && !isActive.Value && !teamId.HasValue)
+            {
+                throw new NotImplementedException("Have not yet implimented fetching all games without active filter");
             }
 
             var provider = new GameProvider();
-            var gameId = provider.GetNextAvailableGame(teamId.Value);
+            var gameId = provider.GetNextAvailableGame(teamId.Value, playAgainstSimulator);
             var game = provider.GetGameById(gameId).Map();
 
             return new ResponseList<Contracts.Api.Game>(ResultCodeEnum.Success)

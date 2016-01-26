@@ -1,10 +1,9 @@
 ﻿
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.Contracts.Extentions
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Providers;
 
     public static class MappingExtentions
     {
@@ -13,7 +12,7 @@ namespace RockPaper.Contracts.Extentions
         /// Maps the specified game.
         /// </summary>
         /// <param name="game">The game.</param>
-        /// <returns>THe mapped game</returns>
+        /// <returns>The mapped game</returns>
         public static Api.Game Map(this Game game)
         {
             if (game == null)
@@ -39,18 +38,18 @@ namespace RockPaper.Contracts.Extentions
         /// Maps the specified game.
         /// </summary>
         /// <param name="game">The game.</param>
-        /// <returns></returns>
-        public static IEnumerable<Api.Game> Map(this List<Providers.Game> game)
+        /// <returns>Mapped game</returns>
+        public static IEnumerable<Api.Game> Map(this IEnumerable<Game> game)
         {
             return game.Select(Map);
         }
-
+        
         /// <summary>
         /// Maps the specified team.
         /// </summary>
         /// <param name="team">The team.</param>
-        /// <returns></returns>
-        public static Api.Team Map(this Providers.Team team)
+        /// <returns>Mapped team</returns>
+        public static Api.Team Map(this Team team)
         {
             if (team == null)
             {
@@ -69,17 +68,46 @@ namespace RockPaper.Contracts.Extentions
         /// </summary>
         /// <param name="teams">The team.</param>
         /// <returns>Map the team list</returns>
-        public static IEnumerable<Api.Team> Map(this List<Providers.Team> teams)
+        public static IEnumerable<Api.Team> Map(this List<Team> teams)
         {
             return teams.Select(Map);
         }
-        
+
+        /// <summary>
+        /// Maps the specified team.
+        /// </summary>
+        /// <param name="team">The team.</param>
+        /// <returns>Mapped team</returns>
+        public static Team Map(this Api.Team team)
+        {
+            if (team == null)
+            {
+                return null;
+            }
+
+            return new Team
+            {
+                Id = team.Id,
+                TeamName = team.TeamName
+            };
+        }
+
+        /// <summary>
+        /// Maps the specified team.
+        /// </summary>
+        /// <param name="teams">The team.</param>
+        /// <returns>Map the team list</returns>
+        public static IEnumerable<Team> Map(this IEnumerable<Api.Team> teams)
+        {
+            return teams.Select(Map);
+        }
+
         /// <summary>
         /// Maps the specified round.
         /// </summary>
         /// <param name="round">The round.</param>
         /// <returns></returns>
-        public static Api.Round Map(this Providers.Round round)
+        public static Api.Round Map(this Round round)
         {
             if (round == null)
             {
@@ -102,10 +130,42 @@ namespace RockPaper.Contracts.Extentions
         /// </summary>
         /// <param name="rounds">The team.</param>
         /// <returns>Map the round list</returns>
-        public static IEnumerable<Api.Round> Map(this List<Providers.Round> rounds)
+        public static IEnumerable<Api.Round> Map(this IEnumerable<Round> rounds)
         {
             return rounds.Select(Map);
         }
 
+        /// <summary>
+        /// Maps the specified round.
+        /// </summary>
+        /// <param name="round">The round.</param>
+        /// <returns></returns>
+        public static Round Map(this Api.Round round)
+        {
+            if (round == null)
+            {
+                return null;
+            }
+
+            return new Round
+            {
+                Id = round.Id,
+                SequenceNumber = round.SequenceNumber,
+                GameId = round.GameId,
+                Result = round.Result,
+                Team1Hand = round.Team1Hand,
+                Team2Hand = round.Team2Hand
+            };
+        }
+
+        /// <summary>
+        /// Maps the specified team.
+        /// </summary>
+        /// <param name="rounds">The team.</param>
+        /// <returns>Map the round list</returns>
+        public static IEnumerable<Round> Map(this List<Api.Round> rounds)
+        {
+            return rounds.Select(Map);
+        }
     }
 }

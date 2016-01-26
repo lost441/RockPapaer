@@ -2,17 +2,14 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.Providers
 {
     using AdapterImplentations;
-    using Contracts;
     using Contracts.Common;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Contracts.Providers;
 
     /// <summary>
     /// The interface for Game Provider.
@@ -23,19 +20,46 @@ namespace RockPaper.Providers
         /// Finds a game.
         /// </summary>
         /// <param name="teamId">The team identifier.</param>
+        /// <param name="playAgainstSimulator">if set to <c>true</c> [play against simulator].</param>
         /// <returns>The Game Id</returns>
-        public Guid GetNextAvailableGame(Guid teamId)
+        public Guid GetNextAvailableGame(Guid teamId, bool playAgainstSimulator = false)
         {
-            var gameAdapter = new GameAdapter();
-            var teamAdapter = new TeamAdapter();
+            var gameAdapter = AdapterFactory.GetGameAdapter();
+            var teamAdapter = AdapterFactory.GetTeamAdapter();
+            var gameId = Guid.Empty;
 
             var team  = teamAdapter.GetTeamById(teamId);
-            var game = gameAdapter.FindAvailableGame() ?? gameAdapter.RegisiterNewGame();
 
-            gameAdapter.JoinExistingGame(team, game.Id);
+            if (playAgainstSimulator)
+            {
+                gameId = GetSimulatedGame(team);
+
+            }
+            else
+            {
+                gameId = (gameAdapter.FindAvailableGame() ?? gameAdapter.RegisiterNewGame()).Id;
+            }
+
+            gameAdapter.JoinExistingGame(team, gameId);
             gameAdapter.SaveChanges();
 
-            return game.Id;
+            if (!playAgainstSimulator)
+            {
+                return gameId;
+            }
+
+            gameAdapter = AdapterFactory.GetGameAdapter();
+            var game = gameAdapter.GetGameById(gameId);
+
+            if (game.IsComplete)
+            {
+                return gameId;
+            }
+
+            var roundProvider = ProviderFactory.GetRoundProvider();
+            roundProvider.SumbitSimulatedHand(game);
+            
+            return gameId;
         }
         
         /// <summary>
@@ -64,8 +88,8 @@ namespace RockPaper.Providers
         public void CompleteRound(Guid gameId)
         {
             var numberOfRounds = Properties.Settings.Default.BestOutOf;
-            var roundsAdapter = new RoundAdapter();
-            var gameAdapter = new GameAdapter();
+            var roundsAdapter = AdapterFactory.GetRoundAdapter();
+            var gameAdapter = AdapterFactory.GetGameAdapter();
 
             var completedRounds = roundsAdapter.GetCompletedRoundByGameId(gameId);
             if (completedRounds.Count() == numberOfRounds)
@@ -83,16 +107,36 @@ namespace RockPaper.Providers
         /// <returns></returns>
         public Game GetGameById(Guid gameId)
         {
-            var adapter = new GameAdapter();
+            var adapter = AdapterFactory.GetGameAdapter();
             return adapter.GetGameById(gameId);
         }
 
-        public IEnumerable<Game> GetAllGamesForDashboardGames()
+        /// <summary>
+        /// Gets all games for dashboard games.
+        /// </summary>
+        /// <param name="numberOfGames">The number of games.</param>
+        /// <returns>DashboardGames</returns>
+        public IEnumerable<Game> GetAllGamesForDashboardGames(int? numberOfGames = null)
         {
-            var adapter = new GameAdapter();
-            return adapter.GetGamesForDashbaord();
+            numberOfGames = numberOfGames ?? Properties.Settings.Default.DefaultMaxDashboardGames;
+
+            var adapter = AdapterFactory.GetGameAdapter();
+            return adapter.GetGamesForDashbaord(numberOfGames.Value);
         }
 
+        /// <summary>
+        /// Gets the simulated game.
+        /// </summary>
+        /// <param name="team">The team.</param>
+        /// <returns>The simulated team</returns>
+        protected Guid GetSimulatedGame(Team team)
+        {
+            var gameAdapter = AdapterFactory.GetGameAdapter();
+            var game = gameAdapter.RegisiterSimulatorGame(Properties.Settings.Default.SimulatorTeamName);
 
+            gameAdapter.SaveChanges();
+
+            return game.Id;
+        }
     }
 }
