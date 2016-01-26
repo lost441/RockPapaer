@@ -141,8 +141,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Areas\Sample\Controllers\GameController.cs" />
+    <Compile Include="Areas\Sample\Controllers\GameSampleController.cs" />
     <Compile Include="Areas\Sample\SampleAreaRegistration.cs" />
+    <Compile Include="Areas\V01\Controllers\GameSampleController.cs" />
     <Compile Include="Areas\V01\V01AreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,7 +191,6 @@
   <ItemGroup>
     <Folder Include="Areas\Sample\Models\" />
     <Folder Include="Areas\Sample\Views\Shared\" />
-    <Folder Include="Areas\V01\Controllers\" />
     <Folder Include="Areas\V01\Models\" />
     <Folder Include="Areas\V01\Views\Shared\" />
   </ItemGroup>
