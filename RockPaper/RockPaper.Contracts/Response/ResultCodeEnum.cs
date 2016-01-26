@@ -19,9 +19,11 @@ namespace RockPaper.Contracts.Response
 
         [Description("-03")]
         BadRequest,
-
-
+        
         [Description("-04")]
-        NotAuthorized
+        NotAuthorized,
+
+        [Description("-05")]
+        MethodNotAllowed
     }
 }

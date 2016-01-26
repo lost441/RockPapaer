@@ -1,19 +1,23 @@
 ﻿
-using System.Net.Http.Headers;
-
-namespace RockPaper.Web
+namespace RockPaper.Web.App_Data
 {
     using System.Net;
     using System.Net.Http;
     using System.Web.Http.Filters;
     using Contracts.Exceptions;
     using Contracts.Response;
+    using Instrumentation.Logging;
 
     /// <summary>
     /// The Web API Exception Handler
     /// </summary>
     public class WebApiExceptionFilter : ExceptionFilterAttribute
     {
+        /// <summary>
+        /// The _logger
+        /// </summary>
+        private Logging logger = LogFactory.Create();
+
         /// <summary>
         /// Called when [exception].
         /// </summary>
@@ -23,12 +27,14 @@ namespace RockPaper.Web
             var matched = false;
             var resultCode = ResultCodeEnum.Undefined;
             var errorDescription = string.Empty;
+
+            var errorToken = logger.ErrorWithRef(context.Exception.Message);
             
             if (context.Exception is UnAuthorizedException)
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
                 resultCode = ResultCodeEnum.NotAuthorized;
-                errorDescription = "Not authorized to access resource";
+                errorDescription = string.Format("Not authorized to access resource. ref [{0}]", errorToken);
 
                 matched = true;
             }
@@ -37,7 +43,7 @@ namespace RockPaper.Web
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 resultCode = ResultCodeEnum.BadRequest;
-                errorDescription = "Bad Request";
+                errorDescription = string.Format("Bad Request. ref = [{0}]", errorToken);
 
                 matched = true;
             }
@@ -46,7 +52,16 @@ namespace RockPaper.Web
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.NotFound);
                 resultCode = ResultCodeEnum.NotFound;
-                errorDescription = "Not found";
+                errorDescription = string.Format("Not found. ref = [{0}]", errorToken);
+
+                matched = true;
+            }
+
+            if (context.Exception is MethodNotAllowedException)
+            {
+                context.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
+                resultCode = ResultCodeEnum.MethodNotAllowed;
+                errorDescription = string.Format("Method not allowed. ref = [{0}]", errorToken);
 
                 matched = true;
             }
@@ -55,9 +70,9 @@ namespace RockPaper.Web
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 resultCode = ResultCodeEnum.GeneralFailure;
-                errorDescription = "Internal server exception";
+                errorDescription = string.Format("Internal server exception. ref [{0}]", errorToken);
             }
-
+            
             var response = new ResponseItem<bool>(resultCode)
             {
                 ResultDescription = errorDescription

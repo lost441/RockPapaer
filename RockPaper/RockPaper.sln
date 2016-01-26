@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Proxy", "RockPape
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Wpf", "RockPaper.Wpf\RockPaper.Wpf.csproj", "{EEB9E9FB-8C70-42B7-BDA9-1A84608DACF0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Cross Cutting Concerns", "5. Cross Cutting Concerns", "{ABFEA4EC-DAD9-478B-BDE5-A34A99FF69A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Instrumentation", "RockPaper.Instrumentation\RockPaper.Instrumentation.csproj", "{C1D8EE16-F198-4B63-84D7-C3E504158EB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,10 @@ Global
 		{EEB9E9FB-8C70-42B7-BDA9-1A84608DACF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB9E9FB-8C70-42B7-BDA9-1A84608DACF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB9E9FB-8C70-42B7-BDA9-1A84608DACF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1D8EE16-F198-4B63-84D7-C3E504158EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D8EE16-F198-4B63-84D7-C3E504158EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D8EE16-F198-4B63-84D7-C3E504158EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D8EE16-F198-4B63-84D7-C3E504158EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,5 +109,6 @@ Global
 		{047A123B-D9D6-4747-97C0-E56BE96936E6} = {FE41F1CD-66F5-4BA1-9F2D-FA7C245EB11C}
 		{BD2AAB92-957F-4613-B0A6-92CB8C87FBAD} = {E6DCA93D-D978-440F-99BD-199F47ECC29A}
 		{EEB9E9FB-8C70-42B7-BDA9-1A84608DACF0} = {F6319AA1-C05A-4D31-8C01-C80C8A9C3968}
+		{C1D8EE16-F198-4B63-84D7-C3E504158EB4} = {ABFEA4EC-DAD9-478B-BDE5-A34A99FF69A8}
 	EndGlobalSection
 EndGlobal

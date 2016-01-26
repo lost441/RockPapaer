@@ -4,6 +4,7 @@ namespace RockPaper.Web
     using System.Web.Http;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using App_Data;
 
     /// <summary>
     /// The Web API Config
@@ -18,6 +19,7 @@ namespace RockPaper.Web
             formatters.Remove(formatters.XmlFormatter);
 
             GlobalConfiguration.Configuration.Filters.Add(new WebApiExceptionFilter());
+            GlobalConfiguration.Configuration.Filters.Add(new BasicAuthorizationFilterAttribute());
 
             var jsonFormatter = formatters.JsonFormatter;
 

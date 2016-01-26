@@ -2,15 +2,14 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.Providers
 {
     using AdapterImplentations;
     using Contracts;
     using Contracts.Common;
     using System;
-using System.Collections.Generic;
+    using System.Collections.Generic;
+    using Contracts.Providers;
 
     /// <summary>
     /// The round provider.

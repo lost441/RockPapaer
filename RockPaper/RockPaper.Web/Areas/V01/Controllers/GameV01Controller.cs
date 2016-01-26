@@ -1,11 +1,10 @@
 ﻿
-
 namespace RockPaper.Web.Areas.V01.Controllers
 {
     using Contracts.Exceptions;
     using Contracts.Response;
-    using RockPaper.Providers;
-    using RockPaper.Web.Exentions;
+    using Providers;
+    using Exentions;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -14,7 +13,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
     /// The Game API
     /// </summary>
     [RoutePrefix("api/V01/games")]
-    public class GameV01Controller : ApiController, IApiController<RockPaper.Contracts.Api.Game>
+    public class GameV01Controller : ApiController, IApiController<Contracts.Api.Game>
     {
         /// <summary>
         /// Posts the specified resource.
@@ -22,9 +21,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Post(RockPaper.Contracts.Api.Game resource)
+        public ResponseItem<Contracts.Api.Game> Post(Contracts.Api.Game resource)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -32,9 +31,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<RockPaper.Contracts.Api.Game> Get()
+        public ResponseList<Contracts.Api.Game> Get()
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -43,9 +42,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<RockPaper.Contracts.Api.Game> Put(IEnumerable<RockPaper.Contracts.Api.Game> items)
+        public ResponseList<Contracts.Api.Game> Put(IEnumerable<Contracts.Api.Game> items)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -55,7 +54,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseItem<bool> Delete()
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -66,7 +65,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// All items
         /// </returns>
         [Route("{id}")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Get(string id)
+        public ResponseItem<Contracts.Api.Game> Get(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -84,16 +83,16 @@ namespace RockPaper.Web.Areas.V01.Controllers
             
             var game = provider.GetGameById(gameId).Map();
 
-            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
+            return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = game
             };
         }
 
         [Route("{id}")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Put(string id, RockPaper.Contracts.Api.Game item)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Put(string id, Contracts.Api.Game item)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -102,9 +101,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Put(RockPaper.Contracts.Api.Game item)
+        public ResponseItem<Contracts.Api.Game> Put(Contracts.Api.Game item)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -115,7 +114,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("{id}")]
         public ResponseItem<bool> Delete(string id)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
     }
 }

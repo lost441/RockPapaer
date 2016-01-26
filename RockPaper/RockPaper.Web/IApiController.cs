@@ -36,20 +36,12 @@ namespace RockPaper.Web
         [HttpGet]
         ResponseItem<T> Get(string id);
 
-        /// <summary>
-        /// Puts the specified item.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="item">The item.</param>
-        /// <returns>
-        /// The updated item
-        /// </returns>
+
         /// <summary>
         /// Puts the specified items.
         /// </summary>
         /// <param name="items">The items.</param>
-        /// <returns>Updated items</returns>
-        
+        /// <returns>The item list</returns>
         [HttpPut]
         ResponseList<T> Put(IEnumerable<T> items);
 
