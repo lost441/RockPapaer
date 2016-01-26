@@ -144,7 +144,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Areas\Sample\Controllers\GameSampleController.cs" />
+    <Compile Include="Areas\Sample\Controllers\RoundsSampleController.cs" />
+    <Compile Include="Areas\Sample\Controllers\TeamsSampleController.cs" />
+    <Compile Include="Areas\Sample\Controllers\GamesSampleController.cs" />
     <Compile Include="Areas\Sample\SampleAreaRegistration.cs" />
     <Compile Include="Areas\V01\Controllers\GameV01Controller.cs" />
     <Compile Include="Areas\V01\Controllers\RoundV01Controller.cs" />

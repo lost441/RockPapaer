@@ -1,10 +1,8 @@
 ﻿
-using RockPaper.Contracts.Providers;
-
 namespace RockPaper.StubData.Builders
 {
     using System;
-    using RockPaper.Contracts;
+    using Contracts.Providers;
 
     public class TeamBuilder : Team
     {

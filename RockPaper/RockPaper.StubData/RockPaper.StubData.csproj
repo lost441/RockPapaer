@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\GameBuilder.cs" />
+    <Compile Include="Builders\RoundBuilder.cs" />
     <Compile Include="Builders\TeamBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

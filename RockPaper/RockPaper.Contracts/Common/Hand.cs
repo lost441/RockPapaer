@@ -1,49 +1,42 @@
 ﻿// <copyright file="Hand.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.Contracts.Common
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     /// <summary>
     /// The enumeration for hand.
     /// </summary>
     public enum Hand
     {
         /// <summary>
+        /// The none
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// The rock.
         /// </summary>
-        Rock,
+        Rock = 1,
 
         /// <summary>
         /// The paper.
         /// </summary>
-        [Description("Paper")]
-        Paper,
+        Paper = 2,
 
         /// <summary>
         /// The scissor.
         /// </summary>
-        Scissor,
+        Scissor = 3,
 
         /// <summary>
         /// The lizard.
         /// </summary>
-        Lizard,
+        Lizard = 4,
 
         /// <summary>
         /// The spock.
         /// </summary>
-        Spock,
-
-        /// <summary>
-        /// The none.
-        /// </summary>
-        None,
+        Spock = 5
     }
 }

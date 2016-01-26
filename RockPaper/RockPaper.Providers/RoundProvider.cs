@@ -132,6 +132,7 @@ namespace RockPaper.Providers
                     }
 
                     break;
+
                 case Hand.Paper:
                     if (team2Hand == Hand.Rock)
                     {
@@ -158,6 +159,7 @@ namespace RockPaper.Providers
                         return RoundResult.Team1Won;
                     }
                     break;
+
                 case Hand.Scissor:
                     if (team2Hand == Hand.Rock)
                     {
@@ -184,6 +186,7 @@ namespace RockPaper.Providers
                         return RoundResult.Team2Won;
                     }
                     break;
+
                 case Hand.Lizard:
                     if (team2Hand == Hand.Rock)
                     {
@@ -210,6 +213,7 @@ namespace RockPaper.Providers
                         return RoundResult.Team1Won;
                     }
                     break;
+
                 case Hand.Spock:
                     if (team2Hand == Hand.Rock)
                     {
@@ -236,6 +240,7 @@ namespace RockPaper.Providers
                         return RoundResult.Draw;
                     }
                     break;
+
                 case Hand.None:
                     return RoundResult.Team2Won;
                 default:

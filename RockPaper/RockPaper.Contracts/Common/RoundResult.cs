@@ -1,14 +1,9 @@
 ﻿// <copyright file="RoundResult.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
+
 namespace RockPaper.Contracts.Common
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     /// <summary>
     /// The Round Result.
     /// </summary>
@@ -17,19 +12,21 @@ namespace RockPaper.Contracts.Common
         /// <summary>
         /// The not complete
         /// </summary>
-        NotComplete,
+        NotComplete = 0,
+
         /// <summary>
         /// The team1 won
         /// </summary>
-        Team1Won,
+        Team1Won = 1,
+
         /// <summary>
         /// The team2 won
         /// </summary>
-        Team2Won,
+        Team2Won = 2,
+
         /// <summary>
         /// The draw
         /// </summary>
-        Draw,
-    
+        Draw = 3
     }
 }

@@ -3,17 +3,17 @@ namespace RockPaper.Web.Areas.Sample.Controllers
 {
     using System.Collections.Generic;
     using System.Web.Http;
-    using Contracts;
     using Contracts.Response;
     using StubData.Builders;
+    using Contracts.Providers;
     using Contracts.Exceptions;
-    using System.Linq;
+    using Contracts.Extentions;
 
     /// <summary>
     /// The Game API
     /// </summary>
     [RoutePrefix("api/sample/games")]
-    public class GameController : ApiController, IApiController<Game>
+    public class GamesSampleController : ApiController
     {
         /// <summary>
         /// Posts the specified resource.
@@ -21,9 +21,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<Game> Post(Game resource)
+        public ResponseItem<Contracts.Api.Game> Post(Contracts.Api.Game resource)
         {
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+            return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = resource
             };
@@ -34,7 +34,7 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Game> Get()
+        public ResponseList<Contracts.Api.Game> Get()
         {
             var games = new List<Game>
             {
@@ -43,9 +43,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
                 new GameBuilder().Complete().Build()
             };
 
-            return new ResponseList<Game>(ResultCodeEnum.Success)
+            return new ResponseList<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
-                Data = games
+                Data = games.Map()
             };
         }
 
@@ -55,9 +55,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<Game> Put(IEnumerable<Game> items)
+        public ResponseList<Contracts.Api.Game> Put(IEnumerable<Contracts.Api.Game> items)
         {
-            return new ResponseList<Game>(ResultCodeEnum.Success)
+            return new ResponseList<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = items
             };
@@ -82,11 +82,11 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="id"></param>
         /// <returns>All items</returns>
         [Route("{id}")]
-        public ResponseItem<Game> Get(string id)
+        public ResponseItem<Contracts.Api.Game> Get(string id)
         {
             if (id.ToLower().Contains("error"))
             {
-                return new ResponseItem<Game>(ResultCodeEnum.GeneralFailure)
+                return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.GeneralFailure)
                 {
                     Errors = new List<string>() {"General Error Simulated"}
                 };
@@ -97,9 +97,38 @@ namespace RockPaper.Web.Areas.Sample.Controllers
                 throw new BadRequestException();
             }
 
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+
+            return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
-                Data = new GameBuilder().Complete().Build()
+                Data = new GameBuilder().Complete().Build().Map()
+            };
+        }
+
+        /// <summary>
+        /// Puts the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="item">The item.</param>
+        /// <returns>THe added item</returns>
+        [Route("{id}")]
+        public ResponseItem<Contracts.Api.Game> Put(string id, Contracts.Api.Game item)
+        {
+            if (id.ToLower().Contains("error"))
+            {
+                return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.GeneralFailure)
+                {
+                    Errors = new List<string>() { "General Error Simulated" }
+                };
+            }
+
+            if (id.ToLower().Contains("exception"))
+            {
+                throw new BadRequestException();
+            }
+
+            return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
+            {
+                Data = item
             };
         }
 
@@ -108,10 +137,10 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// </summary>
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
-        [Route("{id}")]
-        public ResponseItem<Game> Put(string id, Game item)
+        [Route("")]
+        public ResponseItem<Contracts.Api.Game> Put(Contracts.Api.Game item)
         {
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+            return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = item
             };
@@ -128,33 +157,6 @@ namespace RockPaper.Web.Areas.Sample.Controllers
             return new ResponseItem<bool>(ResultCodeEnum.Success)
             {
                 Data = true
-            };
-        }
-
-        [HttpGet]
-        [Route("")]
-        public ResponseItem<bool> IsItMyTurn(string gameId, string teamId)
-        {
-            return new ResponseItem<bool>(ResultCodeEnum.Success)
-            {
-                Data = true
-            };
-        }
-
-        [HttpGet]
-        [Route("")]
-        public ResponseList<Game> Get(int? numberOfGames = null)
-        {
-            var games = new List<Game>
-            {
-                new GameBuilder().New().Build(),
-                new GameBuilder().InProgress().Build(),
-                new GameBuilder().Complete().Build()
-            };
-
-            return new ResponseList<Game>(ResultCodeEnum.Success)
-            {
-                Data = numberOfGames == null ? games.Take(numberOfGames.Value) : games
             };
         }
     }
