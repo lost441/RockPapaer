@@ -1,24 +1,20 @@
 ﻿
-using RockPaper.Contracts.Providers;
 
 namespace RockPaper.Web.Areas.V01.Controllers
 {
-    using System.Collections.Generic;
-    using RockPaper.Web.Exentions;
-    using System.Web.Http;
-    using Contracts;
-    using Contracts.Response;
-    using StubData.Builders;
     using Contracts.Exceptions;
+    using Contracts.Response;
     using RockPaper.Providers;
-    using RockPaper.Contracts.Providers;
+    using RockPaper.Web.Exentions;
     using System;
+    using System.Collections.Generic;
+    using System.Web.Http;
 
     /// <summary>
     /// The Game API
     /// </summary>
     [RoutePrefix("api/V01/games")]
-    public class GameV01Controller : ApiController, IApiController<Game>
+    public class GameV01Controller : ApiController, IApiController<RockPaper.Contracts.Api.Game>
     {
         /// <summary>
         /// Posts the specified resource.
@@ -26,12 +22,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<Game> Post(Game resource)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Post(RockPaper.Contracts.Api.Game resource)
         {
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
-            {
-                Data = resource
-            };
+            throw new UnAuthorizedException();
         }
 
         /// <summary>
@@ -39,7 +32,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Game> Get()
+        public ResponseList<RockPaper.Contracts.Api.Game> Get()
         {
             throw new UnAuthorizedException();
         }
@@ -50,7 +43,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<Game> Put(IEnumerable<Game> items)
+        public ResponseList<RockPaper.Contracts.Api.Game> Put(IEnumerable<RockPaper.Contracts.Api.Game> items)
         {
             throw new UnAuthorizedException();
         }
@@ -98,9 +91,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         }
 
         [Route("{id}")]
-        public ResponseItem<Game> Put(string id, Game item)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Put(string id, RockPaper.Contracts.Api.Game item)
         {
-            throw new System.NotImplementedException();
+            throw new UnAuthorizedException();
         }
 
         /// <summary>
@@ -109,12 +102,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseItem<Game> Put(Game item)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Put(RockPaper.Contracts.Api.Game item)
         {
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
-            {
-                Data = item
-            };
+            throw new UnAuthorizedException();
         }
 
         /// <summary>
@@ -125,10 +115,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("{id}")]
         public ResponseItem<bool> Delete(string id)
         {
-            return new ResponseItem<bool>(ResultCodeEnum.Success)
-            {
-                Data = true
-            };
+            throw new UnAuthorizedException();
         }
     }
 }

@@ -30,5 +30,15 @@ namespace RockPaper.Web.Exentions
                 WinningTeam = game.WinningTeam
             };
         }
+
+        /// <summary>
+        /// Maps the specified game.
+        /// </summary>
+        /// <param name="game">The game.</param>
+        /// <returns></returns>
+        public static IEnumerable<RockPaper.Contracts.Api.Game> Map(this List<RockPaper.Contracts.Providers.Game> game)
+        {
+            return game.Select(Map);
+        }
     }
 }

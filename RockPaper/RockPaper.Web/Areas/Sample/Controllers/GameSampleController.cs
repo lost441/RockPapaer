@@ -9,12 +9,14 @@ namespace RockPaper.Web.Areas.Sample.Controllers
     using Contracts.Response;
     using StubData.Builders;
     using Contracts.Exceptions;
+    using RockPaper.Web.Exentions;
+    using System.Linq;
 
     /// <summary>
     /// The Game API
     /// </summary>
     [RoutePrefix("api/sample/games")]
-    public class GameSampleController : ApiController, IApiController<Game>
+    public class GameSampleController : ApiController, IApiController<RockPaper.Contracts.Api.Game>
     {
         /// <summary>
         /// Posts the specified resource.
@@ -22,9 +24,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<Game> Post(Game resource)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Post(RockPaper.Contracts.Api.Game resource)
         {
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = resource
             };
@@ -35,7 +37,7 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<Game> Get()
+        public ResponseList<RockPaper.Contracts.Api.Game> Get()
         {
             var games = new List<Game>
             {
@@ -44,9 +46,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
                 new GameBuilder().Complete().Build()
             };
 
-            return new ResponseList<Game>(ResultCodeEnum.Success)
+            return new ResponseList<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
-                Data = games
+                Data = games.Map()
             };
         }
 
@@ -56,9 +58,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<Game> Put(IEnumerable<Game> items)
+        public ResponseList<RockPaper.Contracts.Api.Game> Put(IEnumerable<RockPaper.Contracts.Api.Game> items)
         {
-            return new ResponseList<Game>(ResultCodeEnum.Success)
+            return new ResponseList<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = items
             };
@@ -83,11 +85,11 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="id"></param>
         /// <returns>All items</returns>
         [Route("{id}")]
-        public ResponseItem<Game> Get(string id)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Get(string id)
         {
             if (id.ToLower().Contains("error"))
             {
-                return new ResponseItem<Game>(ResultCodeEnum.GeneralFailure)
+                return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.GeneralFailure)
                 {
                     Errors = new List<string>() {"General Error Simulated"}
                 };
@@ -98,14 +100,15 @@ namespace RockPaper.Web.Areas.Sample.Controllers
                 throw new BadRequestException();
             }
 
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+
+            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
-                Data = new GameBuilder().Complete().Build()
+                Data = new GameBuilder().Complete().Build().Map()
             };
         }
 
         [Route("{id}")]
-        public ResponseItem<Game> Put(string id, Game item)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Put(string id, RockPaper.Contracts.Api.Game item)
         {
             throw new System.NotImplementedException();
         }
@@ -116,9 +119,9 @@ namespace RockPaper.Web.Areas.Sample.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseItem<Game> Put(Game item)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Put(RockPaper.Contracts.Api.Game item)
         {
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = item
             };

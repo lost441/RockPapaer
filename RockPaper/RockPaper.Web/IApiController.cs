@@ -26,21 +26,6 @@ namespace RockPaper.Web
         /// <returns>All items</returns>
         [HttpGet]
         ResponseList<T> Get();
-
-        /// <summary>
-        /// Puts the specified items.
-        /// </summary>
-        /// <param name="items">The items.</param>
-        /// <returns>Updated items</returns>
-        
-        [HttpPut]
-        ResponseList<T> Put(IEnumerable<T> items);
-
-        /// <summary>
-        /// Deletes this instance.
-        /// </summary>
-        /// <returns>Delete success</returns>
-        [HttpDelete]
         ResponseItem<bool> Delete();
 
         /// <summary>
@@ -59,6 +44,21 @@ namespace RockPaper.Web
         /// <returns>
         /// The updated item
         /// </returns>
+        /// <summary>
+        /// Puts the specified items.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <returns>Updated items</returns>
+        
+        [HttpPut]
+        ResponseList<T> Put(IEnumerable<T> items);
+
+        /// <summary>
+        /// Deletes this instance.
+        /// </summary>
+        /// <returns>Delete success</returns>
+        [HttpDelete]
+
         [HttpPut]
         ResponseItem<T> Put(string id, T item);
 
