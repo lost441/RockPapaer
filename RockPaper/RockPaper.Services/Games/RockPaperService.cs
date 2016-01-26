@@ -111,6 +111,11 @@ namespace RockPaper.Services.Games
             };
         }
 
+        /// <summary>
+        /// Gets the gameby game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns></returns>
         public ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(Guid gameId)
         {
             var provider = new GameProvider();
@@ -121,5 +126,8 @@ namespace RockPaper.Services.Games
                 Data = game
             };
         }
+
+
+
     }
 }

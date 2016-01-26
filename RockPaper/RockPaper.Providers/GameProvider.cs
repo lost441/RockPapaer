@@ -10,6 +10,8 @@ namespace RockPaper.Providers
     using Contracts;
     using Contracts.Common;
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -83,6 +85,12 @@ namespace RockPaper.Providers
         {
             var adapter = new GameAdapter();
             return adapter.GetGameById(gameId);
+        }
+
+        public IEnumerable<Game> GetAllGamesForDashboardGames()
+        {
+            var adapter = new GameAdapter();
+            return adapter.GetGamesForDashbaord();
         }
 
 
