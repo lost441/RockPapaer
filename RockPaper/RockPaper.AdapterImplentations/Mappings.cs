@@ -81,6 +81,11 @@ namespace RockPaper.Adapter
         /// <returns></returns>
         public static Team Map(this RockPaper.DataSource.Team team)
         {
+            if (team == null)
+            {
+                return null;
+            }
+            
             return new Team
             {
                 Id = team.Id,

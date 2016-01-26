@@ -67,5 +67,15 @@ namespace RockPaper.AdapterImplentations
         {
             return context.Team.Single(x => x.Id == Id).Map();
         }
+
+        /// <summary>
+        /// Gets the name of the team by.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        public Contracts.Providers.Team GetTeamByName(string teamName)
+        {
+            return context.Team.FirstOrDefault(x => x.TeamName == teamName).Map();
+        }
     }
 }

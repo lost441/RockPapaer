@@ -17,5 +17,16 @@ namespace TestProject.PoviderTests
 
             Assert.AreEqual(fetchTeam.TeamName, team.TeamName);
         }
+
+        [TestMethod]
+        public void RegisterATeamThatAlreadyExisistTest()
+        {
+            var provider = new TeamProvider();
+            var team = provider.RegisterTeam("RegisterATeamTest");
+
+            var fetchTeam = provider.GetTeamById(team.Id);
+
+            Assert.AreEqual(fetchTeam.TeamName, team.TeamName);
+        }
     }
 }

@@ -25,10 +25,15 @@ namespace RockPaper.Providers
         /// </summary>
         /// <param name="TeamName">Name of the team.</param>
         /// <returns></returns>
-        public Team RegisterTeam(string TeamName)
+        public Team RegisterTeam(string teamName)
         {
             var adapter = new TeamAdapter();
-            var team = adapter.RegisterNewTeam(TeamName);
+            var team = adapter.GetTeamByName(teamName);
+
+            if (team == null)
+            {
+                team = adapter.RegisterNewTeam(teamName);
+            }
 
             adapter.SaveChanges();
             return team;

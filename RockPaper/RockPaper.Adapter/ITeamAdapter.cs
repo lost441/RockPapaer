@@ -30,5 +30,12 @@ namespace RockPaper.Adapter
         /// Saves the changes.
         /// </summary>
         void SaveChanges();
+
+        /// <summary>
+        /// Gets the name of the team by.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        Contracts.Providers.Team GetTeamByName(string teamName);
     }
 }   

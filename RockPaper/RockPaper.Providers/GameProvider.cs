@@ -73,5 +73,7 @@ namespace RockPaper.Providers
 
             gameAdapter.SaveChanges();
         }
+
+
     }
 }

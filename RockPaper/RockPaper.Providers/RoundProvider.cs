@@ -10,6 +10,7 @@ namespace RockPaper.Providers
     using Contracts;
     using Contracts.Common;
     using System;
+using System.Collections.Generic;
 
     /// <summary>
     /// The round provider.
@@ -243,6 +244,18 @@ namespace RockPaper.Providers
             }
 
             return RoundResult.Draw;
+        }
+
+
+        /// <summary>
+        /// Gets the completed round by game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns></returns>
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
+        {
+            var adapter = new RoundAdapter();
+            return adapter.GetCompletedRoundByGameId(gameId);
         }
     }
 }
