@@ -81,7 +81,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("{id}")]
         public ResponseItem<Team> Get(Guid id)
         {
-            if (id ==null)
+            if (id == null)
             {
                 throw new BadRequestException();
             }
@@ -95,6 +95,15 @@ namespace RockPaper.Web.Areas.V01.Controllers
             };
         }
 
+        /// <summary>
+        /// Puts the specified item.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        /// The updated item
+        /// </returns>
+        /// <exception cref="UnAuthorizedException"></exception>
         [Route("{id}")]
         public ResponseItem<Team> Put(Guid id, Team item)
         {
@@ -109,7 +118,15 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseItem<Team> Put(Team item)
         {
-            throw new UnAuthorizedException();
+            var provider = new TeamProvider();
+
+           var team = provider.RegisterTeam(item.TeamName);
+
+           return new ResponseItem<Team>(ResultCodeEnum.Success)
+           {
+               Data = team
+           };
+
         }
 
         /// <summary>

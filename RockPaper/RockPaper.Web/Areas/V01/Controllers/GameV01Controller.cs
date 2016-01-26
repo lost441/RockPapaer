@@ -148,10 +148,17 @@ namespace RockPaper.Web.Areas.V01.Controllers
             
             return new ResponseItem<bool>(ResultCodeEnum.Success)
             {
-                Data = true
+                Data = result
             };
         }
 
+        /// <summary>
+        /// Plays the hand.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="hand">The hand.</param>
+        /// <returns></returns>
         [Route("")]
         public ResponseItem<bool> PlayHand(Guid gameId, Guid teamId, Hand hand)
         {
