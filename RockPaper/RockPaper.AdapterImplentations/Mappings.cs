@@ -85,14 +85,12 @@ namespace RockPaper.Adapter
             {
                 return null;
             }
-            
+
             return new Team
             {
                 Id = team.Id,
                 TeamName = team.TeamName
             };
         }
-
-
     }
 }

@@ -4,12 +4,14 @@ using RockPaper.Contracts.Providers;
 namespace RockPaper.Web.Areas.V01.Controllers
 {
     using System.Collections.Generic;
+    using RockPaper.Web.Exentions;
     using System.Web.Http;
     using Contracts;
     using Contracts.Response;
     using StubData.Builders;
     using Contracts.Exceptions;
     using RockPaper.Providers;
+    using RockPaper.Contracts.Providers;
     using System;
 
     /// <summary>
@@ -66,10 +68,12 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <summary>
         /// Gets this instance.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>All items</returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// All items
+        /// </returns>
         [Route("{id}")]
-        public ResponseItem<Game> Get(string id)
+        public ResponseItem<RockPaper.Contracts.Api.Game> Get(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -84,11 +88,12 @@ namespace RockPaper.Web.Areas.V01.Controllers
             }
 
             var provider = new GameProvider();
+            
             var game = provider.GetGameById(gameId).Map();
 
-            return new ResponseItem<Game>(ResultCodeEnum.Success)
+            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
-                Data = new GameBuilder().Complete().Build()
+                Data = game
             };
         }
 

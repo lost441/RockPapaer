@@ -146,6 +146,7 @@
     <Compile Include="Areas\V01\Controllers\GameV01Controller.cs" />
     <Compile Include="Areas\V01\V01AreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Exentions\MappingExtentions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
