@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace RockPaper.Contracts.Extentions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class MappingExtentions
     {
 
@@ -13,14 +12,14 @@ namespace RockPaper.Contracts.Extentions
         /// </summary>
         /// <param name="game">The game.</param>
         /// <returns></returns>
-        public static RockPaper.Contracts.Api.Game Map(this RockPaper.Contracts.Providers.Game game)
+        public static Api.Game Map(this Providers.Game game)
         {
             if (game == null)
             {
                 return null;
             }
 
-            return new RockPaper.Contracts.Api.Game
+            return new Api.Game
             {
                 GameState = game.GameState,
                 Id = game.Id,
@@ -36,7 +35,7 @@ namespace RockPaper.Contracts.Extentions
         /// </summary>
         /// <param name="game">The game.</param>
         /// <returns></returns>
-        public static IEnumerable<RockPaper.Contracts.Api.Game> Map(this List<RockPaper.Contracts.Providers.Game> game)
+        public static IEnumerable<Api.Game> Map(this List<Providers.Game> game)
         {
             return game.Select(Map);
         }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0e6a3ced-de3a-4cdb-87d8-afe70f02475d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49207/Services/RockPaperService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RockPaperService.xsd" MetadataType="Schema" ID="efab10d3-620e-4748-85e6-a23026e9c843" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd7" />
+    <MetadataFile FileName="RockPaperService1.xsd" MetadataType="Schema" ID="5f867a7b-e6b3-475b-b741-7eb1d811c591" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RockPaperService2.xsd" MetadataType="Schema" ID="6cdc15f9-3b55-41d7-a513-7793ee12190d" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RockPaperService3.xsd" MetadataType="Schema" ID="7ba4a2bb-9cb8-4243-808f-fafb4035f974" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RockPaperService4.xsd" MetadataType="Schema" ID="b2f6d4e0-236f-4095-8573-7d265e5fb029" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd3" />
+    <MetadataFile FileName="RockPaperService.disco" MetadataType="Disco" ID="7a7361e3-8154-407f-8955-c20bca0f43ee" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?disco" />
+    <MetadataFile FileName="RockPaperService.wsdl" MetadataType="Wsdl" ID="4a1f1578-c2e8-4b53-8a75-0c63b4e2fdc3" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?wsdl" />
+    <MetadataFile FileName="RockPaperService5.xsd" MetadataType="Schema" ID="0badbfcf-f968-406e-9f90-8a8c3062847f" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd4" />
+    <MetadataFile FileName="RockPaperService6.xsd" MetadataType="Schema" ID="ab14d902-3906-4ffe-8e6a-e47d1a84ba60" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd5" />
+    <MetadataFile FileName="RockPaperService7.xsd" MetadataType="Schema" ID="aebd5f0f-a0c8-4450-ba2b-3285558c6da0" SourceId="1" SourceUrl="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="Hand">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Rock" />
+      <xs:enumeration value="Paper" />
+      <xs:enumeration value="Scissor" />
+      <xs:enumeration value="Lizard" />
+      <xs:enumeration value="Spock" />
+      <xs:enumeration value="None" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Hand" nillable="true" type="tns:Hand" />
+  <xs:simpleType name="GameState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WaitingForPlayers" />
+      <xs:enumeration value="Player1Hand" />
+      <xs:enumeration value="Player2Hand" />
+      <xs:enumeration value="Complete" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GameState" nillable="true" type="tns:GameState" />
+</xs:schema>

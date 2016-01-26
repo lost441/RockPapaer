@@ -190,7 +190,20 @@ namespace RockPaper.AdapterImplentations
             {
                 UpdateWinningTeam("Team2", gameId);
             }
+        }
 
+
+        /// <summary>
+        /// Gets the games for dashbaord.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Contracts.Providers.Game> GetGamesForDashbaord()
+        {
+            var set1 = context.Games.Where(x => x.IsComplete == false);
+            var set2 = context.Games.Where(x => x.IsComplete == true).Take(3).OrderByDescending(x => x.CreatedDate);
+            var fullSet = set1.Concat(set2);
+
+            return fullSet.Map();
         }
     }
 }

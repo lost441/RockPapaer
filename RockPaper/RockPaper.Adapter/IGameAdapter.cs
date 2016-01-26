@@ -74,5 +74,10 @@ namespace RockPaper.Adapter
         /// <returns></returns>
         GameState GetGameState(Guid GameId);
 
+        /// <summary>
+        /// Gets the games for dashbaord.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Contracts.Providers.Game> GetGamesForDashbaord();
     }
 }

@@ -47,7 +47,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -69,6 +72,11 @@
     <Compile Include="PoviderTests\RoundProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdapterTests\TeamAdapterTest.cs" />
+    <Compile Include="Service References\RockPaperDEV\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="TestData\DatabaseCleanUp.cs" />
     <Compile Include="TestData\GameTestData.cs" />
     <Compile Include="TestData\ObjectMother.cs" />
@@ -76,6 +84,7 @@
     <Compile Include="TestData\TeamTestData.cs" />
     <Compile Include="TestingFlows.cs" />
     <Compile Include="PoviderTests\GameProviderTest.cs" />
+    <Compile Include="WCF Testing\WCFTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RockPaper.AdapterImplentations\RockPaper.AdapterImplentations.csproj">
@@ -102,6 +111,55 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RockPaper.Contracts.Api.Game.datasource" />
+    <None Include="Properties\DataSources\RockPaper.Contracts.OperationOutcome.datasource" />
+    <None Include="Properties\DataSources\RockPaper.Contracts.Providers.Team.datasource" />
+    <None Include="Service References\RockPaperDEV\RockPaperService.wsdl" />
+    <None Include="Service References\RockPaperDEV\RockPaperService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperDEV\RockPaperService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RockPaperDEV\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperDEV\RockPaperService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperDEV\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperDEV\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperDEV\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

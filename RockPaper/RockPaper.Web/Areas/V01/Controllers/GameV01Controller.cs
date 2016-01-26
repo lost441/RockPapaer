@@ -1,13 +1,17 @@
-﻿
+﻿// <copyright file="GameV01Controller.cs" company="PayM8">
+//     Copyright ©  2016
+// </copyright>
+
 namespace RockPaper.Web.Areas.V01.Controllers
 {
     using Contracts.Exceptions;
     using Contracts.Response;
     using Providers;
-    using Exentions;
+    using Contracts.Extentions;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
+    using Contracts.Common;
 
     /// <summary>
     /// The Game API
@@ -34,6 +38,28 @@ namespace RockPaper.Web.Areas.V01.Controllers
         public ResponseList<Contracts.Api.Game> Get()
         {
             throw new MethodNotAllowedException();
+        }
+
+        /// <summary>
+        /// Gets this instance.
+        /// </summary>
+        /// <returns>All items</returns>
+        [Route("")]
+        public ResponseList<Contracts.Api.Game> Get(bool? isActive = false, Guid? teamId = null)
+        {
+            if (isActive == null || teamId == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+
+            var provider = new GameProvider();
+            var gameId = provider.GetNextAvailableGame(teamId.Value);
+            var game = provider.GetGameById(gameId).Map();
+
+            return new ResponseList<Contracts.Api.Game>(ResultCodeEnum.Success)
+            {
+                Data = new List<Contracts.Api.Game>() { game }
+            };
         }
 
         /// <summary>
@@ -65,24 +91,15 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// All items
         /// </returns>
         [Route("{id}")]
-        public ResponseItem<Contracts.Api.Game> Get(string id)
+        public ResponseItem<Contracts.Api.Game> Get(Guid id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (id == null)
             {
                 throw new BadRequestException();
             }
-
-            var gameId = new Guid();
-
-            if (!Guid.TryParse(id, out gameId))
-            {
-                throw new BadRequestException();
-            }
-
-            var provider = new GameProvider();
             
-            var game = provider.GetGameById(gameId).Map();
-
+            var provider = new GameProvider();
+            var game = provider.GetGameById(id).Map();
             return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = game
@@ -90,7 +107,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         }
 
         [Route("{id}")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Put(string id, Contracts.Api.Game item)
+        public ResponseItem<Contracts.Api.Game> Put(Guid id, Contracts.Api.Game item)
         {
             throw new MethodNotAllowedException();
         }
@@ -112,9 +129,46 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="id"></param>
         /// <returns>Delete success</returns>
         [Route("{id}")]
-        public ResponseItem<bool> Delete(string id)
+        public ResponseItem<bool> Delete(Guid id)
         {
             throw new MethodNotAllowedException();
+        }
+
+        /// <summary>
+        /// Determines whether [is it my turn] [the specified game identifier].
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <returns></returns>
+        [Route("")]
+        public ResponseItem<bool> IsItMyTurn(Guid gameId, Guid teamId)
+        {
+            var gameProvider = new GameProvider();
+            var result = gameProvider.IsItMyTurn(gameId, teamId);
+            
+            return new ResponseItem<bool>(ResultCodeEnum.Success)
+            {
+                Data = result
+            };
+        }
+
+        /// <summary>
+        /// Plays the hand.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="hand">The hand.</param>
+        /// <returns></returns>
+        [Route("")]
+        public ResponseItem<bool> PlayHand(Guid gameId, Guid teamId, Hand hand)
+        {
+            var roundProvider = new RoundProvider();
+            var outcome = roundProvider.SumbitHand(hand, teamId, gameId);
+
+            return new ResponseItem<bool>(ResultCodeEnum.Success)
+            {
+                Data = outcome.Result
+            };
         }
     }
 }
