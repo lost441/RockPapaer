@@ -1,5 +1,6 @@
-﻿
-
+﻿// <copyright file="GameV01Controller.cs" company="PayM8">
+//     Copyright ©  2016
+// </copyright>
 namespace RockPaper.Web.Areas.V01.Controllers
 {
     using Contracts.Exceptions;
@@ -9,6 +10,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
+    using RockPaper.Contracts.Common;
 
     /// <summary>
     /// The Game API
@@ -35,6 +37,29 @@ namespace RockPaper.Web.Areas.V01.Controllers
         public ResponseList<RockPaper.Contracts.Api.Game> Get()
         {
             throw new UnAuthorizedException();
+        }
+
+
+        /// <summary>
+        /// Gets this instance.
+        /// </summary>
+        /// <returns>All items</returns>
+        [Route("")]
+        public ResponseList<RockPaper.Contracts.Api.Game> Get(bool? isActive = false, Guid? teamId = null)
+        {
+            if (isActive == null || teamId == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+
+            var provider = new GameProvider();
+            var gameId = provider.GetNextAvailableGame(teamId.Value);
+            var game = provider.GetGameById(gameId).Map();
+
+            return new ResponseList<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
+            {
+                Data = new List<RockPaper.Contracts.Api.Game>() { game }
+            };
         }
 
         /// <summary>
@@ -72,11 +97,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
             {
                 throw new BadRequestException();
             }
-
-            var provider = new GameProvider();
             
+            var provider = new GameProvider();
             var game = provider.GetGameById(id).Map();
-
             return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = game
@@ -109,6 +132,36 @@ namespace RockPaper.Web.Areas.V01.Controllers
         public ResponseItem<bool> Delete(Guid id)
         {
             throw new UnAuthorizedException();
+        }
+
+        /// <summary>
+        /// Determines whether [is it my turn] [the specified game identifier].
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <returns></returns>
+        [Route("")]
+        public ResponseItem<bool> IsItMyTurn(Guid gameId, Guid teamId)
+        {
+            var gameProvider = new GameProvider();
+            var result = gameProvider.IsItMyTurn(gameId, teamId);
+            
+            return new ResponseItem<bool>(ResultCodeEnum.Success)
+            {
+                Data = true
+            };
+        }
+
+        [Route("")]
+        public ResponseItem<bool> PlayHand(Guid gameId, Guid teamId, Hand hand)
+        {
+            var roundProvider = new RoundProvider();
+            var outcome = roundProvider.SumbitHand(hand, teamId, gameId);
+
+            return new ResponseItem<bool>(ResultCodeEnum.Success)
+            {
+                Data = outcome.Result
+            };
         }
     }
 }

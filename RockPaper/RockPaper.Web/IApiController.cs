@@ -27,6 +27,12 @@ namespace RockPaper.Web
         /// <returns>All items</returns>
         [HttpGet]
         ResponseList<T> Get();
+
+
+        /// <summary>
+        /// Deletes this instance.
+        /// </summary>
+        /// <returns></returns>
         ResponseItem<bool> Delete();
 
         /// <summary>
