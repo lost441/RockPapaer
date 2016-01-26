@@ -9,14 +9,14 @@ namespace RockPaper.Web.Areas.Sample.Controllers
     using Contracts.Response;
     using StubData.Builders;
     using Contracts.Exceptions;
-    using RockPaper.Web.Exentions;
+    using RockPaper.Contracts.Extentions;
     using System.Linq;
 
     /// <summary>
     /// The Game API
     /// </summary>
     [RoutePrefix("api/sample/games")]
-    public class GameSampleController : ApiController, IApiController<RockPaper.Contracts.Api.Game>
+    public class GameSampleController : ApiController
     {
         /// <summary>
         /// Posts the specified resource.

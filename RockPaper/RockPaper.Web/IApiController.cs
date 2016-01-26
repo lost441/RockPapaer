@@ -5,6 +5,7 @@ namespace RockPaper.Web
     using System.Collections.Generic;
     using System.Web.Http;
     using Contracts.Response;
+    using System;
 
     /// <summary>
     /// The generic resource API interface
@@ -34,7 +35,7 @@ namespace RockPaper.Web
         /// <param name="id">The identifier.</param>
         /// <returns>The resource</returns>
         [HttpGet]
-        ResponseItem<T> Get(string id);
+        ResponseItem<T> Get(Guid id);
 
         /// <summary>
         /// Puts the specified item.
@@ -60,7 +61,7 @@ namespace RockPaper.Web
         [HttpDelete]
 
         [HttpPut]
-        ResponseItem<T> Put(string id, T item);
+        ResponseItem<T> Put(Guid id, T item);
 
         /// <summary>
         /// Deletes the specified identifier.
@@ -68,6 +69,6 @@ namespace RockPaper.Web
         /// <param name="id">The identifier.</param>
         /// <returns>Delete success</returns>
         [HttpDelete]
-        ResponseItem<bool> Delete(string id);
+        ResponseItem<bool> Delete(Guid id);
     }
 }

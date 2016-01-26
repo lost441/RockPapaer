@@ -144,9 +144,9 @@
     <Compile Include="Areas\Sample\Controllers\GameSampleController.cs" />
     <Compile Include="Areas\Sample\SampleAreaRegistration.cs" />
     <Compile Include="Areas\V01\Controllers\GameV01Controller.cs" />
+    <Compile Include="Areas\V01\Controllers\TeamV01Controller.cs" />
     <Compile Include="Areas\V01\V01AreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Exentions\MappingExtentions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +194,7 @@
     <Folder Include="Areas\Sample\Views\Shared\" />
     <Folder Include="Areas\V01\Models\" />
     <Folder Include="Areas\V01\Views\Shared\" />
+    <Folder Include="Areas\V01\Views\TeamV01\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RockPaper.Contracts\RockPaper.Contracts.csproj">

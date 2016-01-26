@@ -1,20 +1,16 @@
 ﻿
-
 namespace RockPaper.Web.Areas.V01.Controllers
 {
-    using Contracts.Exceptions;
-    using Contracts.Response;
+    using RockPaper.Contracts.Exceptions;
+    using RockPaper.Contracts.Providers;
+    using RockPaper.Contracts.Response;
     using RockPaper.Providers;
-    using RockPaper.Contracts.Extentions;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
 
-    /// <summary>
-    /// The Game API
-    /// </summary>
-    [RoutePrefix("api/V01/games")]
-    public class GameV01Controller : ApiController, IApiController<RockPaper.Contracts.Api.Game>
+    [RoutePrefix("api/V01/teams")]
+    public class TeamV01Controller : ApiController, IApiController<Team>
     {
         /// <summary>
         /// Posts the specified resource.
@@ -22,7 +18,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Post(RockPaper.Contracts.Api.Game resource)
+        public ResponseItem<Team> Post(Team resource)
         {
             throw new UnAuthorizedException();
         }
@@ -32,9 +28,26 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
-        public ResponseList<RockPaper.Contracts.Api.Game> Get()
+        public ResponseList<Team> Get()
         {
-            throw new UnAuthorizedException();
+            throw new UnauthorizedAccessException();
+        }
+
+        /// <summary>
+        /// Gets this instance.
+        /// </summary>
+        /// <returns>All items</returns>
+        [Route("")]
+        public ResponseList<Team> Get(string teamName = null)
+        {
+            var teamProvider = new TeamProvider();
+            var team = teamProvider.GetTeamByTeamName(teamName);
+
+            return new ResponseList<Team>(ResultCodeEnum.Success)
+            {
+                Data = new List<Team>() { team }
+            };
+
         }
 
         /// <summary>
@@ -43,7 +56,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseList<RockPaper.Contracts.Api.Game> Put(IEnumerable<RockPaper.Contracts.Api.Game> items)
+        public ResponseList<Team> Put(IEnumerable<Team> items)
         {
             throw new UnAuthorizedException();
         }
@@ -66,25 +79,24 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// All items
         /// </returns>
         [Route("{id}")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Get(Guid id)
+        public ResponseItem<Team> Get(Guid id)
         {
-            if (id == null)
+            if (id ==null)
             {
                 throw new BadRequestException();
             }
+           
+            var provider = new TeamProvider();
+            var team = provider.GetTeamById(id);
 
-            var provider = new GameProvider();
-            
-            var game = provider.GetGameById(id).Map();
-
-            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
+            return new ResponseItem<Team>(ResultCodeEnum.Success)
             {
-                Data = game
+                Data = team
             };
         }
 
         [Route("{id}")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Put(Guid id, RockPaper.Contracts.Api.Game item)
+        public ResponseItem<Team> Put(Guid id, Team item)
         {
             throw new UnAuthorizedException();
         }
@@ -95,7 +107,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
-        public ResponseItem<RockPaper.Contracts.Api.Game> Put(RockPaper.Contracts.Api.Game item)
+        public ResponseItem<Team> Put(Team item)
         {
             throw new UnAuthorizedException();
         }
