@@ -8,6 +8,7 @@ namespace RockPaper.Services.Games
     using Providers;
     using RockPaper.Contracts;
     using RockPaper.Contracts.Common;
+    using RockPaper.Contracts.Providers;
     
     /// <summary>
     /// Dog Service
@@ -62,6 +63,49 @@ namespace RockPaper.Services.Games
             return new ResponseItem<OperationOutcome>(ResultCodeEnum.Success)
             {
                 Data = outcome
+            };
+        }
+
+        /// <summary>
+        /// Registers the team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        public ResponseItem<Team> RegisterTeam(string teamName)
+        {
+            var provider = new TeamProvider();
+            var existingTeam = provider.GetTeamByTeamName(teamName);
+            
+            if (existingTeam != null)
+            {
+                return new ResponseItem<Team>(ResultCodeEnum.GeneralFailure)
+                {
+                    IsSuccessfull = false,
+                    Errors = new string[] { "Team already exists. Cannot register a duplicate name." }
+                };
+            }
+
+            var team = provider.RegisterTeam(teamName);
+
+            return new ResponseItem<Team>(ResultCodeEnum.Success)
+            {
+                Data = team
+            };
+        }
+
+        /// <summary>
+        /// Gets the name of the team by team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        public ResponseItem<Team> GetTeamByTeamName(string teamName)
+        {
+            var provider = new TeamProvider();
+            var team = provider.GetTeamByTeamName(teamName);
+
+            return new ResponseItem<Team>(ResultCodeEnum.Success)
+            {
+                Data = team
             };
         }
     }

@@ -28,13 +28,7 @@ namespace RockPaper.Providers
         public Team RegisterTeam(string teamName)
         {
             var adapter = new TeamAdapter();
-            var team = adapter.GetTeamByName(teamName);
-
-            if (team == null)
-            {
-                team = adapter.RegisterNewTeam(teamName);
-            }
-
+            var team = adapter.RegisterNewTeam(teamName);
             adapter.SaveChanges();
             return team;
         }
@@ -49,5 +43,17 @@ namespace RockPaper.Providers
             var adapter = new TeamAdapter();
             return adapter.GetTeamById(TeamId);
         }
+
+        /// <summary>
+        /// Gets the name of the team by team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns></returns>
+        public Team GetTeamByTeamName(String teamName)
+        {
+            var adapter = new TeamAdapter();
+            return adapter.GetTeamByName(teamName);
+        }
+
     }
 }
