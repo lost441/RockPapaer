@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,7 +56,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Command.cs" />
+    <Compile Include="Common\Extensions.cs" />
     <Compile Include="Models\GameResult.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Service References\RockPaperServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -92,11 +101,71 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfboolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameiiBVlPgH.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService.wsdl" />
+    <None Include="Service References\RockPaperServiceReference\RockPaperService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RockPaperServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperServiceReference\RockPaperService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RockPaperServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

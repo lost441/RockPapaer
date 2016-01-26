@@ -19,10 +19,12 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private string teamNameToRegister;
 
+        private string registrationResult;
+
         /// <summary>
         /// The registered team name
         /// </summary>
-        private string registeredTeamName;
+        private Team team;
 
         /// <summary>
         /// The is active
@@ -72,17 +74,29 @@ namespace RockPaper.Wpf.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the name of the registered team.
+        /// Gets or sets the team.
         /// </summary>
         /// <value>
-        /// The name of the registered team.
+        /// The team.
         /// </value>
-        public string RegisteredTeamName
+        public Team Team
         {
-            get { return this.registeredTeamName; }
-            set { this.registeredTeamName = value; OnPropertyChanged(); }
+            get { return this.team; }
+            set { this.team = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        /// Gets or sets the registration result.
+        /// </summary>
+        /// <value>
+        /// The registration result.
+        /// </value>
+        public string RegistrationResult
+        {
+            get { return this.registrationResult; }
+            set { this.registrationResult = value; OnPropertyChanged(); }
+        }
+        
         /// <summary>
         /// Gets or sets a value indicating whether this instance is active.
         /// </summary>
@@ -176,7 +190,42 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void RegisterTeam()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(TeamNameToRegister))
+                {
+                    //TODO: Move validation to UI
+                    RegistrationResult = string.Format("Enter team name");
+                    return;
+                }
+
+                var client = new RockPaperServiceReference.RockPaperServiceClient();
+                var getResponse = client.GetTeamByTeamName(TeamNameToRegister);
+                if (getResponse.IsSuccessfull)
+                {
+                    Team = getResponse.Data.Map();
+                    RegistrationResult = string.Format("Team found");
+                    IsRegistered = true;
+                    //TODO: Set register part (IsEnabled) to false
+                    return;
+                }
+
+                var registerResponse = client.RegisterTeam(TeamNameToRegister);
+                if (registerResponse.IsSuccessfull)
+                {
+                    IsRegistered = true;
+                    RegistrationResult = string.Format("Team registered successfully");
+                    Team = registerResponse.Data.Map();
+                    return;
+                }
+
+                RegistrationResult = string.Format("Error: Could not register team");
+                IsRegistered = false;
+            }
+            catch (Exception ex)
+            {
+                //TODO: log error
+            }
         }
 
         /// <summary>

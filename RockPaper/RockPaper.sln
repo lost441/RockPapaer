@@ -34,6 +34,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Proxy", "RockPaper.Proxy\RockPaper.Proxy.csproj", "{BD2AAB92-957F-4613-B0A6-92CB8C87FBAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaper.Wpf", "RockPaper.Wpf\RockPaper.Wpf.csproj", "{EEB9E9FB-8C70-42B7-BDA9-1A84608DACF0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{87790498-0022-449F-99E1-CFB3B9D7EF2E} = {87790498-0022-449F-99E1-CFB3B9D7EF2E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
