@@ -74,6 +74,17 @@ namespace RockPaper.Providers
             gameAdapter.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets the game by identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns></returns>
+        public Game GetGameById(Guid gameId)
+        {
+            var adapter = new GameAdapter();
+            return adapter.GetGameById(gameId);
+        }
+
 
     }
 }

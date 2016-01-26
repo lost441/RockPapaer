@@ -9,6 +9,8 @@ namespace RockPaper.Web.Areas.V01.Controllers
     using Contracts.Response;
     using StubData.Builders;
     using Contracts.Exceptions;
+    using RockPaper.Providers;
+    using System;
 
     /// <summary>
     /// The Game API
@@ -37,17 +39,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseList<Game> Get()
         {
-            var games = new List<Game>
-            {
-                new GameBuilder().New().Build(),
-                new GameBuilder().InProgress().Build(),
-                new GameBuilder().Complete().Build()
-            };
-
-            return new ResponseList<Game>(ResultCodeEnum.Success)
-            {
-                Data = games
-            };
+            throw new UnAuthorizedException();
         }
 
         /// <summary>
@@ -58,10 +50,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseList<Game> Put(IEnumerable<Game> items)
         {
-            return new ResponseList<Game>(ResultCodeEnum.Success)
-            {
-                Data = items
-            };
+            throw new UnAuthorizedException();
         }
 
         /// <summary>
@@ -71,10 +60,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("")]
         public ResponseItem<bool> Delete()
         {
-            return new ResponseItem<bool>(ResultCodeEnum.Success)
-            {
-                Data = true
-            };
+            throw new UnAuthorizedException();
         }
 
         /// <summary>
@@ -85,18 +71,20 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [Route("{id}")]
         public ResponseItem<Game> Get(string id)
         {
-            if (id.ToLower().Contains("error"))
-            {
-                return new ResponseItem<Game>(ResultCodeEnum.GeneralFailure)
-                {
-                    Errors = new List<string>() {"General Error Simulated"}
-                };
-            }
-
-            if (id.ToLower().Contains("exception"))
+            if (string.IsNullOrEmpty(id))
             {
                 throw new BadRequestException();
             }
+
+            var gameId = new Guid();
+
+            if (!Guid.TryParse(id, out gameId))
+            {
+                throw new BadRequestException();
+            }
+
+            var provider = new GameProvider();
+            var game = provider.GetGameById(gameId).Map();
 
             return new ResponseItem<Game>(ResultCodeEnum.Success)
             {

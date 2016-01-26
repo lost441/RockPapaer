@@ -28,5 +28,13 @@ namespace RockPaper.Contracts.Providers
         /// </summary>
         /// <param name="gameId">The game identifier.</param>
         void CompleteRound(Guid gameId);
+
+
+        /// <summary>
+        /// Gets the game by identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns></returns>
+        Game GetGameById(Guid gameId);
     }
 }

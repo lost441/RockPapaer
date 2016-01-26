@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Game.cs" />
     <Compile Include="Common\EnumWorker.cs" />
     <Compile Include="Common\RoundResult.cs" />
     <Compile Include="Exceptions\BadRequestException.cs" />
