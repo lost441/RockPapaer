@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RockPaper.Wpf.ViewModels;
 
 namespace RockPaper.Wpf
 {
@@ -23,6 +24,7 @@ namespace RockPaper.Wpf
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new GameViewModel(); ;
         }
     }
 }
