@@ -161,7 +161,6 @@
     <Compile Include="Areas\V01\Controllers\RoundV01Controller.cs" />
     <Compile Include="Areas\V01\Controllers\TeamV01Controller.cs" />
     <Compile Include="Areas\V01\V01AreaRegistration.cs" />
-    <Compile Include="Contracts\IDashboard.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -169,7 +168,6 @@
     </Compile>
     <Compile Include="IApiController.cs" />
     <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Data\WebApiExceptionFilter.cs" />
   </ItemGroup>
