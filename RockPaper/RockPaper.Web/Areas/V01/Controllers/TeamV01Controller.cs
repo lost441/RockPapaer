@@ -25,7 +25,14 @@ namespace RockPaper.Web.Areas.V01.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Team> Post(Contracts.Api.Team resource)
         {
-            throw new MethodNotAllowedException();
+            var provider = new TeamProvider();
+
+            var team = provider.RegisterTeam(resource.TeamName);
+
+            return new ResponseItem<Contracts.Api.Team>(ResultCodeEnum.Success)
+            {
+                Data = team.Map()
+            };
         }
 
         /// <summary>
