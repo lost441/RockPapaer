@@ -39,12 +39,12 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// Gets this instance.
         /// </summary>
         /// <returns>All items</returns>
-        [Route("")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public ResponseList<Contracts.Api.Team> Get()
-        {
-            throw new MethodNotAllowedException();
-        }
+        //[Route("")]
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public ResponseList<Contracts.Api.Team> Get()
+        //{
+        //    throw new MethodNotAllowedException();
+        //}
 
         /// <summary>
         /// Gets a list of teams by name
@@ -52,7 +52,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="teamName">Name of the team.</param>
         /// <returns>List of teams</returns>
         [Route("")]
-        public ResponseList<Contracts.Api.Team> Get(string teamName)
+        public ResponseList<Contracts.Api.Team> Get(string teamName = null)
         {
             var teamProvider = new TeamProvider();
             var team = teamProvider.GetTeamByTeamName(teamName);

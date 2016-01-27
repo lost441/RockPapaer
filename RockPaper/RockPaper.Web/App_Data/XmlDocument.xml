@@ -810,12 +810,6 @@
             <param name="resource">The resource.</param>
             <returns>The added item</returns>
         </member>
-        <member name="M:RockPaper.Web.IApiController`1.Get">
-            <summary>
-            Gets this instance.
-            </summary>
-            <returns>All items</returns>
-        </member>
         <member name="M:RockPaper.Web.IApiController`1.Delete">
             <summary>
             Deletes this instance.
@@ -855,12 +849,6 @@
             </summary>
             <param name="resource">The resource.</param>
             <returns>The added item</returns>
-        </member>
-        <member name="M:RockPaper.Web.Areas.V01.Controllers.GameV01Controller.Get">
-            <summary>
-            Get a list of games
-            </summary>
-            <returns>All items</returns>
         </member>
         <member name="M:RockPaper.Web.Areas.V01.Controllers.GameV01Controller.Get(System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Boolean)">
             <summary>
@@ -999,12 +987,6 @@
             </summary>
             <param name="resource">The resource.</param>
             <returns>The added item</returns>
-        </member>
-        <member name="M:RockPaper.Web.Areas.V01.Controllers.TeamV01Controller.Get">
-            <summary>
-            Gets this instance.
-            </summary>
-            <returns>All items</returns>
         </member>
         <member name="M:RockPaper.Web.Areas.V01.Controllers.TeamV01Controller.Get(System.String)">
             <summary>

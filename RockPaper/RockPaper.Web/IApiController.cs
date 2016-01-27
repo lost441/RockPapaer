@@ -25,8 +25,8 @@ namespace RockPaper.Web
         /// Gets this instance.
         /// </summary>
         /// <returns>All items</returns>
-        [HttpGet]
-        ResponseList<T> Get();
+        //[HttpGet]
+        //ResponseList<T> Get();
 
 
         /// <summary>

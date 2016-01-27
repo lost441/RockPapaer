@@ -36,12 +36,12 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// Get a list of games
         /// </summary>
         /// <returns>All items</returns>
-        [Route("")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public ResponseList<Contracts.Api.Game> Get()
-        {
-            throw new MethodNotAllowedException();
-        }
+        //[Route("")]
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public ResponseList<Contracts.Api.Game> Get()
+        //{
+        //    throw new MethodNotAllowedException();
+        //}
 
         /// <summary>
         /// Get all games (Filter on active only and if should be played against simulator)
