@@ -52,13 +52,11 @@ namespace RockPaper.Wpf.Adapters
         public Result<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand)
         {
             var url = string.Format(@"http://localhost:49207/api/V01/games/PlayHand?gameId={0}&teamId={1}&hand={2}", gameId, teamId, hand);
-            //var url = string.Format(@"http://localhost:49207/api/V01/games/PlayHand?gameId={0}&teamId={0}", gameId, teamId);
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
             request.ContentType = "application/json";
             request.Accept = "application/json";
             request.Credentials = new NetworkCredential("PayM8User", "password");
-            //request.ContentLength = 0;
             using (var response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
