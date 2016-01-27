@@ -49,6 +49,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
@@ -97,6 +98,10 @@
     <ProjectReference Include="..\RockPaper.Adapter\RockPaper.Adapter.csproj">
       <Project>{c053b3cd-c3df-476a-8f51-0203a64a72da}</Project>
       <Name>RockPaper.Adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RockPaper.Common\RockPaper.Common.csproj">
+      <Project>{dde19c2e-0d4f-4021-b24e-bab6c3f8fcf1}</Project>
+      <Name>RockPaper.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\RockPaper.Contracts\RockPaper.Contracts.csproj">
       <Project>{7c28b980-c276-4bb3-8e42-8fa7d84a828c}</Project>
