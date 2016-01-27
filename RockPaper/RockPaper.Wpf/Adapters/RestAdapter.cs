@@ -15,7 +15,33 @@ namespace RockPaper.Wpf.Adapters
     {
         public Result<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator)
         {
-            throw new NotImplementedException();
+            var url = string.Format(@"http://localhost:49207/api/V01/games?isActive={0}&teamId={1}&playAgainstSimulator={2}", true, teamId, useSimulator);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.Accept = "application/json";
+            request.Credentials = new NetworkCredential("PayM8User", "password");
+
+            using (var response = request.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new ApplicationException("Failed API request");
+                }
+
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string returnedData = reader.ReadToEnd();
+                    var serializedResult = (ResponseList<Game>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseList<Game>));
+                    var game = serializedResult.Data.FirstOrDefault();
+                    return new Result<Guid>
+                    {
+                        Data = game != null ? game.Id : Guid.Empty,
+                        IsSuccessfull = serializedResult.isSuccessfull,
+                        Errors = string.Join(", ", serializedResult.Errors)
+                    };
+                }
+            }
         }
 
         public Result<bool> IsItMyTurn(Guid gameId, Guid teamId)
@@ -25,12 +51,63 @@ namespace RockPaper.Wpf.Adapters
 
         public Result<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand)
         {
-            throw new NotImplementedException();
+            var url = string.Format(@"http://localhost:49207/api/V01/games/PlayHand?gameId={0}&teamId={1}&hand={2}", gameId, teamId, hand);
+            //var url = string.Format(@"http://localhost:49207/api/V01/games/PlayHand?gameId={0}&teamId={0}", gameId, teamId);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+            request.Accept = "application/json";
+            request.Credentials = new NetworkCredential("PayM8User", "password");
+            //request.ContentLength = 0;
+            using (var response = request.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new ApplicationException("Failed API request");
+                }
+
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string returnedData = reader.ReadToEnd();
+                    var serializedResult = (ResponseItem<bool>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseItem<bool>));
+
+                    return new Result<OperationOutcome>()
+                    {
+                        Data = new OperationOutcome { Result = serializedResult.Data, Error = string.Format(", ", serializedResult.Errors) },
+                        IsSuccessfull = serializedResult.isSuccessfull
+                    };
+                }
+            }
         }
 
         public Result<Game> GetGamebyGameId(Guid gameId)
         {
-            throw new NotImplementedException();
+            var url = string.Format(@"http://localhost:49207/api/V01/games/{0}", gameId);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.Accept = "application/json";
+            request.Credentials = new NetworkCredential("PayM8User", "password");
+
+            using (var response = request.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new ApplicationException("Failed API request");
+                }
+
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string returnedData = reader.ReadToEnd();
+                    var serializedResult = (ResponseItem<Game>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseItem<Game>));
+                    return new Result<Game>()
+                    {
+                        Data = serializedResult.Data,
+                        Errors = string.Format(", ", serializedResult.Errors),
+                        IsSuccessfull = serializedResult.isSuccessfull
+                    };
+                }
+            }
         }
 
         public Result<Team> RegisterTeam(string teamName)
@@ -51,33 +128,26 @@ namespace RockPaper.Wpf.Adapters
                 postData.Write(buffer, 0, buffer.Length);
             }
 
-            try
+            using (var response = request.GetResponse() as HttpWebResponse)
             {
-                using (var response = request.GetResponse() as HttpWebResponse)
+                if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    if (response.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new ApplicationException("Failed API request");
-                    }
+                    throw new ApplicationException("Failed API request");
+                }
 
-                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        string returnedData = reader.ReadToEnd();
-                        var serializedResult = (ResponseItem<Team>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseItem<Team>));
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string returnedData = reader.ReadToEnd();
+                    var serializedResult = (ResponseItem<Team>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseItem<Team>));
 
-                        return new Result<Team>()
-                        {
-                            Data = serializedResult.Data,
-                            Errors = string.Format(", ", serializedResult.Errors),
-                            IsSuccessfull = serializedResult.isSuccessfull
-                        };
-                    }
+                    return new Result<Team>()
+                    {
+                        Data = serializedResult.Data,
+                        Errors = string.Format(", ", serializedResult.Errors),
+                        IsSuccessfull = serializedResult.isSuccessfull
+                    };
                 }
             }
-            catch (WebException ex)
-            {
-                throw;
-            }      
         }
 
         public Result<Team> GetTeamByTeamName(string teamName)
@@ -87,33 +157,27 @@ namespace RockPaper.Wpf.Adapters
             request.Method = "GET";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "application/json";
-            request.Credentials = new NetworkCredential("PayM8User", "password");  
-            try
-            {
-                using (var response = request.GetResponse() as HttpWebResponse)
-                {
-                    if (response.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new ApplicationException("Failed API request");
-                    }
+            request.Credentials = new NetworkCredential("PayM8User", "password");
 
-                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                    {                      
-                        string returnedData = reader.ReadToEnd();                        
-                        var serializedResult = (ResponseList<Team>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseList<Team>));
-                        var team = serializedResult.Data.FirstOrDefault();
-                        return new Result<Team>
-                        {
-                            Data = team != null ? team : null,
-                            IsSuccessfull = serializedResult.isSuccessfull,
-                            Errors = string.Join(", ", serializedResult.Errors)
-                        };
-                    }
-                }
-            }
-            catch (WebException ex)
+            using (var response = request.GetResponse() as HttpWebResponse)
             {
-                throw;
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new ApplicationException("Failed API request");
+                }
+
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string returnedData = reader.ReadToEnd();
+                    var serializedResult = (ResponseList<Team>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseList<Team>));
+                    var team = serializedResult.Data.FirstOrDefault();
+                    return new Result<Team>
+                    {
+                        Data = team != null ? team : null,
+                        IsSuccessfull = serializedResult.isSuccessfull,
+                        Errors = string.Join(", ", serializedResult.Errors)
+                    };
+                }
             }
         }
 

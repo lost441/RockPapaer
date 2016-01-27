@@ -12,7 +12,7 @@
             <Label Content="Team Name" Canvas.Left="97" Canvas.Top="49" />
             <TextBox Text="{Binding TeamNameToRegister}" IsEnabled="{Binding EnableRegistration}" x:Name="TeamNameTxt" Height="23" Canvas.Left="183" TextWrapping="Wrap" Canvas.Top="51" Width="243"/>
             <Button Command="{Binding RegisterTeamCommand}" IsEnabled="{Binding EnableRegistration}" x:Name="RegisterTeamBtn" Content="Register Team" Canvas.Left="97" Canvas.Top="86" Width="105"/>
-            <CheckBox IsChecked="{Binding IsActive, Mode=OneWay}" IsEnabled="False" Content="Active Game" x:Name="IsActiveGameCb" Canvas.Left="413" Canvas.Top="121"/>
+            <CheckBox IsChecked="{Binding IsActive}" IsEnabled="False" Content="Active Game" x:Name="IsActiveGameCb" Canvas.Left="413" Canvas.Top="121"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="94" Canvas.Left="32" Canvas.Top="142" Width="459"/>
             <Button Command="{Binding JoinTeamCommand}"  Width="238" Content="Join Game" Canvas.Left="142" Canvas.Top="148"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="294" Canvas.Left="32" Canvas.Top="241" Width="459"/>

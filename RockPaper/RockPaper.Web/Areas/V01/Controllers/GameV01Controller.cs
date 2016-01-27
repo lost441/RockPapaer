@@ -178,7 +178,8 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="teamId">The team identifier.</param>
         /// <param name="hand">The hand.</param>
         /// <returns>Is success indicator</returns>
-        [Route("")]
+        [Route("PlayHand")]
+        [HttpGet]
         public ResponseItem<bool> PlayHand(Guid gameId, Guid teamId, Hand hand)
         {
             var roundProvider = new RoundProvider();

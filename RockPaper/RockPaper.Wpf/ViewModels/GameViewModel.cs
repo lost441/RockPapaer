@@ -348,6 +348,7 @@ namespace RockPaper.Wpf.ViewModels
             }
                         
             this.game = gameResult.Data;
+            this.IsActive = true;
             this.GameState = this.game != null ? this.game.GameState: string.Empty;
             this.CompetingTeam = this.game != null 
                 ? (this.game.TeamName1 == this.Team.TeamName 
