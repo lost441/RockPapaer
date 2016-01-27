@@ -26,8 +26,12 @@ namespace RockPaper.Wpf.Adapters
         public Result<Guid> GetNextAvailableGame(Guid teamId)
         {
             var result = client.GetNextAvailableGame(teamId);
-            Mapper.CreateMap<Result<Guid>, RockPaperServiceReference.ResponseItemOfguid>();
-            return Mapper.Map<Result<Guid>>(result);
+            return new Result<Guid>
+            {
+                Data = result.Data,
+                IsSuccessfull = result.IsSuccessfull,
+                Errors = string.Join(", ", result.Errors)
+            };
         }
 
         /// <summary>
@@ -41,7 +45,13 @@ namespace RockPaper.Wpf.Adapters
         /// <exception cref="System.NotImplementedException"></exception>
         public Result<bool> IsItMyTurn(Guid gameId, Guid teamId)
         {
-            throw new NotImplementedException();
+            var result = client.IsItMyTurn(gameId, teamId);
+            return new Result<bool>
+            {
+                Data = result.Data,
+                IsSuccessfull = result.IsSuccessfull,
+                Errors = string.Join(", ", result.Errors)
+            };
         }
 
         /// <summary>
@@ -55,10 +65,13 @@ namespace RockPaper.Wpf.Adapters
         /// </returns>
         public Result<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand)
         {
-            Mapper.CreateMap<RockPaperServiceReference.Hand, Hand>();
-            var result = client.PlayHand(gameId, teamId, Mapper.Map<RockPaperServiceReference.Hand>(hand));
-            Mapper.CreateMap<Result<OperationOutcome>, RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf>();
-            return Mapper.Map<Result<OperationOutcome>>(result);
+            var result = client.PlayHand(gameId, teamId, (RockPaperServiceReference.Hand) hand);
+            return new Result<OperationOutcome>
+            {
+                Data = result.Data.Map(),
+                IsSuccessfull = result.IsSuccessfull,
+                Errors = string.Join(", ", result.Errors)
+            };
         }
 
         /// <summary>
@@ -70,10 +83,13 @@ namespace RockPaper.Wpf.Adapters
         /// </returns>
         public Result<Game> GetGamebyGameId(Guid gameId)
         {
-            Mapper.CreateMap<RockPaperServiceReference.Hand, Hand>();
             var result = client.GetGamebyGameId(gameId);
-            Mapper.CreateMap<Result<Game>, RockPaperServiceReference.ResponseItemOfGameiiBVlPgH>();
-            return Mapper.Map<Result<Game>>(result);
+            return new Result<Game>
+            {
+                Data = result.Data.Map(),
+                IsSuccessfull = result.IsSuccessfull,
+                Errors = string.Join(", ", result.Errors)
+            };
         }
 
         /// <summary>
@@ -86,8 +102,12 @@ namespace RockPaper.Wpf.Adapters
         public Result<Team> RegisterTeam(string teamName)
         {
             var result = client.RegisterTeam(teamName);
-            Mapper.CreateMap<Result<Team>, RockPaperServiceReference.ResponseItemOfTeamthdB4o0U>();
-            return Mapper.Map<Result<Team>>(result);
+            return new Result<Team>
+            {
+                Data = result.Data.Map(),
+                IsSuccessfull = result.IsSuccessfull,
+                Errors = string.Join(", ", result.Errors)
+            };
         }
 
         /// <summary>
@@ -100,8 +120,12 @@ namespace RockPaper.Wpf.Adapters
         public Result<Team> GetTeamByTeamName(string teamName)
         {
             var result = client.GetTeamByTeamName(teamName);
-            Mapper.CreateMap<Result<Team>, RockPaperServiceReference.ResponseItemOfTeamthdB4o0U>();
-            return Mapper.Map<Result<Team>>(result);
+            return new Result<Team>
+            {
+                Data = Mapper.Map<Team>(result.Data),
+                IsSuccessfull = result.IsSuccessfull,
+                Errors = string.Join(", ", result.Errors)
+            };
         }
     }
 }

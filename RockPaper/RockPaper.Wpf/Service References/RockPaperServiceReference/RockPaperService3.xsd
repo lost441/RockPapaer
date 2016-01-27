@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Contracts.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Contracts.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts" />
-  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Api" />
-  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Providers" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Contracts" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Contracts.Api" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Contracts.Providers" />
   <xs:complexType name="ResponseItemOfguid">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
           <GenericParameter Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
         </GenericType>
       </xs:appinfo>
@@ -34,7 +34,7 @@
   <xs:complexType name="ResponseItemOfboolean">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
           <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
         </GenericType>
       </xs:appinfo>
@@ -48,55 +48,55 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="ResponseItemOfboolean" nillable="true" type="tns:ResponseItemOfboolean" />
-  <xs:complexType name="ResponseItemOfOperationOutcome_ShMyOgxf">
+  <xs:complexType name="ResponseItemOfOperationOutcomew4XXQMJA">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="OperationOutcome" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts" />
+        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="OperationOutcome" Namespace="http://schemas.datacontract.org/2004/07/Contracts" />
         </GenericType>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Result">
         <xs:sequence>
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RockPaper.Contracts" minOccurs="0" name="Data" nillable="true" type="q2:OperationOutcome" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Contracts" minOccurs="0" name="Data" nillable="true" type="q2:OperationOutcome" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ResponseItemOfOperationOutcome_ShMyOgxf" nillable="true" type="tns:ResponseItemOfOperationOutcome_ShMyOgxf" />
-  <xs:complexType name="ResponseItemOfGameiiBVlPgH">
+  <xs:element name="ResponseItemOfOperationOutcomew4XXQMJA" nillable="true" type="tns:ResponseItemOfOperationOutcomew4XXQMJA" />
+  <xs:complexType name="ResponseItemOfGameRcKUQpc9">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="Game" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Api" />
+        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Game" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Api" />
         </GenericType>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Result">
         <xs:sequence>
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Api" minOccurs="0" name="Data" nillable="true" type="q3:Game" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Contracts.Api" minOccurs="0" name="Data" nillable="true" type="q3:Game" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ResponseItemOfGameiiBVlPgH" nillable="true" type="tns:ResponseItemOfGameiiBVlPgH" />
-  <xs:complexType name="ResponseItemOfTeamthdB4o0U">
+  <xs:element name="ResponseItemOfGameRcKUQpc9" nillable="true" type="tns:ResponseItemOfGameRcKUQpc9" />
+  <xs:complexType name="ResponseItemOfTeams5xbATXb">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="Team" Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Providers" />
+        <GenericType Name="ResponseItemOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Team" Namespace="http://schemas.datacontract.org/2004/07/Contracts.Providers" />
         </GenericType>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Result">
         <xs:sequence>
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Providers" minOccurs="0" name="Data" nillable="true" type="q4:Team" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Contracts.Providers" minOccurs="0" name="Data" nillable="true" type="q4:Team" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ResponseItemOfTeamthdB4o0U" nillable="true" type="tns:ResponseItemOfTeamthdB4o0U" />
+  <xs:element name="ResponseItemOfTeams5xbATXb" nillable="true" type="tns:ResponseItemOfTeams5xbATXb" />
 </xs:schema>

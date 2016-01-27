@@ -150,9 +150,9 @@ namespace RockPaper.AdapterImplentations
         public Contracts.Providers.Game FindAvailableGame()
         {
             var availbleGame = context.Games
-                .Where(x => x.Team1 != null || 
+                .Where(x => x.Team1 != null &&
                             x.Team2 == null)
-                 .OrderBy(x => x.CreatedDate);
+                .OrderBy(x => x.CreatedDate);
 
             var game = availbleGame.FirstOrDefault();
             if (game != null)

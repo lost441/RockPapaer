@@ -15,12 +15,12 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Result", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Result", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfboolean))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameiiBVlPgH))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcomew4XXQMJA))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameRcKUQpc9))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid))]
     public partial class Result : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -113,7 +113,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfboolean", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfboolean", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response")]
     [System.SerializableAttribute()]
     public partial class ResponseItemOfboolean : RockPaper.Wpf.RockPaperServiceReference.Result {
         
@@ -136,9 +136,9 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfOperationOutcome_ShMyOgxf", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfOperationOutcomew4XXQMJA", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response")]
     [System.SerializableAttribute()]
-    public partial class ResponseItemOfOperationOutcome_ShMyOgxf : RockPaper.Wpf.RockPaperServiceReference.Result {
+    public partial class ResponseItemOfOperationOutcomew4XXQMJA : RockPaper.Wpf.RockPaperServiceReference.Result {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private RockPaper.Wpf.RockPaperServiceReference.OperationOutcome DataField;
@@ -159,9 +159,9 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfGameiiBVlPgH", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfGameRcKUQpc9", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response")]
     [System.SerializableAttribute()]
-    public partial class ResponseItemOfGameiiBVlPgH : RockPaper.Wpf.RockPaperServiceReference.Result {
+    public partial class ResponseItemOfGameRcKUQpc9 : RockPaper.Wpf.RockPaperServiceReference.Result {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private RockPaper.Wpf.RockPaperServiceReference.Game DataField;
@@ -182,9 +182,9 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfTeamthdB4o0U", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfTeams5xbATXb", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response")]
     [System.SerializableAttribute()]
-    public partial class ResponseItemOfTeamthdB4o0U : RockPaper.Wpf.RockPaperServiceReference.Result {
+    public partial class ResponseItemOfTeams5xbATXb : RockPaper.Wpf.RockPaperServiceReference.Result {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private RockPaper.Wpf.RockPaperServiceReference.Team DataField;
@@ -205,7 +205,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfguid", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseItemOfguid", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Response")]
     [System.SerializableAttribute()]
     public partial class ResponseItemOfguid : RockPaper.Wpf.RockPaperServiceReference.Result {
         
@@ -228,7 +228,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OperationOutcome", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OperationOutcome", Namespace="http://schemas.datacontract.org/2004/07/Contracts")]
     [System.SerializableAttribute()]
     public partial class OperationOutcome : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -289,7 +289,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Game", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Api")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Game", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Api")]
     [System.SerializableAttribute()]
     public partial class Game : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -413,7 +413,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GameState", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameState", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Common")]
     public enum GameState : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -431,7 +431,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Team", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Providers")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Team", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Providers")]
     [System.SerializableAttribute()]
     public partial class Team : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -491,7 +491,7 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Hand", Namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Hand", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Common")]
     public enum Hand : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -530,28 +530,28 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
         System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfboolean> IsItMyTurnAsync(System.Guid gameId, System.Guid teamId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/PlayHand", ReplyAction="http://tempuri.org/IRockPaperService/PlayHandResponse")]
-        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf PlayHand(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand);
+        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcomew4XXQMJA PlayHand(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/PlayHand", ReplyAction="http://tempuri.org/IRockPaperService/PlayHandResponse")]
-        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf> PlayHandAsync(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand);
+        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcomew4XXQMJA> PlayHandAsync(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetGamebyGameId", ReplyAction="http://tempuri.org/IRockPaperService/GetGamebyGameIdResponse")]
-        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameiiBVlPgH GetGamebyGameId(System.Guid gameId);
+        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameRcKUQpc9 GetGamebyGameId(System.Guid gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetGamebyGameId", ReplyAction="http://tempuri.org/IRockPaperService/GetGamebyGameIdResponse")]
-        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameiiBVlPgH> GetGamebyGameIdAsync(System.Guid gameId);
+        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameRcKUQpc9> GetGamebyGameIdAsync(System.Guid gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/RegisterTeam", ReplyAction="http://tempuri.org/IRockPaperService/RegisterTeamResponse")]
-        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U RegisterTeam(string teamName);
+        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb RegisterTeam(string teamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/RegisterTeam", ReplyAction="http://tempuri.org/IRockPaperService/RegisterTeamResponse")]
-        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U> RegisterTeamAsync(string teamName);
+        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb> RegisterTeamAsync(string teamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetTeamByTeamName", ReplyAction="http://tempuri.org/IRockPaperService/GetTeamByTeamNameResponse")]
-        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U GetTeamByTeamName(string teamName);
+        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb GetTeamByTeamName(string teamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetTeamByTeamName", ReplyAction="http://tempuri.org/IRockPaperService/GetTeamByTeamNameResponse")]
-        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U> GetTeamByTeamNameAsync(string teamName);
+        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb> GetTeamByTeamNameAsync(string teamName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -597,35 +597,35 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
             return base.Channel.IsItMyTurnAsync(gameId, teamId);
         }
         
-        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf PlayHand(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand) {
+        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcomew4XXQMJA PlayHand(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand) {
             return base.Channel.PlayHand(gameId, teamId, hand);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcome_ShMyOgxf> PlayHandAsync(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand) {
+        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfOperationOutcomew4XXQMJA> PlayHandAsync(System.Guid gameId, System.Guid teamId, RockPaper.Wpf.RockPaperServiceReference.Hand hand) {
             return base.Channel.PlayHandAsync(gameId, teamId, hand);
         }
         
-        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameiiBVlPgH GetGamebyGameId(System.Guid gameId) {
+        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameRcKUQpc9 GetGamebyGameId(System.Guid gameId) {
             return base.Channel.GetGamebyGameId(gameId);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameiiBVlPgH> GetGamebyGameIdAsync(System.Guid gameId) {
+        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfGameRcKUQpc9> GetGamebyGameIdAsync(System.Guid gameId) {
             return base.Channel.GetGamebyGameIdAsync(gameId);
         }
         
-        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U RegisterTeam(string teamName) {
+        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb RegisterTeam(string teamName) {
             return base.Channel.RegisterTeam(teamName);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U> RegisterTeamAsync(string teamName) {
+        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb> RegisterTeamAsync(string teamName) {
             return base.Channel.RegisterTeamAsync(teamName);
         }
         
-        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U GetTeamByTeamName(string teamName) {
+        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb GetTeamByTeamName(string teamName) {
             return base.Channel.GetTeamByTeamName(teamName);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeamthdB4o0U> GetTeamByTeamNameAsync(string teamName) {
+        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb> GetTeamByTeamNameAsync(string teamName) {
             return base.Channel.GetTeamByTeamNameAsync(teamName);
         }
     }
