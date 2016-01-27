@@ -18,21 +18,21 @@ namespace Contracts.Common
         /// <summary>
         /// The waiting for players
         /// </summary>
-        WaitingForPlayers,
+        WaitingForPlayers = 0,
 
         /// <summary>
         /// The player1 hand
         /// </summary>
-        Player1Hand,
+        Player1Hand = 1,
 
         /// <summary>
         /// The player2 hand
         /// </summary>
-        Player2Hand,
+        Player2Hand = 2,
 
         /// <summary>
         /// The complete
         /// </summary>
-        Complete
+        Complete = 3
     }
 }

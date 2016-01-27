@@ -159,9 +159,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\stock_images\blank_hand.png" />
+    <Content Include="Content\stock_images\lizard_hand.png" />
     <Content Include="Content\stock_images\papaer_black.png" />
     <Content Include="Content\stock_images\rock_black.png" />
     <Content Include="Content\stock_images\scissors_black.png" />
+    <Content Include="Content\stock_images\spork_hand.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -228,6 +231,7 @@
     <Compile Include="Areas\V01\V01AreaRegistration.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

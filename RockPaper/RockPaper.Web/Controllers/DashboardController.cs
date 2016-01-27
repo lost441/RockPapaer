@@ -35,7 +35,6 @@
 
             List<GameResult> gameResults = new List<GameResult>();
 
-
             foreach (var game in games)
             {
                 var gameRounds = roundsProvider.GetCompletedRoundByGameId(game.Id).ToList();
@@ -51,9 +50,9 @@
                     DrawsCount = gameRounds.Where(x => x.Result == Contracts.Common.RoundResult.Draw).ToList().Count
                 });
             }
-
+            gameResults.Sort();
             ViewBag.Data = gameResults;
-           
+
 
             return View();
         }

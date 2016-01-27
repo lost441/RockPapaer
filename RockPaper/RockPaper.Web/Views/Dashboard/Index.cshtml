@@ -9,21 +9,41 @@
 }
 
 
-@*<div class="container">*@
 <div class="row">
     <div class="col-xs-4">
 
     </div>
     <div class="col-xs-4">
-        <strong>@DateTime.Now.ToLongTimeString()</strong>
+        Last update: <strong class="text-center">@DateTime.Now.ToLongTimeString()</strong>
     </div>
     <div class="col-xs-4">
 
     </div>
-
-
-
 </div>
+
+@*@using (Html.BeginForm("filter", "Dashboard", FormMethod.Post, new { @class = "form-group form-control" }))
+{
+
+   
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter">Simple collapsible</button>
+    <div id="filter" class="collapse">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+
+    <div class="row panel panel-collapse">
+        <div class="col-xs-2">
+            Team Name
+        </div>
+        <div class="col-xs-10">
+            <input type="text" name="filterTeamName" class="form-control input-sm" />
+        </div>
+       
+    </div>
+}*@
+
+
 <div class="row">
 
     @if (ViewBag.Data != null)
@@ -58,7 +78,7 @@
 
                         <div class="row">
                             <div class="row text-center">
-                                <strong>Number of rounds: </strong><label class="btn btn-danger">@gameResult.Rounds.Count</label>
+                                <strong>Number of rounds: </strong><label class="btn btn-warning">@gameResult.Rounds.Count</label>
                             </div>
                         </div>
                         <br />
@@ -72,8 +92,8 @@
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td><label class="btn btn-primary">@gameResult.Team1WinsCount</label></td>
-                                    <td><label class="btn btn-primary">@gameResult.Team2WinsCount</label></td>
+                                    <td><label class=" btn btn-primary">@gameResult.Team1WinsCount</label></td>
+                                    <td><label class="btn btn-success">@gameResult.Team2WinsCount</label></td>
                                     <td><label class="btn btn-warning">@gameResult.DrawsCount</label></td>
                                 </tr>
                             </table>
@@ -100,22 +120,22 @@
                                         switch (gameResult.LastRound.Team1Hand)
                                         {
                                             case Contracts.Common.Hand.Paper:
-                                <td><img alt="" src="~/Content/stock_images/papaer_black.png" /></td>
+                                                <td><img alt="Paper" src="~/Content/stock_images/papaer_black.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Rock:
-                                <td><img alt="" src="~/Content/stock_images/rock_black.png" /></td>
+                                            <td><img alt="Rock" src="~/Content/stock_images/rock_black.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Scissor:
-                                <td><img alt="" src="~/Content/stock_images/scissors_black.png" /></td>
+                                            <td><img alt="Scissor" src="~/Content/stock_images/scissors_black.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Spock:
-                                <td><img alt="Spock" /></td>
+                                            <td><img alt="Spock" src="~/Content/stock_images/spork_hand.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Lizard:
-                                <td><img alt="Lizard" /></td>
+                                            <td><img alt="Lizard" src="~/Content/stock_images/lizard_hand.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.None:
-                                <td><img alt="No hand" /></td>
+                                            <td><img alt="None" src="~/Content/stock_images/blank_hand.png" /></td>
                                                 break;
 
                                         }
@@ -125,26 +145,31 @@
                                         switch (gameResult.LastRound.Team2Hand)
                                         {
                                             case Contracts.Common.Hand.Paper:
-                                <td><img alt="" src="~/Content/stock_images/papaer_black.png" /></td>
+                                                <td><img alt="Paper" src="~/Content/stock_images/papaer_black.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Rock:
-                                <td><img alt="" src="~/Content/stock_images/rock_black.png" /></td>
+                                            <td><img alt="Rock" src="~/Content/stock_images/rock_black.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Scissor:
-                                <td><img alt="" src="~/Content/stock_images/scissors_black.png" /></td>
+                                            <td><img alt="Scissor" src="~/Content/stock_images/scissors_black.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Spock:
-                                <td><img alt="Spock" /></td>
+                                            <td><img alt="Spock" src="~/Content/stock_images/spork_hand.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.Lizard:
-                                <td><img alt="Lizard" /></td>
+                                            <td><img alt="Lizard" src="~/Content/stock_images/lizard_hand.png" /></td>
                                                 break;
                                             case Contracts.Common.Hand.None:
-                                <td><img alt="No hand" /></td>
+                                            <td><img alt="None" src="~/Content/stock_images/blank_hand.png" /></td>
                                                 break;
 
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    <td><img alt="None" src="~/Content/stock_images/blank_hand.png" /></td>
+                                    <td><img alt="None" src="~/Content/stock_images/blank_hand.png" /></td>
                                 }
 
 
