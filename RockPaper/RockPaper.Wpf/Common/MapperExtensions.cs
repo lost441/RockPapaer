@@ -80,6 +80,26 @@ namespace RockPaper.Wpf.Common
         public static IEnumerable<Round> Map(this IEnumerable<RockPaperServiceReference.Round> originals)
         {
             return originals.Select(Map);
-        }        
+        }
+
+        public static Round Map(this RoundFacade original)
+        {
+            return original == null
+                ? null
+                : new Round
+                {
+                    GameId = original.GameId,
+                    Id = original.Id,
+                    Result = original.Result.ToString(),
+                    Team1Hand = original.Team1Hand.ToString(),
+                    Team2Hand = original.Team2Hand.ToString(),
+                    SequenceNumber = original.SequenceNumber
+                };
+        }
+
+        public static IEnumerable<Round> Map(this IEnumerable<RoundFacade> originals)
+        {
+            return originals.Select(Map);
+        } 
     }
 }

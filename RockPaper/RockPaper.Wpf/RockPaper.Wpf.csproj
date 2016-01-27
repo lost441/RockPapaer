@@ -65,6 +65,7 @@
     <Compile Include="Common\ResponseItem.cs" />
     <Compile Include="Common\ResponseList.cs" />
     <Compile Include="Models\Round.cs" />
+    <Compile Include="Models\RoundFacade.cs" />
     <Compile Include="Models\RoundResult.cs" />
     <Compile Include="Providers\AdapterFactory.cs" />
     <Compile Include="Adapters\IAdapter.cs" />

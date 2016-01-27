@@ -927,12 +927,6 @@
             <param name="resource">The resource.</param>
             <returns>The added item</returns>
         </member>
-        <member name="M:RockPaper.Web.Areas.V01.Controllers.RoundV01Controller.Get">
-            <summary>
-            Gets this instance.
-            </summary>
-            <returns>All items</returns>
-        </member>
         <member name="M:RockPaper.Web.Areas.V01.Controllers.RoundV01Controller.Get(System.Nullable{System.Guid})">
             <summary>
             Get all completed rounds for a specific game
