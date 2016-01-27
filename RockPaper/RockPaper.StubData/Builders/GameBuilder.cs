@@ -1,5 +1,5 @@
 ﻿
-using RockPaper.Contracts.Providers;
+using Contracts.Providers;
 
 namespace RockPaper.StubData.Builders
 {

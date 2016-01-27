@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RockPaper.Providers;
 using TestProject.TestData;
 using RockPaper.AdapterImplentations;
-using RockPaper.Contracts.Common;
+using Contracts.Common;
 
 namespace TestProject
 {

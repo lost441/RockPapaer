@@ -1,5 +1,5 @@
 ﻿
-namespace RockPaper.Contracts.Exceptions
+namespace Contracts.Exceptions
 {
     using System;
 

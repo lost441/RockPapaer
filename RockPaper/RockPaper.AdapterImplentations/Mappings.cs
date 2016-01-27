@@ -2,11 +2,11 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Providers;
+using Contracts.Providers;
 
 namespace RockPaper.Adapter
 {
-    using RockPaper.Contracts.Common;
+    using Contracts.Common;
     using System;
     using System.Collections.Generic;
     using System.Linq;

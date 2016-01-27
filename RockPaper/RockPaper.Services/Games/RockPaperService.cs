@@ -6,10 +6,10 @@ namespace RockPaper.Services.Games
     using System;
     using Contracts.Response;
     using Providers;
-    using RockPaper.Contracts;
-    using RockPaper.Contracts.Common;
-    using RockPaper.Contracts.Providers;
-    using RockPaper.Contracts.Extentions;
+    using Contracts;
+    using Contracts.Common;
+    using Contracts.Providers;
+    using Contracts.Extentions;
 
     
     /// <summary>
@@ -116,12 +116,12 @@ namespace RockPaper.Services.Games
         /// </summary>
         /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
-        public ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(Guid gameId)
+        public ResponseItem<Contracts.Api.Game> GetGamebyGameId(Guid gameId)
         {
             var provider = new GameProvider();
             var game = provider.GetGameById(gameId).Map();
 
-            return new ResponseItem<RockPaper.Contracts.Api.Game>(ResultCodeEnum.Success)
+            return new ResponseItem<Contracts.Api.Game>(ResultCodeEnum.Success)
             {
                 Data = game
             };

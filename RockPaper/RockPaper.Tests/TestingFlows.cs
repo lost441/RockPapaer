@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RockPaper.AdapterImplentations;
-using RockPaper.Contracts.Common;
+using Contracts.Common;
 
 namespace TestProject
 {

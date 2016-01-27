@@ -2,7 +2,7 @@
 //     Copyright ©  2016
 // </copyright>
 
-using RockPaper.Contracts.Exceptions;
+using Contracts.Exceptions;
 
 namespace RockPaper.Providers
 {

@@ -2,7 +2,7 @@
 //     Copyright ©  2016
 // </copyright>
 
-namespace RockPaper.Contracts
+namespace Contracts
 {
     public class OperationOutcome
     {

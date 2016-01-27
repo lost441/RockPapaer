@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestProject.TestData;
 using RockPaper.Providers;
-using RockPaper.Contracts.Common;
-using RockPaper.Contracts;
+using Contracts.Common;
+using Contracts;
 using RockPaper.AdapterImplentations;
 using System.Linq;
 

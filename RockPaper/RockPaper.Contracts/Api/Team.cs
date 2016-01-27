@@ -2,7 +2,7 @@
 //     Copyright ©  2016
 // </copyright>
 
-namespace RockPaper.Contracts.Api
+namespace Contracts.Api
 {
     using System;
 

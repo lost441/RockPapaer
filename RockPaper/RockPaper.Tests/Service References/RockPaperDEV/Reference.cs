@@ -16,40 +16,40 @@ namespace TestProject.RockPaperDEV {
     public interface IRockPaperService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetNextAvailableGame", ReplyAction="http://tempuri.org/IRockPaperService/GetNextAvailableGameResponse")]
-        RockPaper.Contracts.Response.ResponseItem<System.Guid> GetNextAvailableGame(System.Guid teamId);
+        Contracts.Response.ResponseItem<System.Guid> GetNextAvailableGame(System.Guid teamId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetNextAvailableGame", ReplyAction="http://tempuri.org/IRockPaperService/GetNextAvailableGameResponse")]
-        System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<System.Guid>> GetNextAvailableGameAsync(System.Guid teamId);
+        System.Threading.Tasks.Task<Contracts.Response.ResponseItem<System.Guid>> GetNextAvailableGameAsync(System.Guid teamId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/IsItMyTurn", ReplyAction="http://tempuri.org/IRockPaperService/IsItMyTurnResponse")]
-        RockPaper.Contracts.Response.ResponseItem<bool> IsItMyTurn(System.Guid gameId, System.Guid teamId);
+        Contracts.Response.ResponseItem<bool> IsItMyTurn(System.Guid gameId, System.Guid teamId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/IsItMyTurn", ReplyAction="http://tempuri.org/IRockPaperService/IsItMyTurnResponse")]
-        System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<bool>> IsItMyTurnAsync(System.Guid gameId, System.Guid teamId);
+        System.Threading.Tasks.Task<Contracts.Response.ResponseItem<bool>> IsItMyTurnAsync(System.Guid gameId, System.Guid teamId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/PlayHand", ReplyAction="http://tempuri.org/IRockPaperService/PlayHandResponse")]
-        RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.OperationOutcome> PlayHand(System.Guid gameId, System.Guid teamId, RockPaper.Contracts.Common.Hand hand);
+        Contracts.Response.ResponseItem<Contracts.OperationOutcome> PlayHand(System.Guid gameId, System.Guid teamId, Contracts.Common.Hand hand);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/PlayHand", ReplyAction="http://tempuri.org/IRockPaperService/PlayHandResponse")]
-        System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.OperationOutcome>> PlayHandAsync(System.Guid gameId, System.Guid teamId, RockPaper.Contracts.Common.Hand hand);
+        System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.OperationOutcome>> PlayHandAsync(System.Guid gameId, System.Guid teamId, Contracts.Common.Hand hand);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetGamebyGameId", ReplyAction="http://tempuri.org/IRockPaperService/GetGamebyGameIdResponse")]
-        RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(System.Guid gameId);
+        Contracts.Response.ResponseItem<Contracts.Api.Game> GetGamebyGameId(System.Guid gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetGamebyGameId", ReplyAction="http://tempuri.org/IRockPaperService/GetGamebyGameIdResponse")]
-        System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Api.Game>> GetGamebyGameIdAsync(System.Guid gameId);
+        System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.Api.Game>> GetGamebyGameIdAsync(System.Guid gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/RegisterTeam", ReplyAction="http://tempuri.org/IRockPaperService/RegisterTeamResponse")]
-        RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team> RegisterTeam(string teamName);
+        Contracts.Response.ResponseItem<Contracts.Providers.Team> RegisterTeam(string teamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/RegisterTeam", ReplyAction="http://tempuri.org/IRockPaperService/RegisterTeamResponse")]
-        System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team>> RegisterTeamAsync(string teamName);
+        System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.Providers.Team>> RegisterTeamAsync(string teamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetTeamByTeamName", ReplyAction="http://tempuri.org/IRockPaperService/GetTeamByTeamNameResponse")]
-        RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team> GetTeamByTeamName(string teamName);
+        Contracts.Response.ResponseItem<Contracts.Providers.Team> GetTeamByTeamName(string teamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetTeamByTeamName", ReplyAction="http://tempuri.org/IRockPaperService/GetTeamByTeamNameResponse")]
-        System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team>> GetTeamByTeamNameAsync(string teamName);
+        System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.Providers.Team>> GetTeamByTeamNameAsync(string teamName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,51 +79,51 @@ namespace TestProject.RockPaperDEV {
                 base(binding, remoteAddress) {
         }
         
-        public RockPaper.Contracts.Response.ResponseItem<System.Guid> GetNextAvailableGame(System.Guid teamId) {
+        public Contracts.Response.ResponseItem<System.Guid> GetNextAvailableGame(System.Guid teamId) {
             return base.Channel.GetNextAvailableGame(teamId);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<System.Guid>> GetNextAvailableGameAsync(System.Guid teamId) {
+        public System.Threading.Tasks.Task<Contracts.Response.ResponseItem<System.Guid>> GetNextAvailableGameAsync(System.Guid teamId) {
             return base.Channel.GetNextAvailableGameAsync(teamId);
         }
         
-        public RockPaper.Contracts.Response.ResponseItem<bool> IsItMyTurn(System.Guid gameId, System.Guid teamId) {
+        public Contracts.Response.ResponseItem<bool> IsItMyTurn(System.Guid gameId, System.Guid teamId) {
             return base.Channel.IsItMyTurn(gameId, teamId);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<bool>> IsItMyTurnAsync(System.Guid gameId, System.Guid teamId) {
+        public System.Threading.Tasks.Task<Contracts.Response.ResponseItem<bool>> IsItMyTurnAsync(System.Guid gameId, System.Guid teamId) {
             return base.Channel.IsItMyTurnAsync(gameId, teamId);
         }
         
-        public RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.OperationOutcome> PlayHand(System.Guid gameId, System.Guid teamId, RockPaper.Contracts.Common.Hand hand) {
+        public Contracts.Response.ResponseItem<Contracts.OperationOutcome> PlayHand(System.Guid gameId, System.Guid teamId, Contracts.Common.Hand hand) {
             return base.Channel.PlayHand(gameId, teamId, hand);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.OperationOutcome>> PlayHandAsync(System.Guid gameId, System.Guid teamId, RockPaper.Contracts.Common.Hand hand) {
+        public System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.OperationOutcome>> PlayHandAsync(System.Guid gameId, System.Guid teamId, Contracts.Common.Hand hand) {
             return base.Channel.PlayHandAsync(gameId, teamId, hand);
         }
         
-        public RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(System.Guid gameId) {
+        public Contracts.Response.ResponseItem<Contracts.Api.Game> GetGamebyGameId(System.Guid gameId) {
             return base.Channel.GetGamebyGameId(gameId);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Api.Game>> GetGamebyGameIdAsync(System.Guid gameId) {
+        public System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.Api.Game>> GetGamebyGameIdAsync(System.Guid gameId) {
             return base.Channel.GetGamebyGameIdAsync(gameId);
         }
         
-        public RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team> RegisterTeam(string teamName) {
+        public Contracts.Response.ResponseItem<Contracts.Providers.Team> RegisterTeam(string teamName) {
             return base.Channel.RegisterTeam(teamName);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team>> RegisterTeamAsync(string teamName) {
+        public System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.Providers.Team>> RegisterTeamAsync(string teamName) {
             return base.Channel.RegisterTeamAsync(teamName);
         }
         
-        public RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team> GetTeamByTeamName(string teamName) {
+        public Contracts.Response.ResponseItem<Contracts.Providers.Team> GetTeamByTeamName(string teamName) {
             return base.Channel.GetTeamByTeamName(teamName);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Contracts.Response.ResponseItem<RockPaper.Contracts.Providers.Team>> GetTeamByTeamNameAsync(string teamName) {
+        public System.Threading.Tasks.Task<Contracts.Response.ResponseItem<Contracts.Providers.Team>> GetTeamByTeamNameAsync(string teamName) {
             return base.Channel.GetTeamByTeamNameAsync(teamName);
         }
     }
