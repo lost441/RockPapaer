@@ -12,6 +12,7 @@ namespace RockPaper.Providers
     using System;
     using System.Collections.Generic;
     using Contracts.Providers;
+    using System.Linq;
 
     /// <summary>
     /// The round provider.
@@ -237,7 +238,7 @@ namespace RockPaper.Providers
         public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
         {
             var adapter = new RoundAdapter();
-            return adapter.GetCompletedRoundByGameId(gameId);
+            return adapter.GetCompletedRoundByGameId(gameId).OrderBy(x => x.SequenceNumber);
         }
 
         /// <summary>
