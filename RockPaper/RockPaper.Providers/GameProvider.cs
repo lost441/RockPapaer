@@ -78,6 +78,11 @@ namespace RockPaper.Providers
                 return true;
             }
 
+            if (game.GameState == GameState.WaitingForPlayers)
+            {
+                return false;
+            }
+
             return game.Team2.Id == teamId && game.GameState == GameState.Player2Hand;
         }
 
