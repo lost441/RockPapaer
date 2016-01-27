@@ -39,7 +39,7 @@ namespace RockPaper.Providers
             {
                 gameId = (gameAdapter.FindAvailableGame() ?? gameAdapter.RegisiterNewGame()).Id;
             }
-
+            gameAdapter.SaveChanges();
             gameAdapter.JoinExistingGame(team, gameId);
             gameAdapter.SaveChanges();
 

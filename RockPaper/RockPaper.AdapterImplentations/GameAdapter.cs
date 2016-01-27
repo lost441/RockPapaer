@@ -43,7 +43,7 @@ namespace RockPaper.AdapterImplentations
             try
             {
                 context.SaveChanges();
-                context.Dispose();
+                //context.Dispose();
             }
             catch (Exception ex)
             {
@@ -154,7 +154,13 @@ namespace RockPaper.AdapterImplentations
                             x.Team2 == null)
                  .OrderBy(x => x.CreatedDate);
 
-            return availbleGame.FirstOrDefault().Map();
+            var game = availbleGame.FirstOrDefault();
+            if (game != null)
+            {
+                return game.Map();
+            }
+
+            return null;
         }
 
         /// <summary>
