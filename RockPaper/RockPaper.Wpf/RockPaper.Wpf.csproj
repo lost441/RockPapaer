@@ -62,6 +62,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\MapperExtensions.cs" />
+    <Compile Include="Common\ResponseItem.cs" />
     <Compile Include="Common\ResponseList.cs" />
     <Compile Include="Models\Round.cs" />
     <Compile Include="Models\RoundResult.cs" />

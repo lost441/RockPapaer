@@ -37,8 +37,8 @@ namespace RockPaper.Wpf.Adapters
         {
             var url = string.Format(@"http://localhost:49207/api/V01/teams");
             var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "PUT";
-            request.ContentType = "application/x-www-form-urlencoded";
+            request.Method = "POST";
+            request.ContentType = "application/json";
             request.Accept = "application/json";
             request.Credentials = new NetworkCredential("PayM8User", "password");
             var team = new Team { TeamName = teamName };
@@ -63,9 +63,14 @@ namespace RockPaper.Wpf.Adapters
                     using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                     {
                         string returnedData = reader.ReadToEnd();
-                        var serializedResult = (Result<Team>)JsonConvert.DeserializeObject(returnedData, typeof(Result<Team>));
+                        var serializedResult = (ResponseItem<Team>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseItem<Team>));
 
-                        return serializedResult;
+                        return new Result<Team>()
+                        {
+                            Data = serializedResult.Data,
+                            Errors = string.Format(", ", serializedResult.Errors),
+                            IsSuccessfull = serializedResult.isSuccessfull
+                        };
                     }
                 }
             }

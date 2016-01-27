@@ -1065,6 +1065,17 @@
             Gets the name of the area to register.
             </summary>
         </member>
+        <member name="T:RockPaper.Web.Controllers.DashboardController">
+            <summary>
+            Class DashboardController.
+            </summary>
+        </member>
+        <member name="M:RockPaper.Web.Controllers.DashboardController.Index">
+            <summary>
+            Indexes this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
         <member name="T:RockPaper.Web.Controllers.HomeController">
             <summary>
             The default controller </summary>
@@ -1090,6 +1101,11 @@
             Gets or sets the base URL.
             </summary>
             <value>The website base URL</value>
+        </member>
+        <member name="T:RockPaper.Web.Models.GameResult">
+            <summary>
+            Class GameResult.
+            </summary>
         </member>
         <member name="T:RockPaper.Web.App_Data.WebApiExceptionFilter">
             <summary>
