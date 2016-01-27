@@ -80,6 +80,6 @@ namespace RockPaper.Wpf.Common
         public static IEnumerable<Round> Map(this IEnumerable<RockPaperServiceReference.Round> originals)
         {
             return originals.Select(Map);
-        }
+        }        
     }
 }
