@@ -35,12 +35,12 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// Gets this instance.
         /// </summary>
         /// <returns>All items</returns>
-        [Route("")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public ResponseList<Contracts.Api.Round> Get()
-        {
-            throw new MethodNotAllowedException();
-        }
+        //[Route("")]
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public ResponseList<Contracts.Api.Round> Get()
+        //{
+        //    throw new MethodNotAllowedException();
+        //}
 
         /// <summary>
         /// Get all completed rounds for a specific game
