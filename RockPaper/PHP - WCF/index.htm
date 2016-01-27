@@ -1,0 +1,208 @@
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script language="javascript">		
+		function CreateNewTeam(teamName){
+			$.ajax({
+				type: "GET",
+				url: 'registerteam.php',
+				data:  {functionName: 'registerTeam', teamName: teamName},	
+				success:  RegisterTeamNameSuccess,
+				error: genericErrorHander,
+				dataType: "json",
+				contentType: "application/json' charset=utf-8"
+			});
+		}
+
+		function RegisterTeamNameSuccess(response){
+			document.getElementById('lblTeamComment').innerHTML = 'Your team has been registered';
+			document.getElementById('teamId').text = response.RegisterTeamResult.Data.Id;
+		}
+		
+		function IsItMyTurnSuccess(response){
+			if (response.IsItMyTurnResult.Data === true){
+				document.getElementById('lblTurn').innerHTML = 'Its YOUR turn.';
+			}
+			else{
+				document.getElementById('lblTurn').innerHTML = 'It is NOT turn.';
+			}
+		}
+				
+		function IsItMyTurn(){
+			var teamId = document.getElementById('teamId').text;
+			var gameId = document.getElementById('gameId').text;
+			
+			$.ajax({
+				type: "GET",
+				url: 'findAGame.php',
+				data:  {functionName: 'IsItMyTurn', gameId: gameId , teamId: teamId },
+				success:  IsItMyTurnSuccess,
+				error: genericErrorHander,
+				dataType: "json",
+				contentType: "application/json' charset=utf-8"
+			});	
+		}
+	
+		function FindATeamNameSuccess(response){
+			if (response.GetTeamByTeamNameResult.Data == null){
+				CreateNewTeam(teamName);
+			}
+			else {
+				document.getElementById('lblTeamComment').innerHTML = 'Your team has been registered';
+				document.getElementById('teamId').text = response.GetTeamByTeamNameResult.Data.Id;
+			}
+		}
+		
+		function FindAGameSuccess(response){
+			document.getElementById('gameId').text = response.GetNextAvailableGameResult.Data;
+			document.getElementById('lblGameState').innerHTML = "Your game has been found.";
+		}
+			
+		function genericErrorHander(){
+			console.log("Failed");
+		}
+		
+		function FindAGame(){
+			 var teamId = document.getElementById('teamId').text;
+			 var simulator = document.getElementById('chkSim').checked;
+			 var data = {};
+			 
+			 if (simulator){
+				data = {functionName: 'FindAGame', teamId: teamId, useSimulator: "true"};
+			 }
+			 else{
+				data = {functionName: 'FindAGame', teamId: teamId};
+			 }
+
+            $.ajax({
+				type: "GET",
+				url: 'FindAGame.php',
+				data:  data,
+				success:  FindAGameSuccess,
+				error: genericErrorHander,
+				dataType: "json",
+				contentType: "application/json' charset=utf-8"
+			});
+		}
+	
+	
+        function RegisterTeamName() {
+			teamName = { teamName: document.getElementById("txtTeamName").value};
+
+            $.ajax({
+				type: "GET",
+				url: 'registerteam.php',
+				data:  {functionName: 'findATeam', teamName: teamName},	
+				success:  FindATeamNameSuccess,
+				error: genericErrorHander,
+				dataType: "json",
+				contentType: "application/json' charset=utf-8"
+			});
+        }
+		
+		function GotResultsForTable(response){
+			$('#data-table tr').not(':first').not(':last').remove();
+			var html = '<table id="data-table" class="data-table"><th>Round</th><th>Team 1 Hand</th><th>Team 2 Hand</th><th>Result</th>';
+			
+			if (!response.GetCompletedRoundByGameIdResult.Round.length)
+			{
+				html += '<tr><td>' +  response.GetCompletedRoundByGameIdResult.Round.SequenceNumber + 
+					    '</td><td>' + response.GetCompletedRoundByGameIdResult.Round.Team1Hand + 
+						'</td><td>' + response.GetCompletedRoundByGameIdResult.Round.Team2Hand + 
+						'</td><td>' + response.GetCompletedRoundByGameIdResult.Round.Result + 
+						'</td></tr>';
+			}
+			else
+			{
+				for(var i = 0; i < response.GetCompletedRoundByGameIdResult.Round.length; i++) 
+					html += '<tr><td>' + response.GetCompletedRoundByGameIdResult.Round[i].SequenceNumber + 
+							'</td><td>' + response.GetCompletedRoundByGameIdResult.Round[i].Team1Hand + 
+							'</td><td>' + response.GetCompletedRoundByGameIdResult.Round[i].Team2Hand + 
+							'</td><td>' + response.GetCompletedRoundByGameIdResult.Round[i].Result + 
+							'</td></tr>';
+			}
+			
+			html = html + '</table>';
+			
+			
+			$('#data-table').replaceWith(html);
+		}
+		
+		function UpdateTableWithResults(){
+			var gameId = document.getElementById('gameId').text;
+			
+			 $.ajax({
+				type: "GET",
+				url: 'updateTable.php',
+				data:  {functionName: 'updateTable', gameId: gameId},	
+				success:  GotResultsForTable,
+				error: genericErrorHander,
+				dataType: "json",
+				contentType: "application/json' charset=utf-8"
+			});
+		}
+		
+		function PlayHandSuccess(response){
+			if (response.PlayHandResult.Data.Result === true){
+				UpdateTableWithResults();
+			}
+
+		}
+		
+		function PlayHand() {
+			var teamId = document.getElementById('teamId').text;
+			var gameId = document.getElementById('gameId').text;
+			
+            $.ajax({
+				type: "GET",
+				url: 'playHand.php',
+				data:  {functionName: 'playHand', gameId: gameId , teamId: teamId },
+				success:  PlayHandSuccess,
+				error: genericErrorHander,
+				dataType: "json",
+				contentType: "application/json' charset=utf-8"
+			});
+        }		
+    </script>
+<html>
+<body>	
+<header><b>Rock Paper Scissors Lizard Spock</b></header>
+<br><br>
+<u>Instructions</u><br>
+<li>Type in a team team and click register.</li>
+<li>Click find a game to sign up for a game.</li>
+<li>Click play hand in order to draw a hand.</li>
+<li>Results will display below.</li>
+<li>The first team to 5 wins.</li>
+
+
+
+<br><br>
+<label>Team Name: </label><input type="text" id="txtTeamName">
+<br>
+<br>
+<button onclick="RegisterTeamName()">Register Team Name</button> <br> <br>
+<label id="lblTeamComment"></label>
+<label id="teamId" disabled><label>
+<label id="gameId" disabled></label>
+<br>
+<input type="checkbox" id="chkSim" name="Simulator" value="Bike">Play against the simulator<br>
+<br>
+<button id="btnFindAGame" name="FindAGame" onclick="FindAGame()">Join a Game</button>
+<br>
+<label id="lblGame" disabled></label>
+<label id="lblGameState"></label>
+<br>
+<button id="btnFidnTurn" name="IsItMyTurn" onclick="IsItMyTurn()">Check if its my turn</button>
+<br>
+<label id="lblTurn"></label>
+<br>
+<button id="btnplayHand" name="Playhand" onclick="PlayHand()">Play Hand</button>
+<br>
+<table id="data-table" class="data-table">
+	 <tr><td>There are no items...</td></tr>
+</table>
+
+
+
+
+</body>
+</html>
