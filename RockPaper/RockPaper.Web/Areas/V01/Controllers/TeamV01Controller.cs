@@ -1,6 +1,7 @@
 ﻿
 namespace RockPaper.Web.Areas.V01.Controllers
 {
+    using System.Web.Http.Description;
     using Contracts.Exceptions;
     using Contracts.Response;
     using Providers;
@@ -21,6 +22,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Team> Post(Contracts.Api.Team resource)
         {
             throw new MethodNotAllowedException();
@@ -31,16 +33,17 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseList<Contracts.Api.Team> Get()
         {
             throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Gets a list of teams by name
         /// </summary>
         /// <param name="teamName">Name of the team.</param>
-        /// <returns>All items</returns>
+        /// <returns>List of teams</returns>
         [Route("")]
         public ResponseList<Contracts.Api.Team> Get(string teamName = null)
         {
@@ -60,6 +63,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseList<Contracts.Api.Team> Put(IEnumerable<Contracts.Api.Team> items)
         {
             throw new MethodNotAllowedException();
@@ -70,18 +74,17 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>Delete success</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<bool> Delete()
         {
             throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Get a team by ID
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>
-        /// All items
-        /// </returns>
+        /// <returns>The team</returns>
         [Route("{id}")]
         public ResponseItem<Contracts.Api.Team> Get(Guid id)
         {
@@ -104,10 +107,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="item">The item.</param>
-        /// <returns>
-        /// The updated item
-        /// </returns>
-        /// <exception cref="UnAuthorizedException"></exception>
+        /// <returns>The updated item</returns>
         [Route("{id}")]
         public ResponseItem<Contracts.Api.Team> Put(Guid id, Contracts.Api.Team item)
         {
@@ -115,10 +115,10 @@ namespace RockPaper.Web.Areas.V01.Controllers
         }
 
         /// <summary>
-        /// Puts the specified items.
+        /// Update a specific team
         /// </summary>
         /// <param name="item"></param>
-        /// <returns>Updated items</returns>
+        /// <returns>Updated team</returns>
         [Route("")]
         public ResponseItem<Contracts.Api.Team> Put(Contracts.Api.Team item)
         {
@@ -138,6 +138,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="id"></param>
         /// <returns>Delete success</returns>
         [Route("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<bool> Delete(Guid id)
         {
             throw new MethodNotAllowedException();

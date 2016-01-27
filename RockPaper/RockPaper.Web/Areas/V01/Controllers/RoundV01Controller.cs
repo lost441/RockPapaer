@@ -11,9 +11,10 @@ namespace RockPaper.Web.Areas.V01.Controllers
     using System.Collections.Generic;
     using System.Web.Http;
     using Contracts.Extentions;
+    using System.Web.Http.Description;
 
     /// <summary>
-    /// The Game API
+    /// The Round API
     /// </summary>
     [RoutePrefix("api/V01/rounds")]
     public class RoundV01Controller : ApiController, IApiController<Contracts.Api.Round>
@@ -24,9 +25,10 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Round> Post(Contracts.Api.Round resource)
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
@@ -34,16 +36,17 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseList<Contracts.Api.Round> Get()
         {
-            throw new UnAuthorizedException();
+            throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Get all completed rounds for a specific game
         /// </summary>
         /// <param name="gameId">The game identifier.</param>
-        /// <returns>All items</returns>
+        /// <returns>List of rounds</returns>
         [Route("")]
         public ResponseList<Contracts.Api.Round> Get(Guid? gameId = null)
         {
@@ -67,6 +70,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="items">The items.</param>
         /// <returns>Updated items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseList<Contracts.Api.Round> Put(IEnumerable<Contracts.Api.Round> items)
         {
             throw new MethodNotAllowedException();
@@ -77,6 +81,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>Delete success</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<bool> Delete()
         {
             throw new MethodNotAllowedException();
@@ -90,12 +95,14 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// All items
         /// </returns>
         [Route("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Round> Get(Guid id)
         {
             throw new MethodNotAllowedException();
         }
 
         [Route("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Round> Put(Guid id, Contracts.Api.Round item)
         {
             throw new MethodNotAllowedException();
@@ -107,6 +114,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Round> Put(Contracts.Api.Round item)
         {
             throw new MethodNotAllowedException();
@@ -118,6 +126,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="id"></param>
         /// <returns>Delete success</returns>
         [Route("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<bool> Delete(Guid id)
         {
             throw new MethodNotAllowedException();

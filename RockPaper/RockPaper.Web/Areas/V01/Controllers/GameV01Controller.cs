@@ -4,6 +4,7 @@
 
 namespace RockPaper.Web.Areas.V01.Controllers
 {
+    using System.Web.Http.Description;
     using Contracts.Exceptions;
     using Contracts.Response;
     using Providers;
@@ -14,36 +15,38 @@ namespace RockPaper.Web.Areas.V01.Controllers
     using Contracts.Common;
 
     /// <summary>
-    /// The Game API
+    /// The GAME API
     /// </summary>
     [RoutePrefix("api/V01/games")]
     public class GameV01Controller : ApiController, IApiController<Contracts.Api.Game>
     {
         /// <summary>
-        /// Posts the specified resource.
+        /// Add a game
         /// </summary>
         /// <param name="resource">The resource.</param>
         /// <returns>The added item</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Game> Post(Contracts.Api.Game resource)
         {
             throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Get a list of games
         /// </summary>
         /// <returns>All items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseList<Contracts.Api.Game> Get()
         {
             throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Get all games (Filter on active only and if should be played against simulator)
         /// </summary>
-        /// <returns>All items</returns>
+        /// <returns>List of games</returns>
         [Route("")]
         public ResponseList<Contracts.Api.Game> Get(bool? isActive = false, Guid? teamId = null, bool playAgainstSimulator = false)
         {
@@ -73,8 +76,9 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// Puts the specified items.
         /// </summary>
         /// <param name="items">The items.</param>
-        /// <returns>Updated items</returns>
+        /// <returns>Updated games</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseList<Contracts.Api.Game> Put(IEnumerable<Contracts.Api.Game> items)
         {
             throw new MethodNotAllowedException();
@@ -85,18 +89,17 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// </summary>
         /// <returns>Delete success</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<bool> Delete()
         {
             throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Gets a specific game by ID
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>
-        /// All items
-        /// </returns>
+        /// <returns>Specific game</returns>
         [Route("{id}")]
         public ResponseItem<Contracts.Api.Game> Get(Guid id)
         {
@@ -113,7 +116,14 @@ namespace RockPaper.Web.Areas.V01.Controllers
             };
         }
 
+        /// <summary>
+        /// Puts the specified items.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="item"></param>
+        /// <returns>The item list</returns>
         [Route("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Game> Put(Guid id, Contracts.Api.Game item)
         {
             throw new MethodNotAllowedException();
@@ -125,6 +135,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="item"></param>
         /// <returns>Updated items</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<Contracts.Api.Game> Put(Contracts.Api.Game item)
         {
             throw new MethodNotAllowedException();
@@ -136,17 +147,18 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="id"></param>
         /// <returns>Delete success</returns>
         [Route("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ResponseItem<bool> Delete(Guid id)
         {
             throw new MethodNotAllowedException();
         }
 
         /// <summary>
-        /// Determines whether [is it my turn] [the specified game identifier].
+        /// Determines whether it is my turn for a specific game.
         /// </summary>
         /// <param name="gameId">The game identifier.</param>
         /// <param name="teamId">The team identifier.</param>
-        /// <returns></returns>
+        /// <returns>Is my turn indicator</returns>
         [Route("")]
         public ResponseItem<bool> IsItMyTurn(Guid gameId, Guid teamId)
         {
@@ -160,12 +172,12 @@ namespace RockPaper.Web.Areas.V01.Controllers
         }
 
         /// <summary>
-        /// Plays the hand.
+        /// Plays a hand for a specific round.
         /// </summary>
         /// <param name="gameId">The game identifier.</param>
         /// <param name="teamId">The team identifier.</param>
         /// <param name="hand">The hand.</param>
-        /// <returns></returns>
+        /// <returns>Is success indicator</returns>
         [Route("")]
         public ResponseItem<bool> PlayHand(Guid gameId, Guid teamId, Hand hand)
         {
