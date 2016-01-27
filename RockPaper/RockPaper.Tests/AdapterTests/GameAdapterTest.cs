@@ -4,8 +4,8 @@ using RockPaper.Adapter;
 using RockPaper.AdapterImplentations;
 using System.Linq;
 using TestProject.TestData;
-using RockPaper.Contracts.Common;
-using RockPaper.Contracts;
+using Contracts.Common;
+using Contracts;
 
 namespace TestProject
 {

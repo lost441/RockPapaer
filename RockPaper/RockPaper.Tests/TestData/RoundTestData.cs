@@ -1,12 +1,12 @@
 ﻿using RockPaper.AdapterImplentations;
-using RockPaper.Contracts;
-using RockPaper.Contracts.Common;
+using Contracts;
+using Contracts.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RockPaper.Contracts.Providers;
+using Contracts.Providers;
 
 namespace TestProject.TestData
 {

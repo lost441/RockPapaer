@@ -1,5 +1,5 @@
 ﻿
-namespace RockPaper.Contracts.Response
+namespace Contracts.Response
 {
     using System.Collections.Generic;
 

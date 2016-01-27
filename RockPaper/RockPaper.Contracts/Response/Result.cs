@@ -1,7 +1,7 @@
 ﻿// <copyright file="Result.cs" company="PayM8">
 //     Copyright ©  2016
 // </copyright>
-namespace RockPaper.Contracts.Response
+namespace Contracts.Response
 {
     using System.Collections.Generic;
     using Common;

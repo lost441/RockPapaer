@@ -1,5 +1,5 @@
 ﻿
-using RockPaper.Contracts.Common;
+using Contracts.Common;
 
 namespace TestProject.PoviderTests
 {

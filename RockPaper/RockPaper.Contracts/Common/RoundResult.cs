@@ -2,7 +2,7 @@
 //     Copyright ©  2016
 // </copyright>
 
-namespace RockPaper.Contracts.Common
+namespace Contracts.Common
 {
     /// <summary>
     /// The Round Result.

@@ -1,5 +1,5 @@
 ﻿
-namespace RockPaper.Contracts.Extentions
+namespace Contracts.Extentions
 {
     using System.Collections.Generic;
     using System.Linq;

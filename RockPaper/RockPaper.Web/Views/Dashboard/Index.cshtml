@@ -1,0 +1,26 @@
+﻿@*@model System.Collections.IEnumerable< RockPaper.Contracts.Api.Game>*@
+@*@{
+    ViewBag.Title = "Game Dashboard";
+}*@
+
+@* Actually use Ajax to dynamically load content into pages *@
+@*@if(Model != null)
+{
+    <div class="row">
+        @foreach(var gameObject in Model)
+        {
+            <div class="col-md-4">
+
+            </div>
+        }
+    </div>
+   
+}
+else
+{
+    <div class="row">
+        <div class="col-md-8-offset-4">
+            No games currently taking place.
+        </div>
+    </div>
+}*@

@@ -1,5 +1,5 @@
 ﻿
-namespace RockPaper.Contracts.Common
+namespace Contracts.Common
 {
     using System;
     using System.ComponentModel;

@@ -1,28 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace RockPaper.Wpf.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Extension methods.
     /// </summary>
     public static class Extensions
     {
         /// <summary>
-        /// Maps the specified original.
+        /// To the enum.
         /// </summary>
-        /// <param name="original">The original.</param>
-        /// <returns>Mapped object.</returns>
-        public static Models.Team Map(this RockPaperServiceReference.Team original)
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <returns>The enumerator</returns>
+        /// <exception cref="System.InvalidCastException">value</exception>
+        public static T ToEnum<T>(this string value) where T: struct
         {
-            return new Models.Team
+            T myEnum;
+            if (!Enum.TryParse<T>(value,  out myEnum))
             {
-                Id = original.Id,
-                TeamName = original.TeamName
-            };
+                throw new InvalidCastException(value);
+            }
+
+            return myEnum;
         }
     }
 }

@@ -4,12 +4,12 @@
 namespace RockPaper.Services.Games
 {
     using System;
+    using System.Collections.Generic;
     using System.ServiceModel;
     using Contracts.Response;
-    using RockPaper.Contracts;
-    using RockPaper.Contracts.Common;
-    using RockPaper.Contracts.Providers;
-using System.Collections.Generic;
+    using Contracts;
+    using Contracts.Common;
+    using Contracts.Providers;
 
     [ServiceContract]
     public interface IRockPaperService
@@ -48,7 +48,7 @@ using System.Collections.Generic;
         /// <param name="gameId">The game identifier.</param>
         /// <returns></returns>
         [OperationContract]
-        ResponseItem<RockPaper.Contracts.Api.Game> GetGamebyGameId(Guid gameId);
+        ResponseItem<Contracts.Api.Game> GetGamebyGameId(Guid gameId);
 
         /// <summary>
         /// Registers the team.

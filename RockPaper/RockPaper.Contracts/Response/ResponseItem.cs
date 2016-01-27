@@ -2,7 +2,7 @@
 //     Copyright ©  2016
 // </copyright>
 
-namespace RockPaper.Contracts.Response
+namespace Contracts.Response
 {
     /// <summary>
     /// The repsonse item fro the web calls. 
