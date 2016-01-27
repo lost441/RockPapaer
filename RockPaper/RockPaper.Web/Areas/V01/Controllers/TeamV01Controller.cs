@@ -45,7 +45,7 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="teamName">Name of the team.</param>
         /// <returns>List of teams</returns>
         [Route("")]
-        public ResponseList<Contracts.Api.Team> Get(string teamName = null)
+        public ResponseList<Contracts.Api.Team> Get(string teamName)
         {
             var teamProvider = new TeamProvider();
             var team = teamProvider.GetTeamByTeamName(teamName);

@@ -95,7 +95,7 @@ namespace RockPaper.AdapterImplentations
         public IEnumerable<Round> GetCompletedRoundByGameId(Guid id)
         {
             var result = context.Round
-                            .Where(x => x.Game.Id == id && (x.Result == "Team1Won" || x.Result == "Team2Won"));                
+                            .Where(x => x.Game.Id == id && (x.Result == "Team1Won" || x.Result == "Team2Won" || x.Result == "Draw"));                
 
             return result.Map();
         }
