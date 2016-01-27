@@ -2,7 +2,6 @@
 namespace RockPaper.Wpf.Adapters
 {
     using System;
-    using AutoMapper;
     using RockPaper.Wpf.Common;
     using RockPaper.Wpf.Models;
 
