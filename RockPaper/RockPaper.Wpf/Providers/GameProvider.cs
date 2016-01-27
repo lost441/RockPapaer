@@ -1,0 +1,137 @@
+﻿
+namespace RockPaper.Wpf.Providers
+{
+    using RockPaper.Wpf.Common;
+    using RockPaper.Wpf.Models;
+    using System;
+
+    /// <summary>
+    /// Game provider class.
+    /// </summary>
+    public class GameProvider : IGameProvider, IDisposable
+    {
+        /// <summary>
+        /// The is rest call.
+        /// </summary>
+        private readonly bool isRestCall;
+                
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameProvider"/> class.
+        /// </summary>
+        /// <param name="isRestCall">if set to <c>true</c> [is rest call].</param>
+        public GameProvider(bool isRestCall)
+        {
+            this.isRestCall = isRestCall;
+        }
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="GameProvider"/> class.
+        /// </summary>
+        ~GameProvider() 
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Gets the next available game.
+        /// </summary>
+        /// <param name="teamId">The team identifier.</param>
+        /// <returns>
+        /// Game identifier
+        /// </returns>
+        public Result<Guid> GetNextAvailableGame(Guid teamId)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.GetNextAvailableGame(teamId);
+        }
+
+        /// <summary>
+        /// Determines whether [is it my turn] [the specified game identifier].
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <returns>
+        /// A bool indicating if its the teams turn.
+        /// </returns>
+        public Result<bool> IsItMyTurn(Guid gameId, Guid teamId)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.IsItMyTurn(gameId, teamId);
+        }
+
+        /// <summary>
+        /// Plays the hand.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <param name="teamId">The team identifier.</param>
+        /// <param name="hand">The hand.</param>
+        /// <returns>
+        /// The outcome
+        /// </returns>
+        public Result<OperationOutcome> PlayHand(Guid gameId, Guid teamId, Hand hand)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.PlayHand(gameId, teamId,  hand);
+        }
+
+        /// <summary>
+        /// Gets the gameby game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>
+        /// The game
+        /// </returns>
+        public Result<Game> GetGamebyGameId(Guid gameId)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.GetGamebyGameId(gameId);
+        }
+
+        /// <summary>
+        /// Registers the team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns>
+        /// The team
+        /// </returns>
+        public Result<Team> RegisterTeam(string teamName)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.RegisterTeam(teamName);
+        }
+
+        /// <summary>
+        /// Gets the name of the team by team.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns>
+        /// The team
+        /// </returns>
+        public Result<Team> GetTeamByTeamName(string teamName)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.GetTeamByTeamName(teamName);
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.Dispose();
+            }
+        }
+    }
+}
