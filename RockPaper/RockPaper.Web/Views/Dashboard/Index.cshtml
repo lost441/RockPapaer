@@ -1,26 +1,193 @@
-﻿@*@model System.Collections.IEnumerable< RockPaper.Contracts.Api.Game>*@
-@*@{
+﻿
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+@using RockPaper.Web.Models
+@model List<GameResult>
+@{
     ViewBag.Title = "Game Dashboard";
-}*@
-
-@* Actually use Ajax to dynamically load content into pages *@
-@*@if(Model != null)
-{
-    <div class="row">
-        @foreach(var gameObject in Model)
-        {
-            <div class="col-md-4">
-
-            </div>
-        }
-    </div>
-   
 }
-else
-{
-    <div class="row">
-        <div class="col-md-8-offset-4">
-            No games currently taking place.
-        </div>
+
+
+@*<div class="container">*@
+<div class="row">
+    <div class="col-xs-4">
+
     </div>
-}*@
+    <div class="col-xs-4">
+        <strong>@DateTime.Now.ToLongTimeString()</strong>
+    </div>
+    <div class="col-xs-4">
+
+    </div>
+
+
+
+</div>
+<div class="row">
+
+    @if (ViewBag.Data != null)
+    {
+
+        foreach (var gameResult in ViewBag.Data as List<GameResult>)
+        {
+
+            if (gameResult.Game.GameState != Contracts.Common.GameState.WaitingForPlayers)
+            {
+
+                <div class="col-xs-3 panel panel-primary dash">
+                    <div class="row panel-heading text-center">
+                        <strong><label>@String.Concat(gameResult.Game.Team1.TeamName, "-", gameResult.Game.Team2.TeamName) - @gameResult.Game.GameState.ToString() </label></strong>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <td><strong>Team 1</strong></td>
+                                        <td><strong>Team 2</strong></td>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td><label>@gameResult.Game.Team1.TeamName</label> </td>
+                                    <td><label>@gameResult.Game.Team2.TeamName</label> </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="row text-center">
+                                <strong>Number of rounds: </strong><label class="btn btn-danger">@gameResult.Rounds.Count</label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <table class="table table-responsive table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td><strong>Red Team Wins</strong></td>
+                                        <td><strong>Blue Team Wins</strong></td>
+                                        <td><strong>Game Draws</strong></td>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td><label class="btn btn-primary">@gameResult.Team1WinsCount</label></td>
+                                    <td><label class="btn btn-primary">@gameResult.Team2WinsCount</label></td>
+                                    <td><label class="btn btn-warning">@gameResult.DrawsCount</label></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row panel-heading text-center">
+                        <strong>Last Round</strong>
+                    </div>
+                    <div class="row">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <td><strong>Team 1 Hand</strong></td>
+                                    <td><strong>Team 2 Hand</strong></td>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                @if (gameResult.LastRound != null)
+                                {
+                                    if (gameResult.LastRound.Team1Hand.HasValue)
+                                    {
+                                        switch (gameResult.LastRound.Team1Hand)
+                                        {
+                                            case Contracts.Common.Hand.Paper:
+                                <td><img alt="" src="~/Content/stock_images/papaer_black.png" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Rock:
+                                <td><img alt="" src="~/Content/stock_images/rock_black.png" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Scissor:
+                                <td><img alt="" src="~/Content/stock_images/scissors_black.png" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Spock:
+                                <td><img alt="Spock" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Lizard:
+                                <td><img alt="Lizard" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.None:
+                                <td><img alt="No hand" /></td>
+                                                break;
+
+                                        }
+                                    }
+                                    if (gameResult.LastRound.Team2Hand.HasValue)
+                                    {
+                                        switch (gameResult.LastRound.Team2Hand)
+                                        {
+                                            case Contracts.Common.Hand.Paper:
+                                <td><img alt="" src="~/Content/stock_images/papaer_black.png" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Rock:
+                                <td><img alt="" src="~/Content/stock_images/rock_black.png" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Scissor:
+                                <td><img alt="" src="~/Content/stock_images/scissors_black.png" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Spock:
+                                <td><img alt="Spock" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.Lizard:
+                                <td><img alt="Lizard" /></td>
+                                                break;
+                                            case Contracts.Common.Hand.None:
+                                <td><img alt="No hand" /></td>
+                                                break;
+
+                                        }
+                                    }
+                                }
+
+
+                            </tr>
+
+
+
+                        </table>
+                    </div>
+
+                </div>
+
+
+            }
+        }
+
+
+    }
+
+
+
+</div>
+
+
+@section scripts
+{
+
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        var time = new Date().getTime();
+        $(document.body).bind("mousemove keypress", function (e) {
+            time = new Date().getTime();
+        });
+
+        function refresh() {
+            if (new Date().getTime() - time >= 60000)
+                window.location.reload(true);
+            else
+                setTimeout(refresh, 10000);
+        }
+
+        setTimeout(refresh, 10000);
+    </script>
+}
