@@ -513,15 +513,157 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
         Spock = 5,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Round", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Providers")]
+    [System.SerializableAttribute()]
+    public partial class Round : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid GameIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RockPaper.Wpf.RockPaperServiceReference.RoundResult ResultField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SequenceNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<RockPaper.Wpf.RockPaperServiceReference.Hand> Team1HandField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<RockPaper.Wpf.RockPaperServiceReference.Hand> Team2HandField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid GameId {
+            get {
+                return this.GameIdField;
+            }
+            set {
+                if ((this.GameIdField.Equals(value) != true)) {
+                    this.GameIdField = value;
+                    this.RaisePropertyChanged("GameId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RockPaper.Wpf.RockPaperServiceReference.RoundResult Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SequenceNumber {
+            get {
+                return this.SequenceNumberField;
+            }
+            set {
+                if ((this.SequenceNumberField.Equals(value) != true)) {
+                    this.SequenceNumberField = value;
+                    this.RaisePropertyChanged("SequenceNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<RockPaper.Wpf.RockPaperServiceReference.Hand> Team1Hand {
+            get {
+                return this.Team1HandField;
+            }
+            set {
+                if ((this.Team1HandField.Equals(value) != true)) {
+                    this.Team1HandField = value;
+                    this.RaisePropertyChanged("Team1Hand");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<RockPaper.Wpf.RockPaperServiceReference.Hand> Team2Hand {
+            get {
+                return this.Team2HandField;
+            }
+            set {
+                if ((this.Team2HandField.Equals(value) != true)) {
+                    this.Team2HandField = value;
+                    this.RaisePropertyChanged("Team2Hand");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoundResult", Namespace="http://schemas.datacontract.org/2004/07/Contracts.Common")]
+    public enum RoundResult : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NotComplete = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Team1Won = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Team2Won = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Draw = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RockPaperServiceReference.IRockPaperService")]
     public interface IRockPaperService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetNextAvailableGame", ReplyAction="http://tempuri.org/IRockPaperService/GetNextAvailableGameResponse")]
-        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid GetNextAvailableGame(System.Guid teamId);
+        RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid GetNextAvailableGame(System.Guid teamId, System.Nullable<bool> useSimulator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetNextAvailableGame", ReplyAction="http://tempuri.org/IRockPaperService/GetNextAvailableGameResponse")]
-        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid> GetNextAvailableGameAsync(System.Guid teamId);
+        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid> GetNextAvailableGameAsync(System.Guid teamId, System.Nullable<bool> useSimulator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/IsItMyTurn", ReplyAction="http://tempuri.org/IRockPaperService/IsItMyTurnResponse")]
         RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfboolean IsItMyTurn(System.Guid gameId, System.Guid teamId);
@@ -552,6 +694,12 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetTeamByTeamName", ReplyAction="http://tempuri.org/IRockPaperService/GetTeamByTeamNameResponse")]
         System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb> GetTeamByTeamNameAsync(string teamName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameId", ReplyAction="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameIdResponse")]
+        RockPaper.Wpf.RockPaperServiceReference.Round[] GetCompletedRoundByGameId(System.Guid gameId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameId", ReplyAction="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameIdResponse")]
+        System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.Round[]> GetCompletedRoundByGameIdAsync(System.Guid gameId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -581,12 +729,12 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid GetNextAvailableGame(System.Guid teamId) {
-            return base.Channel.GetNextAvailableGame(teamId);
+        public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid GetNextAvailableGame(System.Guid teamId, System.Nullable<bool> useSimulator) {
+            return base.Channel.GetNextAvailableGame(teamId, useSimulator);
         }
         
-        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid> GetNextAvailableGameAsync(System.Guid teamId) {
-            return base.Channel.GetNextAvailableGameAsync(teamId);
+        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfguid> GetNextAvailableGameAsync(System.Guid teamId, System.Nullable<bool> useSimulator) {
+            return base.Channel.GetNextAvailableGameAsync(teamId, useSimulator);
         }
         
         public RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfboolean IsItMyTurn(System.Guid gameId, System.Guid teamId) {
@@ -627,6 +775,14 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
         
         public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb> GetTeamByTeamNameAsync(string teamName) {
             return base.Channel.GetTeamByTeamNameAsync(teamName);
+        }
+        
+        public RockPaper.Wpf.RockPaperServiceReference.Round[] GetCompletedRoundByGameId(System.Guid gameId) {
+            return base.Channel.GetCompletedRoundByGameId(gameId);
+        }
+        
+        public System.Threading.Tasks.Task<RockPaper.Wpf.RockPaperServiceReference.Round[]> GetCompletedRoundByGameIdAsync(System.Guid gameId) {
+            return base.Channel.GetCompletedRoundByGameIdAsync(gameId);
         }
     }
 }

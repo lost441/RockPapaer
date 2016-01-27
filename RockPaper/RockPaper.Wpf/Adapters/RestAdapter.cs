@@ -10,7 +10,7 @@ namespace RockPaper.Wpf.Adapters
 {
     public class RestAdapter : IAdapter
     {
-        public Result<Guid> GetNextAvailableGame(Guid teamId)
+        public Result<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator)
         {
             throw new NotImplementedException();
         }
@@ -39,5 +39,10 @@ namespace RockPaper.Wpf.Adapters
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
+        {
+            throw new NotImplementedException();
+        }        
     }
 }

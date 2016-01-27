@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Contracts.Providers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Contracts.Providers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Contracts.Common" />
   <xs:complexType name="Team">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="ser:guid" />
@@ -8,4 +9,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Team" nillable="true" type="tns:Team" />
+  <xs:complexType name="ArrayOfRound">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Round" nillable="true" type="tns:Round" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRound" nillable="true" type="tns:ArrayOfRound" />
+  <xs:complexType name="Round">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GameId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Contracts.Common" minOccurs="0" name="Result" type="q1:RoundResult" />
+      <xs:element minOccurs="0" name="SequenceNumber" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Contracts.Common" minOccurs="0" name="Team1Hand" nillable="true" type="q2:Hand" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Contracts.Common" minOccurs="0" name="Team2Hand" nillable="true" type="q3:Hand" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Round" nillable="true" type="tns:Round" />
 </xs:schema>

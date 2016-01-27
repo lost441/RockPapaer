@@ -81,7 +81,7 @@ namespace RockPaper.Wpf.ViewModels
         public GameViewModel()
         {
             this.EnableRegistration = true;
-            this.GameResults = new ObservableCollection<GameResult>();
+            this.GameResults = new ObservableCollection<Round>();
             this.RegisterTeamCommand = new Command(() => true, this.RegisterTeam);
             this.JoinTeamCommand = new Command(() => true, this.JoinGame);
             this.RefreshGameResultsCommand = new Command(() => true, this.GetGameResults);
@@ -224,14 +224,27 @@ namespace RockPaper.Wpf.ViewModels
             get { return this.gameState; }
             set { this.gameState = value; OnPropertyChanged(); }
         }
-        
+
+        private string competingTeam;
+        public string CompetingTeam
+        {
+            get { return this.competingTeam; }
+            set { this.competingTeam = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<Round> gameResults;
+
         /// <summary>
         /// Gets the game results.
         /// </summary>
         /// <value>
         /// The game results.
         /// </value>
-        public ObservableCollection<GameResult> GameResults { get; private set; }
+        public ObservableCollection<Round> GameResults 
+        { 
+            get { return this.gameResults; }
+            private set { this.gameResults = value; OnPropertyChanged(); } 
+        }
 
         /// <summary>
         /// Gets the register team command.
@@ -314,13 +327,15 @@ namespace RockPaper.Wpf.ViewModels
             IsRegistered = false;
         }
 
+        private bool useSimulator = true;
+
         /// <summary>
         /// Joins the game.
         /// </summary>
         private void JoinGame()
         {
             var provider = new GameProvider(this.IsRestCall);
-            var result = provider.GetNextAvailableGame(this.Team.Id);
+            var result = provider.GetNextAvailableGame(this.Team.Id, this.useSimulator);
             if (!result.IsSuccessfull)
             {
                 throw new ApplicationException("No game");
@@ -331,9 +346,14 @@ namespace RockPaper.Wpf.ViewModels
             {
                 throw new ApplicationException("No game");
             }
-
+                        
             this.game = gameResult.Data;
             this.GameState = this.game != null ? this.game.GameState: string.Empty;
+            this.CompetingTeam = this.game != null 
+                ? (this.game.TeamName1 == this.Team.TeamName 
+                    ? this.game.TeamName2 
+                    : this.game.TeamName1)
+                : string.Empty;
         }
 
         /// <summary>
@@ -342,6 +362,8 @@ namespace RockPaper.Wpf.ViewModels
         private void GetGameResults()
         {
             var provider = new GameProvider(this.IsRestCall);
+            var results = provider.GetCompletedRoundByGameId(this.game.Id);
+            this.GameResults = new ObservableCollection<Round>(results);
         }
 
         /// <summary>
@@ -353,6 +375,7 @@ namespace RockPaper.Wpf.ViewModels
             this.Hand = "Rock";
             var selectedHand = this.Hand.ToEnum<Hand>();
             provider.PlayHand(this.game.Id, this.Team.Id, selectedHand); //TODO: Do something with result.
+            this.GetGameResults();
         }
 
         /// <summary>

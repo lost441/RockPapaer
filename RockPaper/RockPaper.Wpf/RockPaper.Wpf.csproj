@@ -61,6 +61,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\MapperExtensions.cs" />
+    <Compile Include="Models\Round.cs" />
+    <Compile Include="Models\RoundResult.cs" />
     <Compile Include="Providers\AdapterFactory.cs" />
     <Compile Include="Adapters\IAdapter.cs" />
     <Compile Include="Adapters\RestAdapter.cs" />
@@ -70,7 +72,6 @@
     <Compile Include="Common\OperationOutcome.cs" />
     <Compile Include="Common\Result.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameResult.cs" />
     <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Providers\GameProvider.cs" />
@@ -131,6 +132,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.ResponseItemOfTeams5xbATXb.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RockPaperServiceReference\RockPaper.Wpf.RockPaperServiceReference.Round.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RockPaperServiceReference\RockPaperService.wsdl" />

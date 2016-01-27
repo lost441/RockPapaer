@@ -20,12 +20,13 @@ namespace RockPaper.Wpf.Adapters
         /// Gets the next available game.
         /// </summary>
         /// <param name="teamId">The team identifier.</param>
+        /// <param name="useSimulator">The use simulator.</param>
         /// <returns>
         /// Game identifier
         /// </returns>
-        public Result<Guid> GetNextAvailableGame(Guid teamId)
+        public Result<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator)
         {
-            var result = client.GetNextAvailableGame(teamId);
+            var result = client.GetNextAvailableGame(teamId, useSimulator);
             return new Result<Guid>
             {
                 Data = result.Data,
@@ -122,10 +123,23 @@ namespace RockPaper.Wpf.Adapters
             var result = client.GetTeamByTeamName(teamName);
             return new Result<Team>
             {
-                Data = Mapper.Map<Team>(result.Data),
+                Data = result.Data.Map(),
                 IsSuccessfull = result.IsSuccessfull,
                 Errors = string.Join(", ", result.Errors)
             };
+        }
+
+        /// <summary>
+        /// Gets the completed round by game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>
+        /// The rounds
+        /// </returns>
+        public System.Collections.Generic.IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
+        {
+            var results = client.GetCompletedRoundByGameId(gameId);
+            return results.Map();
         }
     }
 }

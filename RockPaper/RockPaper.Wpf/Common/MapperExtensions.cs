@@ -1,6 +1,8 @@
 ﻿
 namespace RockPaper.Wpf.Common
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using RockPaper.Wpf.Models;
 
     /// <summary>
@@ -58,6 +60,26 @@ namespace RockPaper.Wpf.Common
                     Result = original.Result,
                     Error = original.Error
                 };
+        }
+
+        public static Round Map(this RockPaperServiceReference.Round original)
+        {
+            return original == null
+                ? null
+                : new Round
+                {
+                    GameId = original.GameId,
+                    Id = original.Id,
+                    Result = original.Result.ToString(),
+                    Team1Hand = original.Team1Hand.ToString(),
+                    Team2Hand = original.Team2Hand.ToString(),
+                    SequenceNumber = original.SequenceNumber
+                };
+        }
+
+        public static IEnumerable<Round> Map(this IEnumerable<RockPaperServiceReference.Round> originals)
+        {
+            return originals.Select(Map);
         }
     }
 }

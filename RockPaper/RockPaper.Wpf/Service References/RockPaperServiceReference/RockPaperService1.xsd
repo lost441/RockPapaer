@@ -3,10 +3,12 @@
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" />
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Contracts.Common" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Contracts.Providers" />
   <xs:element name="GetNextAvailableGame">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="teamId" type="q1:guid" />
+        <xs:element minOccurs="0" name="useSimulator" nillable="true" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -87,6 +89,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="GetTeamByTeamNameResult" nillable="true" type="q13:ResponseItemOfTeams5xbATXb" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompletedRoundByGameId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="gameId" type="q14:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompletedRoundByGameIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Contracts.Providers" minOccurs="0" name="GetCompletedRoundByGameIdResult" nillable="true" type="q15:ArrayOfRound" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,9 +1,10 @@
 ﻿
 namespace RockPaper.Wpf.Providers
 {
+    using System;
+    using System.Collections.Generic;
     using RockPaper.Wpf.Common;
     using RockPaper.Wpf.Models;
-    using System;
 
     /// <summary>
     /// Game provider class.
@@ -28,13 +29,14 @@ namespace RockPaper.Wpf.Providers
         /// Gets the next available game.
         /// </summary>
         /// <param name="teamId">The team identifier.</param>
+        /// <param name="useSimulator">The use simulator.</param>
         /// <returns>
         /// Game identifier
         /// </returns>
-        public Result<Guid> GetNextAvailableGame(Guid teamId)
+        public Result<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator)
         {
             var context = AdapterFactory.GetAdapter(this.isRestCall);
-            return context.GetNextAvailableGame(teamId);
+            return context.GetNextAvailableGame(teamId, useSimulator);
         }
 
         /// <summary>
@@ -103,6 +105,19 @@ namespace RockPaper.Wpf.Providers
         {
             var context = AdapterFactory.GetAdapter(this.isRestCall);
             return context.GetTeamByTeamName(teamName);
+        }
+
+        /// <summary>
+        /// Gets the completed round by game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>
+        /// The rounds
+        /// </returns>
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
+        {
+            var context = AdapterFactory.GetAdapter(this.isRestCall);
+            return context.GetCompletedRoundByGameId(gameId);
         }
     }
 }

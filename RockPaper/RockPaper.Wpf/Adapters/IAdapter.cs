@@ -2,6 +2,7 @@
 namespace RockPaper.Wpf.Adapters
 {
     using System;
+    using System.Collections.Generic;
     using RockPaper.Wpf.Common;
     using RockPaper.Wpf.Models;
 
@@ -14,8 +15,11 @@ namespace RockPaper.Wpf.Adapters
         /// Gets the next available game.
         /// </summary>
         /// <param name="teamId">The team identifier.</param>
-        /// <returns>Game identifier</returns>
-        Result<Guid> GetNextAvailableGame(Guid teamId);
+        /// <param name="useSimulator">The use simulator.</param>
+        /// <returns>
+        /// Game identifier
+        /// </returns>
+        Result<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator);
 
         /// <summary>
         /// Determines whether [is it my turn] [the specified game identifier].
@@ -54,5 +58,12 @@ namespace RockPaper.Wpf.Adapters
         /// <param name="teamName">Name of the team.</param>
         /// <returns>The team</returns>
         Result<Team> GetTeamByTeamName(string teamName);
+
+        /// <summary>
+        /// Gets the completed round by game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>The rounds</returns>
+        IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId);
     }
 }

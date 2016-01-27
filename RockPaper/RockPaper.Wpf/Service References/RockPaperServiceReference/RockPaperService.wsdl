@@ -48,6 +48,12 @@
   <wsdl:message name="IRockPaperService_GetTeamByTeamName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTeamByTeamNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IRockPaperService_GetCompletedRoundByGameId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompletedRoundByGameId" />
+  </wsdl:message>
+  <wsdl:message name="IRockPaperService_GetCompletedRoundByGameId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompletedRoundByGameIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRockPaperService">
     <wsdl:operation name="GetNextAvailableGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IRockPaperService/GetNextAvailableGame" message="tns:IRockPaperService_GetNextAvailableGame_InputMessage" />
@@ -72,6 +78,10 @@
     <wsdl:operation name="GetTeamByTeamName">
       <wsdl:input wsaw:Action="http://tempuri.org/IRockPaperService/GetTeamByTeamName" message="tns:IRockPaperService_GetTeamByTeamName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRockPaperService/GetTeamByTeamNameResponse" message="tns:IRockPaperService_GetTeamByTeamName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedRoundByGameId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameId" message="tns:IRockPaperService_GetCompletedRoundByGameId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameIdResponse" message="tns:IRockPaperService_GetCompletedRoundByGameId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRockPaperService" type="tns:IRockPaperService">
@@ -123,6 +133,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTeamByTeamName">
       <soap:operation soapAction="http://tempuri.org/IRockPaperService/GetTeamByTeamName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedRoundByGameId">
+      <soap:operation soapAction="http://tempuri.org/IRockPaperService/GetCompletedRoundByGameId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
