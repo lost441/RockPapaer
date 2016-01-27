@@ -8,7 +8,7 @@ namespace RockPaper.Wpf.Providers
     /// <summary>
     /// Game provider class.
     /// </summary>
-    public class GameProvider : IGameProvider, IDisposable
+    public class GameProvider : IGameProvider
     {
         /// <summary>
         /// The is rest call.
@@ -22,14 +22,6 @@ namespace RockPaper.Wpf.Providers
         public GameProvider(bool isRestCall)
         {
             this.isRestCall = isRestCall;
-        }
-
-        /// <summary>
-        /// Finalizes an instance of the <see cref="GameProvider"/> class.
-        /// </summary>
-        ~GameProvider() 
-        {
-            Dispose(false);
         }
 
         /// <summary>
@@ -111,27 +103,6 @@ namespace RockPaper.Wpf.Providers
         {
             var context = AdapterFactory.GetAdapter(this.isRestCall);
             return context.GetTeamByTeamName(teamName);
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.Dispose();
-            }
         }
     }
 }

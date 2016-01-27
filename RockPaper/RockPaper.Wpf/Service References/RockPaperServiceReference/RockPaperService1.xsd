@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" />
-  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Contracts.Response" />
+  <xs:import schemaLocation="http://localhost:49207/Services/RockPaperService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Contracts.Common" />
   <xs:element name="GetNextAvailableGame">
     <xs:complexType>
       <xs:sequence>
@@ -13,7 +13,7 @@
   <xs:element name="GetNextAvailableGameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" minOccurs="0" name="GetNextAvailableGameResult" nillable="true" type="q2:ResponseItemOfguid" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="GetNextAvailableGameResult" nillable="true" type="q2:ResponseItemOfguid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -28,7 +28,7 @@
   <xs:element name="IsItMyTurnResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" minOccurs="0" name="IsItMyTurnResult" nillable="true" type="q5:ResponseItemOfboolean" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="IsItMyTurnResult" nillable="true" type="q5:ResponseItemOfboolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -37,14 +37,14 @@
       <xs:sequence>
         <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="gameId" type="q6:guid" />
         <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="teamId" type="q7:guid" />
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Common" minOccurs="0" name="hand" type="q8:Hand" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Contracts.Common" minOccurs="0" name="hand" type="q8:Hand" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PlayHandResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" minOccurs="0" name="PlayHandResult" nillable="true" type="q9:ResponseItemOfOperationOutcome_ShMyOgxf" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="PlayHandResult" nillable="true" type="q9:ResponseItemOfOperationOutcomew4XXQMJA" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -58,7 +58,7 @@
   <xs:element name="GetGamebyGameIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" minOccurs="0" name="GetGamebyGameIdResult" nillable="true" type="q11:ResponseItemOfGameiiBVlPgH" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="GetGamebyGameIdResult" nillable="true" type="q11:ResponseItemOfGameRcKUQpc9" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -72,7 +72,7 @@
   <xs:element name="RegisterTeamResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" minOccurs="0" name="RegisterTeamResult" nillable="true" type="q12:ResponseItemOfTeamthdB4o0U" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="RegisterTeamResult" nillable="true" type="q12:ResponseItemOfTeams5xbATXb" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -86,7 +86,7 @@
   <xs:element name="GetTeamByTeamNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RockPaper.Contracts.Response" minOccurs="0" name="GetTeamByTeamNameResult" nillable="true" type="q13:ResponseItemOfTeamthdB4o0U" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Contracts.Response" minOccurs="0" name="GetTeamByTeamNameResult" nillable="true" type="q13:ResponseItemOfTeams5xbATXb" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

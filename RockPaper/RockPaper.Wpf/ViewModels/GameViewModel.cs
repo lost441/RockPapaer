@@ -66,6 +66,11 @@ namespace RockPaper.Wpf.ViewModels
         private bool isMyTurn;
 
         /// <summary>
+        /// The is registration enabled
+        /// </summary>
+        private bool isRegistrationEnabled;
+
+        /// <summary>
         /// The game
         /// </summary>
         private Game game;
@@ -75,14 +80,8 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         public GameViewModel()
         {
-            //TODO: Remove list when done.
-            var list = new List<GameResult>
-            {
-                new GameResult { Round = 1, MyHand = "Rock", OpponentsHand = "Paper", WinningTeam = "Them" },   
-                new GameResult { Round = 2, MyHand = "Paper", OpponentsHand = "Rock", WinningTeam = "Me" },   
-                new GameResult { Round = 3, MyHand = "Rock", OpponentsHand = "Scissor", WinningTeam = "Me" },   
-            };
-            this.GameResults = new ObservableCollection<GameResult>(list);
+            this.EnableRegistration = true;
+            this.GameResults = new ObservableCollection<GameResult>();
             this.RegisterTeamCommand = new Command(() => true, this.RegisterTeam);
             this.JoinTeamCommand = new Command(() => true, this.JoinGame);
             this.RefreshGameResultsCommand = new Command(() => true, this.GetGameResults);
@@ -158,7 +157,24 @@ namespace RockPaper.Wpf.ViewModels
         public bool IsRegistered
         {
             get { return this.isRegistered; }
-            set { this.isRegistered = value; OnPropertyChanged(); }
+            set 
+            { 
+                this.isRegistered = value;
+                this.EnableRegistration = !this.isRegistered;
+                OnPropertyChanged(); 
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [enable registration].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [enable registration]; otherwise, <c>false</c>.
+        /// </value>
+        public bool EnableRegistration
+        {
+            private set { this.isRegistrationEnabled = value; OnPropertyChanged(); }
+            get { return this.isRegistrationEnabled; }
         }
 
         /// <summary>
@@ -208,7 +224,7 @@ namespace RockPaper.Wpf.ViewModels
             get { return this.gameState; }
             set { this.gameState = value; OnPropertyChanged(); }
         }
-
+        
         /// <summary>
         /// Gets the game results.
         /// </summary>
@@ -267,36 +283,35 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void RegisterTeam()
         {
-            using (var provider = new GameProvider(this.IsRestCall)){                 
-                if (string.IsNullOrWhiteSpace(TeamNameToRegister))
-                {
-                    //TODO: Move validation to UI
-                    RegistrationResult = string.Format("Enter team name");
-                    return;
-                }
-
-                var getResponse = provider.GetTeamByTeamName(TeamNameToRegister);
-                if (getResponse.IsSuccessfull)
-                {
-                    Team = getResponse.Data;
-                    RegistrationResult = string.Format("Team found");
-                    IsRegistered = true;
-                    //TODO: Set register part (IsEnabled) to false
-                    return;
-                }
-
-                var registerResponse = provider.RegisterTeam(TeamNameToRegister);
-                if (registerResponse.IsSuccessfull)
-                {
-                    IsRegistered = true;
-                    RegistrationResult = string.Format("Team registered successfully");
-                    Team = registerResponse.Data;
-                    return;
-                }
-
-                RegistrationResult = string.Format("Error: Could not register team");
-                IsRegistered = false;
+            var provider = new GameProvider(this.IsRestCall);
+            if (string.IsNullOrWhiteSpace(this.TeamNameToRegister))
+            {
+                //TODO: Move validation to UI
+                RegistrationResult = string.Format("Enter team name");
+                return;
             }
+
+            var getResponse = provider.GetTeamByTeamName(this.TeamNameToRegister);
+            if (getResponse.Data != null)
+            {
+                Team = getResponse.Data;
+                RegistrationResult = string.Format("Team found");
+                IsRegistered = true;
+                //TODO: Set register part (IsEnabled) to false
+                return;
+            }
+
+            var registerResponse = provider.RegisterTeam(this.TeamNameToRegister);
+            if (registerResponse.Data != null)
+            {
+                IsRegistered = true;
+                RegistrationResult = string.Format("Team registered successfully");
+                Team = registerResponse.Data;
+                return;
+            }
+
+            RegistrationResult = string.Format("Error: Could not register team");
+            IsRegistered = false;
         }
 
         /// <summary>
@@ -304,22 +319,21 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void JoinGame()
         {
-            using (var provider = new GameProvider(this.IsRestCall)){
-                var result = provider.GetNextAvailableGame(this.Team.Id);
-                if (!result.IsSuccessfull)
-                {
-                    throw new ApplicationException("No game");
-                }
-
-                var gameResult = provider.GetGamebyGameId(result.Data);
-                if (!gameResult.IsSuccessfull)
-                {
-                    throw new ApplicationException("No game");
-                }
-
-                this.game = gameResult.Data;
-                this.GameState = this.game.GameState;
+            var provider = new GameProvider(this.IsRestCall);
+            var result = provider.GetNextAvailableGame(this.Team.Id);
+            if (!result.IsSuccessfull)
+            {
+                throw new ApplicationException("No game");
             }
+
+            var gameResult = provider.GetGamebyGameId(result.Data);
+            if (!gameResult.IsSuccessfull)
+            {
+                throw new ApplicationException("No game");
+            }
+
+            this.game = gameResult.Data;
+            this.GameState = this.game != null ? this.game.GameState: string.Empty;
         }
 
         /// <summary>
@@ -327,10 +341,7 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void GetGameResults()
         {
-            using (var provider = new GameProvider(this.IsRestCall))
-            {
-                
-            }
+            var provider = new GameProvider(this.IsRestCall);
         }
 
         /// <summary>
@@ -338,11 +349,10 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void PlayHand()
         {
-            using (var provider = new GameProvider(this.IsRestCall))
-            {
-                var selectedHand = this.Hand.ToEnum<Hand>();
-                provider.PlayHand(this.game.Id, this.Team.Id, selectedHand); //TODO: Do something with result.
-            }
+            var provider = new GameProvider(this.IsRestCall);
+            this.Hand = "Rock";
+            var selectedHand = this.Hand.ToEnum<Hand>();
+            provider.PlayHand(this.game.Id, this.Team.Id, selectedHand); //TODO: Do something with result.
         }
 
         /// <summary>
@@ -351,15 +361,13 @@ namespace RockPaper.Wpf.ViewModels
         /// <exception cref="System.NotImplementedException"></exception>
         private void CheckTurn()
         {
-            using (var provider = new GameProvider(this.IsRestCall))
+            var provider = new GameProvider(this.IsRestCall);
+            var result = provider.IsItMyTurn(this.game.Id, this.Team.Id);
+            if (!result.IsSuccessfull)
             {
-                var result = provider.IsItMyTurn(this.game.Id, this.Team.Id);
-                if (!result.IsSuccessfull)
-                {
-                    throw new ApplicationException("No game");
-                }
-                this.IsMyTurn = result.Data;
+                throw new ApplicationException("No game");
             }
+            this.IsMyTurn = result.Data;
         }
 
         /// <summary>
