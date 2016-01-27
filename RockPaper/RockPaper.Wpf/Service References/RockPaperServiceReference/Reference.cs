@@ -495,22 +495,22 @@ namespace RockPaper.Wpf.RockPaperServiceReference {
     public enum Hand : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Rock = 0,
+        None = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Paper = 1,
+        Rock = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Scissor = 2,
+        Paper = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Lizard = 3,
+        Scissor = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Spock = 4,
+        Lizard = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        None = 5,
+        Spock = 5,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

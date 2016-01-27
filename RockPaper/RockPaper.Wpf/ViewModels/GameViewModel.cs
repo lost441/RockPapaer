@@ -8,6 +8,7 @@ namespace RockPaper.Wpf.ViewModels
     using System.Runtime.CompilerServices;
     using RockPaper.Wpf.Common;
     using RockPaper.Wpf.Models;
+    using RockPaper.Wpf.Providers;
 
     /// <summary>
     /// Game view model class.
@@ -19,7 +20,20 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private string teamNameToRegister;
 
+        /// <summary>
+        /// The registration result
+        /// </summary>
         private string registrationResult;
+
+        /// <summary>
+        /// The hand
+        /// </summary>
+        private string hand;
+
+        /// <summary>
+        /// The game state
+        /// </summary>
+        private string gameState;
 
         /// <summary>
         /// The registered team name
@@ -40,6 +54,21 @@ namespace RockPaper.Wpf.ViewModels
         /// The is automatic refresh
         /// </summary>
         private bool isAutoRefresh;
+
+        /// <summary>
+        /// The is rest call
+        /// </summary>
+        private bool isRestCall;
+
+        /// <summary>
+        /// The is my turn
+        /// </summary>
+        private bool isMyTurn;
+
+        /// <summary>
+        /// The game
+        /// </summary>
+        private Game game;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameViewModel"/> class.
@@ -71,6 +100,18 @@ namespace RockPaper.Wpf.ViewModels
         {
             get { return this.teamNameToRegister; }
             set { this.teamNameToRegister = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// Gets or sets the hand.
+        /// </summary>
+        /// <value>
+        /// The hand.
+        /// </value>
+        public string Hand
+        {
+            get { return this.hand; }
+            set { this.hand = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -133,6 +174,42 @@ namespace RockPaper.Wpf.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance is rest call.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is rest call; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsRestCall
+        {
+            get { return this.isRestCall; }
+            set { this.isRestCall = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is my turn.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is my turn; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsMyTurn
+        {
+            get { return this.isMyTurn; }
+            set { this.isMyTurn = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// Gets or sets the state of the game.
+        /// </summary>
+        /// <value>
+        /// The state of the game.
+        /// </value>
+        public string GameState
+        {
+            get { return this.gameState; }
+            set { this.gameState = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
         /// Gets the game results.
         /// </summary>
         /// <value>
@@ -190,8 +267,7 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void RegisterTeam()
         {
-            try
-            {
+            using (var provider = new GameProvider(this.IsRestCall)){                 
                 if (string.IsNullOrWhiteSpace(TeamNameToRegister))
                 {
                     //TODO: Move validation to UI
@@ -199,32 +275,27 @@ namespace RockPaper.Wpf.ViewModels
                     return;
                 }
 
-                var client = new RockPaperServiceReference.RockPaperServiceClient();
-                var getResponse = client.GetTeamByTeamName(TeamNameToRegister);
+                var getResponse = provider.GetTeamByTeamName(TeamNameToRegister);
                 if (getResponse.IsSuccessfull)
                 {
-                    Team = getResponse.Data.Map();
+                    Team = getResponse.Data;
                     RegistrationResult = string.Format("Team found");
                     IsRegistered = true;
                     //TODO: Set register part (IsEnabled) to false
                     return;
                 }
 
-                var registerResponse = client.RegisterTeam(TeamNameToRegister);
+                var registerResponse = provider.RegisterTeam(TeamNameToRegister);
                 if (registerResponse.IsSuccessfull)
                 {
                     IsRegistered = true;
                     RegistrationResult = string.Format("Team registered successfully");
-                    Team = registerResponse.Data.Map();
+                    Team = registerResponse.Data;
                     return;
                 }
 
                 RegistrationResult = string.Format("Error: Could not register team");
                 IsRegistered = false;
-            }
-            catch (Exception ex)
-            {
-                //TODO: log error
             }
         }
 
@@ -233,7 +304,22 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void JoinGame()
         {
-            throw new NotImplementedException();
+            using (var provider = new GameProvider(this.IsRestCall)){
+                var result = provider.GetNextAvailableGame(this.Team.Id);
+                if (!result.IsSuccessfull)
+                {
+                    throw new ApplicationException("No game");
+                }
+
+                var gameResult = provider.GetGamebyGameId(result.Data);
+                if (!gameResult.IsSuccessfull)
+                {
+                    throw new ApplicationException("No game");
+                }
+
+                this.game = gameResult.Data;
+                this.GameState = this.game.GameState;
+            }
         }
 
         /// <summary>
@@ -241,7 +327,10 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void GetGameResults()
         {
-            throw new NotImplementedException();
+            using (var provider = new GameProvider(this.IsRestCall))
+            {
+                
+            }
         }
 
         /// <summary>
@@ -249,7 +338,11 @@ namespace RockPaper.Wpf.ViewModels
         /// </summary>
         private void PlayHand()
         {
-            throw new NotImplementedException();
+            using (var provider = new GameProvider(this.IsRestCall))
+            {
+                var selectedHand = this.Hand.ToEnum<Hand>();
+                provider.PlayHand(this.game.Id, this.Team.Id, selectedHand); //TODO: Do something with result.
+            }
         }
 
         /// <summary>
@@ -258,7 +351,15 @@ namespace RockPaper.Wpf.ViewModels
         /// <exception cref="System.NotImplementedException"></exception>
         private void CheckTurn()
         {
-            throw new NotImplementedException();
+            using (var provider = new GameProvider(this.IsRestCall))
+            {
+                var result = provider.IsItMyTurn(this.game.Id, this.Team.Id);
+                if (!result.IsSuccessfull)
+                {
+                    throw new ApplicationException("No game");
+                }
+                this.IsMyTurn = result.Data;
+            }
         }
 
         /// <summary>
@@ -268,7 +369,6 @@ namespace RockPaper.Wpf.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
-
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
