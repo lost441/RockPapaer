@@ -10,6 +10,7 @@ namespace RockPaper.Services.Games
     using RockPaper.Contracts.Common;
     using RockPaper.Contracts.Providers;
     using RockPaper.Contracts.Extentions;
+    using System.Collections.Generic;
 
     
     /// <summary>
@@ -22,10 +23,12 @@ namespace RockPaper.Services.Games
         /// </summary>
         /// <param name="teamId">The team identifier.</param>
         /// <returns>The next available game</returns>
-        public ResponseItem<Guid> GetNextAvailableGame(Guid teamId)
+        public ResponseItem<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator)
         {
             var provider = new GameProvider();
-            var gameId = provider.GetNextAvailableGame(teamId);
+            var playAgainstSimulator = useSimulator.HasValue && useSimulator.Value == true;
+
+            var gameId = provider.GetNextAvailableGame(teamId, playAgainstSimulator);
 
             return new ResponseItem<Guid>(ResultCodeEnum.Success)
             {
@@ -127,7 +130,16 @@ namespace RockPaper.Services.Games
             };
         }
 
-
+        /// <summary>
+        /// Gets the completed round by game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>List of Rounds.</returns>
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
+        {
+            var provider = new RoundProvider();
+            return provider.GetCompletedRoundByGameId(gameId);
+        }
 
     }
 }

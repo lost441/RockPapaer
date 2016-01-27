@@ -9,6 +9,7 @@ namespace RockPaper.Services.Games
     using RockPaper.Contracts;
     using RockPaper.Contracts.Common;
     using RockPaper.Contracts.Providers;
+using System.Collections.Generic;
 
     [ServiceContract]
     public interface IRockPaperService
@@ -19,7 +20,7 @@ namespace RockPaper.Services.Games
         /// <param name="teamId">The team identifier.</param>
         /// <returns></returns>
         [OperationContract]
-        ResponseItem<Guid> GetNextAvailableGame(Guid teamId);
+        ResponseItem<Guid> GetNextAvailableGame(Guid teamId, bool? useSimulator);
 
         /// <summary>
         /// Determines whether [is it my turn] [the specified game identifier].
@@ -65,6 +66,12 @@ namespace RockPaper.Services.Games
         [OperationContract]
         ResponseItem<Team> GetTeamByTeamName(string teamName);
 
-
+        /// <summary>
+        /// Gets the completed round by game identifier.
+        /// </summary>
+        /// <param name="gameId">The game identifier.</param>
+        /// <returns>List of Rounds.</returns>
+        [OperationContract]
+        IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId);
     }
 }
