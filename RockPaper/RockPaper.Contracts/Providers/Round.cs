@@ -20,6 +20,33 @@ namespace Contracts.Providers
         /// </value>
         public Guid Id { get; set; }
 
+        protected bool Equals(Round other)
+        {
+            return Id.Equals(other.Id) && GameId.Equals(other.GameId) && Team1Hand == other.Team1Hand && Team2Hand == other.Team2Hand && Result == other.Result && SequenceNumber == other.SequenceNumber;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Round) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Id.GetHashCode();
+                hashCode = (hashCode*397) ^ GameId.GetHashCode();
+                hashCode = (hashCode*397) ^ Team1Hand.GetHashCode();
+                hashCode = (hashCode*397) ^ Team2Hand.GetHashCode();
+                hashCode = (hashCode*397) ^ (int) Result;
+                hashCode = (hashCode*397) ^ SequenceNumber;
+                return hashCode;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the game identifier.
         /// </summary>

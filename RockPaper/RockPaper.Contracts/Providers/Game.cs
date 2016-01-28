@@ -12,6 +12,35 @@ namespace Contracts.Providers
     /// </summary>
     public class Game
     {
+        protected bool Equals(Game other)
+        {
+            return Id.Equals(other.Id) && Equals(Team1, other.Team1) && Equals(Team2, other.Team2) && GameState == other.GameState && IsComplete == other.IsComplete && string.Equals(WinningTeam, other.WinningTeam) && IsSimulatedGame == other.IsSimulatedGame && CreatedDate.Equals(other.CreatedDate);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Game) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Id.GetHashCode();
+                hashCode = (hashCode*397) ^ (Team1 != null ? Team1.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Team2 != null ? Team2.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (int) GameState;
+                hashCode = (hashCode*397) ^ IsComplete.GetHashCode();
+                hashCode = (hashCode*397) ^ (WinningTeam != null ? WinningTeam.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ IsSimulatedGame.GetHashCode();
+                hashCode = (hashCode*397) ^ CreatedDate.GetHashCode();
+                return hashCode;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
