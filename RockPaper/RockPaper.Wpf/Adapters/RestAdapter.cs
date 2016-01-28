@@ -270,27 +270,8 @@ namespace RockPaper.Wpf.Adapters
         /// <exception cref="System.ApplicationException">Failed API request</exception>
         public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
         {
-            var url = string.Format(Settings.Default.GetCompletedRoundByGameIdLink, gameId);
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.Accept = "application/json";
-            request.Credentials = new NetworkCredential("PayM8User", "password");
-
-            using (var response = request.GetResponse() as HttpWebResponse)
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new ApplicationException("Failed API request");
-                }
-
-                using (var reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var returnedData = reader.ReadToEnd();
-                    var serializedResult = (ResponseList<RoundFacade>)JsonConvert.DeserializeObject(returnedData, typeof(ResponseList<RoundFacade>));
-                    return serializedResult.Data.Map();
-                }
-            }
+            //TODO: Implement API call.
+            return new List<Round>();
         }        
     }
 }

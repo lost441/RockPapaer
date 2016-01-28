@@ -315,7 +315,6 @@ namespace RockPaper.Wpf.ViewModels
             var provider = new GameProvider(this.IsRestCall);
             if (string.IsNullOrWhiteSpace(this.TeamNameToRegister))
             {
-                //TODO: Move validation to UI
                 RegistrationResult = string.Format("Enter team name");
                 return;
             }
@@ -326,7 +325,6 @@ namespace RockPaper.Wpf.ViewModels
                 Team = getResponse.Data;
                 RegistrationResult = string.Format("Team found");
                 IsRegistered = true;
-                //TODO: Set register part (IsEnabled) to false
                 return;
             }
 
@@ -389,7 +387,7 @@ namespace RockPaper.Wpf.ViewModels
             var provider = new GameProvider(this.IsRestCall);
             this.Hand = "Rock";
             var selectedHand = this.Hand.ToEnum<Hand>();
-            provider.PlayHand(this.game.Id, this.Team.Id, selectedHand); //TODO: Do something with result.
+            provider.PlayHand(this.game.Id, this.Team.Id, selectedHand);
             this.GetGameResults();
             this.CheckTurn();
         }

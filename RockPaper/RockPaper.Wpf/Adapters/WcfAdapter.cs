@@ -2,6 +2,7 @@
 namespace RockPaper.Wpf.Adapters
 {
     using System;
+    using System.Collections.Generic;
     using RockPaper.Wpf.Common;
     using RockPaper.Wpf.Models;
 
@@ -135,10 +136,10 @@ namespace RockPaper.Wpf.Adapters
         /// <returns>
         /// The rounds
         /// </returns>
-        public System.Collections.Generic.IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
+        public IEnumerable<Round> GetCompletedRoundByGameId(Guid gameId)
         {
-            var results = client.GetCompletedRoundByGameId(gameId);
-            return results.Map();
+            //TODO: Implement WCF call.
+            return new List<Round>();
         }
     }
 }
