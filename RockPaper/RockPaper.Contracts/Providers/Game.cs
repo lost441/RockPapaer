@@ -8,7 +8,7 @@ namespace Contracts.Providers
     using Common;
 
     /// <summary>
-    /// The Game class. 
+    /// The Game class.
     /// </summary>
     public class Game
     {
@@ -67,5 +67,12 @@ namespace Contracts.Providers
         /// <c>true</c> if this instance is simulated game; otherwise, <c>false</c>.
         /// </value>
         public bool IsSimulatedGame { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the created date.
+        /// </summary>
+        /// <value>The created date.</value>
+        public DateTime CreatedDate { get; set; }
     }
 }

@@ -1062,6 +1062,19 @@
             </summary>
             <returns>The default landing page</returns>
         </member>
+        <member name="T:RockPaper.Web.Extensions.GamesExtensions">
+            <summary>
+            Class GamesExtensions.
+            </summary>
+        </member>
+        <member name="M:RockPaper.Web.Extensions.GamesExtensions.CompareByDate(RockPaper.Web.Models.GameResult,RockPaper.Web.Models.GameResult)">
+            <summary>
+            Compares two game objects by their created date property.
+            </summary>
+            <param name="self">The self.</param>
+            <param name="other">The other.</param>
+            <returns>System.Int32.</returns>
+        </member>
         <member name="T:RockPaper.Web.Models.BaseModel">
             <summary>
             THe Base Model
@@ -1082,6 +1095,26 @@
             <summary>
             Class GameResult.
             </summary>
+        </member>
+        <member name="M:RockPaper.Web.Models.GameResult.CompareTo(RockPaper.Web.Models.GameResult)">
+            <summary>
+            Compares the current object with another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other" /> parameter.Zero This object is equal to <paramref name="other" />. Greater than zero This object is greater than <paramref name="other" />.</returns>
+        </member>
+        <member name="M:RockPaper.Web.Models.GameResult.Equals(RockPaper.Web.Models.GameResult)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:RockPaper.Web.Models.GameResult.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         </member>
         <member name="T:RockPaper.Web.App_Data.WebApiExceptionFilter">
             <summary>

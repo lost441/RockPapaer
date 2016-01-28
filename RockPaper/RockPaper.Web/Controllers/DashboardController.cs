@@ -32,13 +32,11 @@
             var roundsProvider = new RoundProvider();
             var games = gameProvider.GetAllGamesForDashboardGames(12).ToList();
 
-
             List<GameResult> gameResults = new List<GameResult>();
 
             foreach (var game in games)
             {
                 var gameRounds = roundsProvider.GetCompletedRoundByGameId(game.Id).ToList();
-
 
                 gameResults.Add(new GameResult()
                 {
@@ -52,7 +50,6 @@
             }
             gameResults.Sort();
             ViewBag.Data = gameResults;
-
 
             return View();
         }
