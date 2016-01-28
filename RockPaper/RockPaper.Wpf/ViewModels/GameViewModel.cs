@@ -1,4 +1,6 @@
 ﻿
+using RockPaper.Wpf.Properties;
+
 namespace RockPaper.Wpf.ViewModels
 {
     using System;
@@ -232,7 +234,21 @@ namespace RockPaper.Wpf.ViewModels
             set { this.competingTeam = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        /// The game results
+        /// </summary>
         private ObservableCollection<Round> gameResults;
+
+        /// <summary>
+        /// Gets a value indicating whether [play against simulator].
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [play against simulator]; otherwise, <c>false</c>.
+        /// </value>
+        private bool PlayAgainstSimulator
+        {
+            get { return Settings.Default.PlayAgainstSimulator; }
+        }
 
         /// <summary>
         /// Gets the game results.
@@ -327,15 +343,13 @@ namespace RockPaper.Wpf.ViewModels
             IsRegistered = false;
         }
 
-        private bool useSimulator = true;
-
         /// <summary>
         /// Joins the game.
         /// </summary>
         private void JoinGame()
         {
             var provider = new GameProvider(this.IsRestCall);
-            var result = provider.GetNextAvailableGame(this.Team.Id, this.useSimulator);
+            var result = provider.GetNextAvailableGame(this.Team.Id, this.PlayAgainstSimulator);
             if (!result.IsSuccessfull)
             {
                 throw new ApplicationException("No game");
@@ -377,6 +391,7 @@ namespace RockPaper.Wpf.ViewModels
             var selectedHand = this.Hand.ToEnum<Hand>();
             provider.PlayHand(this.game.Id, this.Team.Id, selectedHand); //TODO: Do something with result.
             this.GetGameResults();
+            this.CheckTurn();
         }
 
         /// <summary>

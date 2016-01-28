@@ -295,3 +295,4 @@ nb-configuration.xml
 *.war
 *.ear
 
+RockPaper/RockPaper.DataSource/App.config

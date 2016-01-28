@@ -159,7 +159,8 @@ namespace RockPaper.Web.Areas.V01.Controllers
         /// <param name="gameId">The game identifier.</param>
         /// <param name="teamId">The team identifier.</param>
         /// <returns>Is my turn indicator</returns>
-        [Route("")]
+        [Route("IsItMyTurn")]
+        [HttpGet]
         public ResponseItem<bool> IsItMyTurn(Guid gameId, Guid teamId)
         {
             var gameProvider = new GameProvider();

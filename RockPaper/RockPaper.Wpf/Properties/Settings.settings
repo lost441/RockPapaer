@@ -1,7 +1,30 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RockPaper.Wpf.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GetNextAvailableGameLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/games?isActive={0}&amp;teamId={1}&amp;playAgainstSimulator={2}</Value>
+    </Setting>
+    <Setting Name="IsItMyTurnLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/games/IsItMyTurn?gameId={0}&amp;teamId={1}</Value>
+    </Setting>
+    <Setting Name="PlayHandLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/games/PlayHand?gameId={0}&amp;teamId={1}&amp;hand={2}</Value>
+    </Setting>
+    <Setting Name="GetGamebyGameIdLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/games/{0}</Value>
+    </Setting>
+    <Setting Name="RegisterTeamLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/teams</Value>
+    </Setting>
+    <Setting Name="GetTeamByTeamNameLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/teams?teamName={0}</Value>
+    </Setting>
+    <Setting Name="GetCompletedRoundByGameIdLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:49207/api/V01/rounds?gameId={0}</Value>
+    </Setting>
+    <Setting Name="PlayAgainstSimulator" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

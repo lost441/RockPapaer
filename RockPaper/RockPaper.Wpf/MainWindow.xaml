@@ -14,13 +14,13 @@
             <Button Command="{Binding RegisterTeamCommand}" IsEnabled="{Binding EnableRegistration}" x:Name="RegisterTeamBtn" Content="Register Team" Canvas.Left="97" Canvas.Top="86" Width="105"/>
             <CheckBox IsChecked="{Binding IsActive}" IsEnabled="False" Content="Active Game" x:Name="IsActiveGameCb" Canvas.Left="413" Canvas.Top="121"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="94" Canvas.Left="32" Canvas.Top="142" Width="459"/>
-            <Button Command="{Binding JoinTeamCommand}"  Width="238" Content="Join Game" Canvas.Left="142" Canvas.Top="148"/>
+            <Button Command="{Binding JoinTeamCommand}" IsEnabled="{Binding IsRegistered}" Width="238" Content="Join Game" Canvas.Left="142" Canvas.Top="148"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="294" Canvas.Left="32" Canvas.Top="241" Width="459"/>
             <Label Content="Competing Team" Canvas.Left="63" Canvas.Top="202"/>
             <TextBox Text="{Binding Team.TeamName, Mode=OneWay}" x:Name="CompetingTeamTxt" Height="23" Canvas.Left="200" TextWrapping="Wrap" IsEnabled="False" Canvas.Top="205" Width="226"/>
-            <Button Command="{Binding CheckTurnCommand}"  Content="Check If My Turn" Canvas.Left="79" Canvas.Top="252" Width="166"/>
+            <Button Command="{Binding CheckTurnCommand}" IsEnabled="{Binding IsActive}" Content="Check If My Turn" Canvas.Left="79" Canvas.Top="252" Width="166"/>
             <CheckBox IsChecked="{Binding IsAutoRefresh}"  Content="Auto Refresh" Canvas.Left="279" Canvas.Top="255"/>
-            <Button Command="{Binding PlayHandCommand}"  Content="Play Hand" Canvas.Left="169" Canvas.Top="284" Width="184" Height="46"/>
+            <Button Command="{Binding PlayHandCommand}" IsEnabled="{Binding IsMyTurn}" Content="Play Hand" Canvas.Left="169" Canvas.Top="284" Width="184" Height="46"/>
             <Separator Canvas.Left="63" Canvas.Top="339" Width="388" Margin="0"/>
             <ListView ItemsSource="{Binding GameResults}" Height="170" Canvas.Left="49" Canvas.Top="351" Width="426">
                 <ListView.View>
