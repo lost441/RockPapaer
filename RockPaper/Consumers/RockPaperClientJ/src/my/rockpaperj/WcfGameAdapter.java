@@ -8,6 +8,7 @@ package my.rockpaperj;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import javax.xml.ws.BindingProvider;
 
 /**
  *
@@ -17,20 +18,9 @@ public class WcfGameAdapter implements IGameAdapter {
 
     @Override
     public List<JRound> GetRoundsByGameId(String gameId) {
-        ArrayOfRound response;
-        response = this.getCompletedRoundByGameId(gameId);
-        
-        List<Round> rounds = response.getRound();
         List<JRound> result = new ArrayList<JRound>();
         
-        
-       for (ListIterator<Round> it = rounds.listIterator(); it.hasNext(); ) 
-       {
-           Round round = it.next();
-           JRound jround = new JRound();
-           jround.Map(round);
-           result.add(jround);
-       }
+        //YOUR CODE HERE
        
        return result;
         
@@ -246,42 +236,65 @@ public class WcfGameAdapter implements IGameAdapter {
     private ArrayOfRound getCompletedRoundByGameId(java.lang.String gameId) {
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.getCompletedRoundByGameId(gameId);
     }
 
     private ResponseItemOfGameRcKUQpc9 getGamebyGameId(java.lang.String gameId) {
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
+        
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.getGamebyGameId(gameId);
     }
 
     private ResponseItemOfguid getNextAvailableGame(java.lang.String teamId, java.lang.Boolean useSimulator) {
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.getNextAvailableGame(teamId, useSimulator);
     }
 
     private ResponseItemOfTeams5XbATXb getTeamByTeamName(java.lang.String teamName) {
+        
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.getTeamByTeamName(teamName);
     }
 
     private ResponseItemOfboolean isItMyTurn(java.lang.String gameId, java.lang.String teamId) {
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.isItMyTurn(gameId, teamId);
     }
 
     private ResponseItemOfOperationOutcomew4XXQMJA playHand(java.lang.String gameId, java.lang.String teamId, my.rockpaperj.Hand hand) {
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.playHand(gameId, teamId, hand);
     }
 
     private static ResponseItemOfTeams5XbATXb registerTeam(java.lang.String teamName) {
         my.rockpaperj.RockPaperService service = new my.rockpaperj.RockPaperService();
         my.rockpaperj.IRockPaperService port = service.getBasicHttpBindingIRockPaperService();
+        BindingProvider bindingProvider = (BindingProvider) port;
+        bindingProvider.getRequestContext().put(
+        BindingProvider.ENDPOINT_ADDRESS_PROPERTY, String.format("http://%1$s/services/RockPaperService.svc", Configuration.getUrlRoot()));
         return port.registerTeam(teamName);
     }
 }

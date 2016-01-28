@@ -33,7 +33,7 @@ public class RestGameAdapter implements IGameAdapter {
         
         try
         {
-            URL url = new URL(String.format("http://localhost:49207/api/V01/teams?teamName=%1$s", teamName));
+            URL url = new URL(String.format("http://%2$s/api/V01/teams?teamName=%1$s", teamName, Configuration.getUrlRoot()));
             String userPassword = "paym8user:password";
             String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -100,7 +100,7 @@ public class RestGameAdapter implements IGameAdapter {
         
         try
         {
-            URL url = new URL("http://localhost:49207/api/V01/teams");
+            URL url = new URL(String.format("http://%1$s/api/V01/teams",Configuration.getUrlRoot()));
             String userPassword = "paym8user:password";
             String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -174,7 +174,7 @@ public class RestGameAdapter implements IGameAdapter {
         
         try
         {
-            URL url = new URL(String.format("http://localhost:49207/api/V01/games?isActive=true&teamId=%1$s&playAgainstSimulator=%2$s", teamID, useSimulator));
+            URL url = new URL(String.format("http://%3$s/api/V01/games?isActive=true&teamId=%1$s&playAgainstSimulator=%2$s", teamID, useSimulator, Configuration.getUrlRoot()));
             String userPassword = "paym8user:password";
             String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -236,7 +236,7 @@ public class RestGameAdapter implements IGameAdapter {
         
         try
         {
-            URL url = new URL(String.format("http://localhost:49207/api/V01/games/%1$s", gameId));
+            URL url = new URL(String.format("http://%2$s/api/V01/games/%1$s", gameId,Configuration.getUrlRoot()));
             String userPassword = "paym8user:password";
             String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -321,7 +321,7 @@ public class RestGameAdapter implements IGameAdapter {
         result.setWasSuccessful(false);
         try
         {
-            URL url = new URL(String.format("http://localhost:49207/api/V01/games/PlayHand?gameId=%1$s&teamId=%2$s&Hand=%3$s", gameId, teamId, hand.toString()));
+            URL url = new URL(String.format("http://%4$s/api/V01/games/PlayHand?gameId=%1$s&teamId=%2$s&Hand=%3$s", gameId, teamId, hand.toString(), Configuration.getUrlRoot()));
             String userPassword = "paym8user:password";
             String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -373,61 +373,7 @@ public class RestGameAdapter implements IGameAdapter {
     public List<JRound> GetRoundsByGameId(String gameId) throws ApplicationException {
         List<JRound> result = new ArrayList<JRound>();;
         
-        try
-        {
-            URL url = new URL(String.format("http://localhost:49207/api/V01/rounds?gameId=%1$s", gameId));
-            String userPassword = "paym8user:password";
-            String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("Authorization", "Basic " + encoding);
-            
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/xml");
- 
-            if (conn.getResponseCode() != 200)
-            {
-                throw new ApplicationException(String.format("Remote server returned %1$s", Integer.toString(conn.getResponseCode())));
-            }
- 
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            
-            while(line != null)
-            {   sb.append(line);
-                line = br.readLine();
-            }
-            String apiOutput = sb.toString();
-            conn.disconnect();
- 
-            Gson gson = new GsonBuilder().create();
-            RoundDataOutcome rounds = gson.fromJson(apiOutput, RoundDataOutcome.class);
-            
-            if (rounds != null)
-            {
-                RoundData[] data = rounds.getData();
-                if(data.length > 0 && data[0] != null)
-                {
-                    for(int i=0; i<data.length; i++){
-                        JRound jr = new JRound();
-                        jr.Map(data[i]);
-                        result.add(jr);
-                    }
-                }
-            }
-        }
-        catch (MalformedURLException e) 
-        {
-            throw new ApplicationException(e.getMessage());
-        } 
-        catch (IOException e) 
-        {
-            throw new ApplicationException(e.getMessage());
-        } 
-        catch(Exception ex)
-        {
-            throw new ApplicationException(ex.getMessage());
-        }
+        //YOUR CODE HERE TO GET ROUND HISTORY
         return result;
     }
 }
