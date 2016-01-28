@@ -1,20 +1,14 @@
-﻿/// <summary>
-/// The Models namespace.
-/// </summary>
+﻿
 namespace RockPaper.Web.Models
 {
     using Contracts.Providers;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using RockPaper.Web.Extensions;
-
 
     /// <summary>
     /// Class GameResult.
     /// </summary>
-    public class GameResult : IEquatable<GameResult>, IComparable<GameResult>
+    public class GameResult  : IEquatable<GameResult>, IComparable<GameResult>
     {
         public Game Game { get; set; }
         public List<Round> Rounds { get; set; }
@@ -23,7 +17,13 @@ namespace RockPaper.Web.Models
         public int Team2WinsCount { get; set; }
         public int DrawsCount { get; set; }
 
-
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((GameResult) obj);
+        }
 
         /// <summary>
         /// Compares the current object with another object of the same type.
@@ -41,7 +41,6 @@ namespace RockPaper.Web.Models
 
         }
 
-
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
@@ -49,11 +48,7 @@ namespace RockPaper.Web.Models
         /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
         public bool Equals(GameResult other)
         {
-            if (other == null)
-            {
-                return false;
-            }
-            return this.Game.GameState == other.Game.GameState;
+            return Equals(Game, other.Game) && Equals(Rounds, other.Rounds) && Equals(LastRound, other.LastRound) && Team1WinsCount == other.Team1WinsCount && Team2WinsCount == other.Team2WinsCount && DrawsCount == other.DrawsCount;
         }
 
         /// <summary>
@@ -62,7 +57,16 @@ namespace RockPaper.Web.Models
         /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode()
         {
-            return this.Game.GetHashCode();
+            unchecked
+            {
+                var hashCode = (Game != null ? Game.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Rounds != null ? Rounds.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (LastRound != null ? LastRound.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ Team1WinsCount;
+                hashCode = (hashCode*397) ^ Team2WinsCount;
+                hashCode = (hashCode*397) ^ DrawsCount;
+                return hashCode;
+            }
         }
     }
 
