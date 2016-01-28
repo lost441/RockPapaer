@@ -57,7 +57,15 @@
 
                 <div class="col-xs-3 panel panel-primary dash">
                     <div class="row panel-heading text-center">
-                        <strong><label>@String.Concat(gameResult.Game.Team1.TeamName, "-", gameResult.Game.Team2.TeamName) - @gameResult.Game.GameState.ToString() + @gameResult.Game.CreatedDate.ToString() </label></strong>
+                        <strong>
+                            <label>
+                                @String.Concat(
+                                gameResult.Game.Team1.TeamName, "&",
+                                gameResult.Game.Team2.TeamName,". - ",
+                                "Game Status: ", @gameResult.Game.GameState.ToString(),
+                                ". - Start Time: ", @gameResult.Game.CreatedDate.ToShortTimeString())
+                            </label>
+                        </strong>
                     </div>
                     <div class="panel-body">
 
@@ -86,7 +94,7 @@
                             <table class="table table-responsive table-bordered">
                                 <thead>
                                     <tr>
-                                        <td><strong>@string.Format("{0} Team Wins",gameResult.Game.Team1==null?"No Registered Team":gameResult.Game.Team1.TeamName)</strong></td>
+                                        <td><strong>@string.Format("{0} Team Wins", gameResult.Game.Team1 == null ? "No Registered Team" : gameResult.Game.Team1.TeamName)</strong></td>
                                         <td><strong>@string.Format("{0} Team Wins", gameResult.Game.Team2 == null ? "No Registered Team" : gameResult.Game.Team1.TeamName)</strong></td>
                                         <td><strong>Game Draws</strong></td>
                                     </tr>
